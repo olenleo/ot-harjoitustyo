@@ -11,7 +11,7 @@ Tämä repositorio liittyy Helsingin yliopiston kurssiin *Ohjelmistotuotanto 202
 		* Jotain meni pieleen tiedostojen nimeämisessä push- ja pull-hässäkässäni. 
 1. Viikko 1: 
 	1. [gitlog.txt](https://github.com/olenleo/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
-	1. [komentorivi.txt](https://github.com/olenleo/ot-harjoitustyo/blob/master/laskarit/viikko1/tree.txt)
+	1. [komentorivi.txt](https://github.com/olenleo/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
 
 Käyttäjä: [Olenleo](https://github.com/olenleo)
 
