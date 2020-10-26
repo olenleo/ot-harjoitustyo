@@ -10,4 +10,5 @@ Tämä repositorio liittyy Helsingin yliopiston kurssiin *Ohjelmistotuotanto 202
 
 
 Käyttäjä: [Olenleo](https://github.com/olenleo)
-Repositorion [osoite:](https://github.com/olenleo/ot-harjoitustyo)
+
+Repositorion [osoite](https://github.com/olenleo/ot-harjoitustyo)
