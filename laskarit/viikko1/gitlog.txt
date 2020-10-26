@@ -1,0 +1,103 @@
+commit b870ef4dba95c28b9e3bc8b044dea2ce52bc7908
+Author: Leo Niemi <niemi.leo@gmail.com>
+Date:   Mon Oct 26 10:09:45 2020 +0200
+
+    tehtiin muutos file3:en
+
+ tiedostoja/file3 | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 174184996fe5534f9a43b2e295fcea3d03228003
+Author: Leo Niemi <niemi.leo@gmail.com>
+Date:   Mon Oct 26 10:06:59 2020 +0200
+
+    lisätty kansio tiedostoja
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 4a66650abd85f3c3e2a065fa80aa50ecc5b7b0b9
+Author: Leo Niemi <niemi.leo@gmail.com>
+Date:   Mon Oct 19 10:44:14 2020 +0300
+
+    Muutoksia eka, kolmas.txt
+
+ eka.txt    | 40 ++++++++++++++++++++--------------------
+ kolmas.txt | 37 +++++++++++++++++++++++++++++++++++++
+ 2 files changed, 57 insertions(+), 20 deletions(-)
+
+commit 5794dfe5f12b967c18e5db81c09be6c2e47a1499
+Author: Leo Niemi <niemi.leo@gmail.com>
+Date:   Mon Oct 19 10:41:12 2020 +0300
+
+    rename tiedosto.txt-> eka.txt
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 856d379b6fbf0de2c50f53152215e065aee24ba0
+Author: Leo Niemi <niemi.leo@gmail.com>
+Date:   Mon Oct 19 10:40:15 2020 +0300
+
+    poistettiin toinen.txt
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit eaff2166b87d34a7779c0816771e2fd1889c75f2
+Author: Leo Niemi <niemi.leo@gmail.com>
+Date:   Mon Oct 19 10:38:01 2020 +0300
+
+    Lisättiin vähän tekstiä tiedosto.txt
+
+ tiedosto.txt | 29 ++++++++++++++++-------------
+ 1 file changed, 16 insertions(+), 13 deletions(-)
+
+commit ae2cbf95066b757fa22f13c9f372766dfb91b961
+Author: Leo Niemi <niemi.leo@gmail.com>
+Date:   Mon Oct 19 10:31:57 2020 +0300
+
+    lisätty paljon tekstiä tiedosto.txt:hen
+
+ tiedosto.txt | 31 +++++++++++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
+
+commit 4d0cf6c210597a04682facc1488ab30db0d5d5e7
+Author: Leo Niemi <niemi.leo@gmail.com>
+Date:   Mon Oct 19 10:29:10 2020 +0300
+
+    lisätty stuff/jokin.txt
+
+ stuff/jokin.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit ba838782a886e7e95e5a3c2a46dd3e419a1aede1
+Author: Leo Niemi <niemi.leo@gmail.com>
+Date:   Mon Oct 19 10:27:54 2020 +0300
+
+    Kolmas lisätty
+
+ kolmas.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 0f96c493a6cf9f0920488f1bbbc6261c7def8bc0
+Author: Leo Niemi <niemi.leo@gmail.com>
+Date:   Mon Oct 19 10:26:37 2020 +0300
+
+    muutos ja lisäys
+
+ tiedosto.txt | 2 +-
+ toinen.txt   | 1 +
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+commit 6d2b724cb18961e3ec98be8c21e330822dfba7e4
+Author: Leo Niemi <niemi.leo@gmail.com>
+Date:   Mon Oct 19 10:25:33 2020 +0300
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
