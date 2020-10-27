@@ -1,10 +1,10 @@
-# OHJELMISTOTUOTANTO 2020
+# OHJELMISTEKNIIKKA 2020
 
-Tämä repositorio liittyy Helsingin yliopiston kurssiin *Ohjelmistotuotanto 2020*.
+Tämä repositorio liittyy Helsingin yliopiston kurssiin *Ohjelmistotekniikka 2020*.
 
 * Ensimmäiset viikkolaskarit lisätty 26.10
 	* Komentoriviharjoittelua
-		* Tree.txt-tiedostossa kansion nimi on ohjelmistotuotanto 2019 ohjeitten mukaan.
+		* Tree.txt-tiedostossa kansion nimi on ohjelmistotekniikka 2019 ohjeitten mukaan.
 	* Versionhallintaa
 	* Markdown-dokumentti
 	* Huomioita:
