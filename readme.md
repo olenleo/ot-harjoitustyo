@@ -3,7 +3,8 @@
 Tämä repositorio liittyy Helsingin yliopiston kurssiin *Ohjelmistotekniikka 2020*.
 
 
-Harjoitustyön vaatimusmäärittely on saatavilla [täältä.](https://github.com/olenleo/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
+Harjoitustyön vaatimusmäärittely on saatavilla: [vaatimusmaarittely.md.](https://github.com/olenleo/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
+Harjoitustyön työaikakirjanpitos saatavilla: [tyoaikakirjanpito.md](https://github.com/olenleo/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md) 
 
 
 * Ensimmäiset viikkolaskarit lisätty 26.10
