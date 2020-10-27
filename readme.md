@@ -2,6 +2,10 @@
 
 Tämä repositorio liittyy Helsingin yliopiston kurssiin *Ohjelmistotekniikka 2020*.
 
+
+Harjoitustyön vaatimusmäärittely on saatavilla [täältä.](https://github.com/olenleo/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
+
+
 * Ensimmäiset viikkolaskarit lisätty 26.10
 	* Komentoriviharjoittelua
 		* Tree.txt-tiedostossa kansion nimi on ohjelmistotekniikka 2019 ohjeitten mukaan.
