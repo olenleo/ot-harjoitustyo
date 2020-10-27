@@ -4,6 +4,7 @@ Tämä repositorio liittyy Helsingin yliopiston kurssiin *Ohjelmistotekniikka 20
 
 
 Harjoitustyön vaatimusmäärittely on saatavilla: [vaatimusmaarittely.md.](https://github.com/olenleo/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
+
 Harjoitustyön työaikakirjanpito on saatavilla: [tyoaikakirjanpito.md](https://github.com/olenleo/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md) 
 
 
