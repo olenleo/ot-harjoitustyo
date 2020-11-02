@@ -7,10 +7,11 @@ import org.junit.Test;
 public class MaksukorttiTest {
 
     Maksukortti kortti;
-
+    Kassapaate kassapaate;
     @Before
     public void setUp() {
         kortti = new Maksukortti(10);
+        kassapaate = new Kassapaate();
     }
 
     @Test
@@ -21,6 +22,12 @@ public class MaksukorttiTest {
     @Test
     public void kortinSaldoAlussaOikein() {
         assertEquals("saldo: 0.10", kortti.toString());
+    }
+    
+    @Test
+    public void saldoToimii() {
+        assertEquals(10.0, kortti.saldo(),0);
+        
     }
 
     @Test
