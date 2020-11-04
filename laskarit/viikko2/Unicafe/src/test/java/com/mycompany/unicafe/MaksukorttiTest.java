@@ -7,11 +7,11 @@ import org.junit.Test;
 public class MaksukorttiTest {
 
     Maksukortti kortti;
-    Kassapaate kassapaate;
+ 
     @Before
     public void setUp() {
         kortti = new Maksukortti(10);
-        kassapaate = new Kassapaate();
+ 
     }
 
     @Test
