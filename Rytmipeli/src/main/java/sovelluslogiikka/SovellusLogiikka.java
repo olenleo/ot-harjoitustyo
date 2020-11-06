@@ -24,6 +24,14 @@ public class SovellusLogiikka {
 
     }
 
+    public void kasvataLukua() {
+        this.luku++;
+    }
+
+    public int getLuku() {
+        return this.luku;
+    }
+
     public boolean tarkistaTahti(int n) {
         return (n % 4 + 1 == 0); // iskut 1, 5, 9
     }
@@ -42,7 +50,7 @@ public class SovellusLogiikka {
         } else if (tarkistaMerkkiJono(n) || tarkistaMod7(n)) {
             return 2; // jos vain Laatta palauta 2
         } else if (tarkistaTahti(n)) {
-            
+
             return 1; // jos vain Tahti palauta 1
         }
         return 0; // ei mikään erikoistapaus, jatketaan.

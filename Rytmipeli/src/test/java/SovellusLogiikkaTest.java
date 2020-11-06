@@ -4,12 +4,13 @@
  * and open the template in the editor.
  */
 import sovelluslogiikka.SovellusLogiikka;
-import org.junit.jupiter.api.AfterEach;
+
+import org.junit.Test;
+import static org.junit.Assert.*;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
 
 /**
  *
@@ -39,13 +40,12 @@ public class SovellusLogiikkaTest {
     public void tearDown() {
     }
 
-    
 //    @Test
 //    public void nimi() {
+//        esimerkkejä
 //        assertEquals(param, metodi.param());
-//        
+//        assertTrue(boolean, metodi.getBoolean());
 //    }
-    
     
     @Test
     public void lukuAlussa0() {
@@ -53,10 +53,21 @@ public class SovellusLogiikkaTest {
     }
     
     @Test
+    public void alussaTahtiOnFalse() {
+        assertFalse(sl.tarkistaTahti(sl.getLuku()));
+    }
+
+    @Test
     public void lukuKasvatusToimii() {
         sl.kasvataLukua();
         assertEquals(1, sl.getLuku());
-        
     }
     
+    @Test
+    public void isku1PalauttaaTrue() {
+        sl.kasvataLukua();
+        assertTrue(sl.tarkistaTahti(sl.getLuku()));
+        
+    }
+
 }
