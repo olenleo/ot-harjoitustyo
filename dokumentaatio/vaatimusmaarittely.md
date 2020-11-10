@@ -4,7 +4,7 @@
 
 Rytmipeli on yhden pelaajan reaaliaikainen rytmipeli, jonka perusidea pohjautuu Laatta-leikkiin ja polyrytmiikan harjoitteluun. Reaaliaikaisuus kuuluu tosin jatkotavoitteisiin.
 
-Tässä leikissä pelaajat lausuvat vuorotellen numeroita. Jos numero on jaollinen seitsemällä (n % 7 == 0) tai sisältää merkin 7 (esim. 37) tulee korvata numero sanalla Laatta. Esimerkiksi:
+Laatta-leikissä pelaajat lausuvat vuorotellen numeroita. Jos numero on jaollinen seitsemällä (n % 7 == 0) tai sisältää merkin 7 (esim. 37) tulee korvata numero sanalla Laatta. Esimerkiksi:
 >> 12, 13, Laatta, 15, 16, Laatta
 
 Rytmipelissä korostetaan aluksi nelijakoista tahtia. Numerot kasvavat itsenäisesti joka sekunti. Pelaajan tulee merkitä ns. ykköstahdit (ajattele metronomia) ja laatta-iskut painalluksella. 
