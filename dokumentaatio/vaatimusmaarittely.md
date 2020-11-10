@@ -2,7 +2,7 @@
 
 ## Kuvaus
 
-Sovellus on yhden pelaajan reaaliaikainen rytmipeli, jonka perusidea pohjautuu Laatta-leikkiin ja polyrytmiikan harjoitteluun.
+Rytmipeli on yhden pelaajan reaaliaikainen rytmipeli, jonka perusidea pohjautuu Laatta-leikkiin ja polyrytmiikan harjoitteluun. Reaaliaikaisuus kuuluu tosin jatkotavoitteisiin.
 
 Tässä leikissä pelaajat lausuvat vuorotellen numeroita. Jos numero on jaollinen seitsemällä (n % 7 == 0) tai sisältää merkin 7 (esim. 37) tulee korvata numero sanalla Laatta. Esimerkiksi:
 >> 12, 13, Laatta, 15, 16, Laatta
@@ -14,7 +14,7 @@ Pelimekaniikka toimii kolmella näppäimellä.  **A** merkitsee ykköstahtia, **
 Ensimmäiset 20 lukua olisivat:
 **A**2 3 4 **A** 6 **B** 8 **A** 10 11 12 **A** **B** 15 16 **C** 18 19 20
 
-Reaaliaikaisuus kuuluu jatkotavoitteisiin. Jos pelaaja on liian hidas, tai painaa väärin, hän häviää. Muussa tapauksessa pistemäärää kasvatetaan. High score-listaa säilytetään kehityksen alkuvaiheessa tiedostossa käyttäjän koneella ja valmiissa sovelluksessa palvelimella. Kurssin lopullisessa versiossa tavoitteena on siis peli jossa väärästä painalluksesta häviää.
+ Jos pelaaja on liian hidas, tai painaa väärin, hän häviää. Muussa tapauksessa pistemäärää kasvatetaan. High score-listaa säilytetään kehityksen alkuvaiheessa tiedostossa käyttäjän koneella ja valmiissa sovelluksessa palvelimella. Koska tavoittelen ei-reaaliaikaista versiotatavoitteena on siis peli jossa väärästä painalluksesta yksinkertaisesti häviää.
 
 Pelin käyttöliittymä, logiikka ja pisteiden säilytysjärjestelmä edustavat eri komponentteja.
 
@@ -26,6 +26,7 @@ Ensimmäisen version tavoite: Komentorivipohjainen pelilogiikka joka tallentaa p
 - Graafinen käyttöliittymä (JavaFX)
 - Top-10 pisteet ja pelaajien nimet palvelimella
 - Alkumenu jossa voi tarkastella high scorea, aloittaa uuden pelin tai sulkea sovelluksen.
+- Muutama ääniefekti
 
 
 ## Mahdolliset kehityssuunnat / lisäominaisuudet:
