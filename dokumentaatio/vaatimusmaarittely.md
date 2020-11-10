@@ -14,7 +14,7 @@ Pelimekaniikka toimii kolmella näppäimellä.  **A** merkitsee ykköstahtia, **
 Ensimmäiset 20 lukua olisivat:
 **A**2 3 4 **A** 6 **B** 8 **A** 10 11 12 **A** **B** 15 16 **C** 18 19 20
 
- Jos pelaaja on liian hidas, tai painaa väärin, hän häviää. Muussa tapauksessa pistemäärää kasvatetaan. High score-listaa säilytetään kehityksen alkuvaiheessa tiedostossa käyttäjän koneella ja valmiissa sovelluksessa palvelimella. Koska tavoittelen ei-reaaliaikaista versiotatavoitteena on siis peli jossa väärästä painalluksesta yksinkertaisesti häviää.
+ Jos pelaaja on liian hidas, tai painaa väärin, hän häviää. Muussa tapauksessa pistemäärää kasvatetaan. High score-listaa säilytetään kehityksen alkuvaiheessa tiedostossa käyttäjän koneella ja valmiissa sovelluksessa palvelimella. Koska toteutan ei-reaaliaikaisen version tavoitteena on siis peli jossa väärästä painalluksesta yksinkertaisesti häviää.
 
 Pelin käyttöliittymä, logiikka ja pisteiden säilytysjärjestelmä edustavat eri komponentteja.
 
