@@ -7,8 +7,8 @@ public class TekstiKayttoliittyma {
 
     sovelluslogiikka.SovellusLogiikka sl;
     Scanner lukija;
-    private int komento;
-    private int nykyinen;
+    private String komento;
+    private int seuraava;
     
     public TekstiKayttoliittyma() {
         sl = new SovellusLogiikka();
@@ -16,41 +16,49 @@ public class TekstiKayttoliittyma {
         
     }
     
-    public int getKomento() {
+    public String getKomento() {
         return this.komento;
     }
 
     public void kaynnista() {
         System.out.println("Uusi peli!");
+        System.out.println("z = ykköstahti, c = laatta, v = molemmat, x = ei erikoistapauksia");
         while (true) {
-            nykyinen = sl.getLuku();
-            System.out.println("Luku: " + nykyinen);
+            seuraava = sl.getLuku();
+            System.out.println("Seuraava: " + seuraava);
             System.out.println("z = [1/4] beat, x = neXt, c = Laatta, v == laatta + beat");
-            komento = komento();
-            if (komento == 2) {
-                sl.kasvataLukua();
-            } else if (komento == 5) {
-                System.out.println("QUIT");
+            komento = luettuKomento();
+            // syötetään seuraava sovelluslogiikalleq ja katsotaan mitä se palauttaa!
+            if (sl.tarkistaLaatta(seuraava).equals(komento)) {
+            sl.kasvataLukua();    
+            }
+            else {
+                System.out.println("Virhe! Yritä uudestaan!");
+            }
+            
+            if (komento.equals("EXIT")) {
                 break;
             }
+            
+                
             
         }
     }
 
-    public int komento() {
+    public String luettuKomento() {
         switch (lukija.nextLine()) {
             case "z":
-                return 1;
+                return "TAHTI";
             case "x":
-                return 2;
+                return "SEURAAVA";
             case "c":
-                return 3;
-            case "v":
-                return 4;
+                return "LAATTA";
+            case "v": // molemmat
+                return "MOLEMMAT";
             case "q":
-                return 5;
+                return "EXIT";
             default:
-                return 0;
+                return "Jotain pielessä";
         }
     }
 }

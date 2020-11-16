@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sovelluslogiikka;
 
 /**
  *
- * Tämä luokka vastaanottaa tekstiui:lta kokonaisluvun ja palauttaa sille isomman numeron tai break
+ * Tämä luokka vastaanottaa tekstiui:lta kokonaisluvun ja palauttaa sille
+ * isomman numeron tai break
  */
 public class SovellusLogiikka {
 
@@ -17,11 +13,13 @@ public class SovellusLogiikka {
     private String charLaatta;
 
     public SovellusLogiikka() {
-        this.luku = 0;
+        this.luku = 1;
         this.a = 4;
         this.laatta = 7; // TODO toiminnallisuus polyrytmiikan muuttamiseen
         this.charLaatta = "7";
-
+        for (int i = 0; i < 21; i++) {
+            System.out.println(i + ": " + tarkistaTahti(i));
+        }
     }
 
     public void kasvataLukua() {
@@ -33,7 +31,7 @@ public class SovellusLogiikka {
     }
 
     public boolean tarkistaTahti(int n) {
-        return (n % 4 + 1 == 0); // iskut 1, 5, 9
+        return ((n - 1) % 4 == 0); // iskut 1, 5, 9
     }
 
     public boolean tarkistaMod7(int n) {
@@ -44,15 +42,17 @@ public class SovellusLogiikka {
         return (Integer.toString(n).equals(charLaatta));
     }
 
-    public int tarkistaLaatta(int komento) {
-        if ((tarkistaMerkkiJono(luku) || tarkistaMod7(luku)) && tarkistaTahti(luku) && komento == 4) {
-            return 3; // jos sekä Laatta että Tahti, palauta 2
+    public String tarkistaLaatta(int n) {
+        if ((tarkistaMerkkiJono(luku) || tarkistaMod7(luku)) && tarkistaTahti(luku) && n == 4) {
+            System.out.println("MOLEMMAT");
+            return "MOLEMMAT"; // jos sekä Laatta että Tahti, palauta 2
         } else if (tarkistaMerkkiJono(n) || tarkistaMod7(n)) {
-            return 2; // jos vain Laatta palauta 2
+            System.out.println("LAATTA");
+            return "LAATTA"; // jos vain Laatta palauta 2
         } else if (tarkistaTahti(n)) {
-
-            return 1; // jos vain Tahti palauta 1
+            System.out.println("TAHTI");
+            return "TAHTI"; // jos vain Tahti palauta 1
         }
-        return 0; // ei mikään erikoistapaus, jatketaan.
+        return "SEURAAVA"; // ei mikään erikoistapaus, jatketaan.
     }
 }
