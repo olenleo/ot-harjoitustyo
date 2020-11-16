@@ -7,7 +7,7 @@ package sovelluslogiikka;
 
 /**
  *
- * @author olenleo (Leo Niemi)
+ * Tämä luokka vastaanottaa tekstiui:lta kokonaisluvun ja palauttaa sille isomman numeron tai break
  */
 public class SovellusLogiikka {
 
@@ -44,8 +44,8 @@ public class SovellusLogiikka {
         return (Integer.toString(n).equals(charLaatta));
     }
 
-    public int tarkistaLaatta(int n) {
-        if ((tarkistaMerkkiJono(n) || tarkistaMod7(n)) && tarkistaTahti(n)) {
+    public int tarkistaLaatta(int komento) {
+        if ((tarkistaMerkkiJono(luku) || tarkistaMod7(luku)) && tarkistaTahti(luku) && komento == 4) {
             return 3; // jos sekä Laatta että Tahti, palauta 2
         } else if (tarkistaMerkkiJono(n) || tarkistaMod7(n)) {
             return 2; // jos vain Laatta palauta 2
