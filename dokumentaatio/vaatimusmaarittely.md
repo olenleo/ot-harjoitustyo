@@ -2,32 +2,35 @@
 
 ## Kuvaus
 
-Sovellus on yhden pelaajan reaaliaikainen rytmipeli, jonka perusidea pohjautuu Laatta-leikkiin ja polyrytmiikan harjoitteluun.
+Rytmipeli on yhden pelaajan reaaliaikainen rytmipeli, jonka perusidea pohjautuu Laatta-leikkiin ja polyrytmiikan harjoitteluun. Reaaliaikaisuus kuuluu tosin jatkotavoitteisiin.
 
-Tässä leikissä pelaajat lausuvat vuorotellen numeroita. Jos numero on jaollinen seitsemällä (n % 7 == 0) tai sisältää merkin 7 (esim. 37) tulee korvata numero sanalla Laatta. Esimerkiksi:
+Laatta-leikissä pelaajat lausuvat vuorotellen numeroita. Jos numero on jaollinen seitsemällä (n % 7 == 0) tai sisältää merkin 7 (esim. 37) tulee korvata numero sanalla Laatta. Esimerkiksi:
 >> 12, 13, Laatta, 15, 16, Laatta
 
 Rytmipelissä korostetaan aluksi nelijakoista tahtia. Numerot kasvavat itsenäisesti joka sekunti. Pelaajan tulee merkitä ns. ykköstahdit (ajattele metronomia) ja laatta-iskut painalluksella. 
 
-Pelimekaniikka toimii kolmella näppäimellä.  **A** merkitsee ykköstahtia, **B** merkitsee Laattaa (n % 7 == 0 || numero.toString.contains("7")) ja **C** täyttää *molemmat* ehdot (esimerkiksi '17'). Näppäimet olisivat klikattavissa hiirellä tai jollain sopivalla näppäimistön painikkeella.
+Pelimekaniikka toimii kolmella näppäimellä.  **A** merkitsee ykköstahtia, **B** merkitsee Laattaa (n % 7 == 0 || numero.toString.contains("7")) ja **C** täyttää *molemmat* ehdot (esimerkiksi '17'). Näppäimet olisivat klikattavissa hiirellä tai jollain sopivalla näppäimistön painikkeella - kyseessä ei siis välttämättä ole näppäimistön merkit A,B ja C.
 
-Ensimmäiset 20 lukua olisivat siten
+Ensimmäiset 20 lukua olisivat:
 **A**2 3 4 **A** 6 **B** 8 **A** 10 11 12 **A** **B** 15 16 **C** 18 19 20
 
-Peli toimii reaaliajassa. Jos pelaaja on liian hidas, tai painaa väärin, hän häviää. Muussa tapauksessa pistemäärää kasvatetaan. High score-listaa säilytetään kehityksen alkuvaiheessa tiedostossa käyttäjän koneella ja valmiissa sovelluksessa palvelimella.
+ Jos pelaaja on liian hidas, tai painaa väärin, hän häviää. Muussa tapauksessa pistemäärää kasvatetaan. High score-listaa säilytetään kehityksen alkuvaiheessa tiedostossa käyttäjän koneella ja valmiissa sovelluksessa palvelimella. Koska toteutan ei-reaaliaikaisen version tavoitteena on siis peli jossa väärästä painalluksesta yksinkertaisesti häviää.
 
 Pelin käyttöliittymä, logiikka ja pisteiden säilytysjärjestelmä edustavat eri komponentteja.
 
 ## Suunnitelma
-Ensimmäisen version tavoite: Komentorivipohjainen pelilogiikka (ei reaaliajassa) joka tallentaa korkeimman pistemäärän. 
-Valmiin sovelluksen ominaisuudet:
+Ensimmäisen version tavoite: Komentorivipohjainen pelilogiikka joka tallentaa paikallisesti korkeimman pistemäärän. 
+
+
+## Valmiin sovelluksen ominaisuudet:
 - Graafinen käyttöliittymä (JavaFX)
-- Reaaliaikainen toiminnallisuus
 - Top-10 pisteet ja pelaajien nimet palvelimella
-- Yksinkertaiset ääniefektit (metronomi)
+- Alkumenu jossa voi tarkastella high scorea, aloittaa uuden pelin tai sulkea sovelluksen.
+- Muutama ääniefekti
 
 
 ## Mahdolliset kehityssuunnat / lisäominaisuudet:
+- Reaaliaikainen toteutus
 - Vaikeustason implementointi
   - Pitkä, keskiverto, lyhyt aikaikkuna painallukselle
   - Lisäelämät
