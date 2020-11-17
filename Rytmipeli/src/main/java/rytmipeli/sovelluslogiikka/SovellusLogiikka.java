@@ -19,6 +19,10 @@ public class SovellusLogiikka {
         this.charLaatta = "7";
         
     }
+    
+    public void asetaLuku(int n) { // testausta varten
+        this.luku = n;
+    }
 
     public void kasvataLukua() {
         this.luku++;
@@ -37,19 +41,20 @@ public class SovellusLogiikka {
     }
 
     public boolean tarkistaMerkkiJono(int n) {
-        return (Integer.toString(n).equals(charLaatta));
+        return (Integer.toString(n).contains(charLaatta));
     }
 
     public String tarkistaLaatta(int n) {
-        if ((tarkistaMerkkiJono(luku) || tarkistaMod7(luku)) && tarkistaTahti(luku) && n == 4) {
-            System.out.println("MOLEMMAT");
-            return "MOLEMMAT"; // jos sekä Laatta että Tahti, palauta 2
+        if ((tarkistaMerkkiJono(n) || tarkistaMod7(n)) && tarkistaTahti(n)) {
+       return "MOLEMMAT";
+            
+            
         } else if (tarkistaMerkkiJono(n) || tarkistaMod7(n)) {
-            System.out.println("LAATTA");
-            return "LAATTA"; // jos vain Laatta palauta 2
+            
+            return "LAATTA"; // jos vain Laatta
         } else if (tarkistaTahti(n)) {
-            System.out.println("TAHTI");
-            return "TAHTI"; // jos vain Tahti palauta 1
+            
+            return "TAHTI"; // jos vain Tahti
         }
         return "SEURAAVA"; // ei mikään erikoistapaus, jatketaan.
     }

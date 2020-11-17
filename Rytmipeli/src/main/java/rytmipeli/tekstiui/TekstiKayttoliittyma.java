@@ -12,8 +12,8 @@ public class TekstiKayttoliittyma {
     
     public TekstiKayttoliittyma() {
         sl = new SovellusLogiikka();
-        lukija = new Scanner(System.in);
-        
+        lukija = new Scanner(System.in);  
+      
     }
     
     public String getKomento() {
@@ -28,7 +28,7 @@ public class TekstiKayttoliittyma {
             System.out.println("Seuraava: " + seuraava);
             System.out.println("z = [1/4] beat, x = neXt, c = Laatta, v == laatta + beat");
             komento = luettuKomento();
-            // syötetään seuraava sovelluslogiikalleq ja katsotaan mitä se palauttaa!
+            // syötetään seuraava sovelluslogiikalle ja katsotaan mitä se palauttaa!
             if (sl.tarkistaLaatta(seuraava).equals(komento)) {
             sl.kasvataLukua();    
             }

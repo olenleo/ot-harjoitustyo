@@ -58,6 +58,13 @@ public class SovellusLogiikkaTest {
     }
 
     @Test
+    public void merkkijonotestiToimii() {
+        assertTrue(sl.tarkistaMerkkiJono(17));
+    }
+
+    
+    
+    @Test
     public void lukuKasvatusToimii() {
         sl.kasvataLukua();
         assertEquals(2, sl.getLuku());
@@ -65,8 +72,20 @@ public class SovellusLogiikkaTest {
     
     @Test
     public void isku1PalauttaaTrue() {
-     
         assertTrue(sl.tarkistaTahti(sl.getLuku()));
+    }
+    
+    @Test
+    public void asetaLukuToimii() {
+        sl.asetaLuku(100);
+        assertEquals(100, sl.getLuku());
+    }
+    
+    
+    @Test
+    public void isku17vaatiimolemmat() {
+        sl.asetaLuku(17);
+        assertEquals("MOLEMMAT", sl.tarkistaLaatta(sl.getLuku()));
         
     }
 
