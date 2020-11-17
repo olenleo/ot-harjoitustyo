@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import sovelluslogiikka.SovellusLogiikka;
+import rytmipeli.sovelluslogiikka.SovellusLogiikka;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -48,24 +48,24 @@ public class SovellusLogiikkaTest {
 //    }
     
     @Test
-    public void lukuAlussa0() {
-        assertEquals(0, sl.getLuku());
+    public void lukuAlussa1() {
+        assertEquals(1, sl.getLuku());
     }
     
     @Test
-    public void alussaTahtiOnFalse() {
-        assertFalse(sl.tarkistaTahti(sl.getLuku()));
+    public void alussaTahtiOnTrue() {
+        assertTrue(sl.tarkistaTahti(sl.getLuku()));
     }
 
     @Test
     public void lukuKasvatusToimii() {
         sl.kasvataLukua();
-        assertEquals(1, sl.getLuku());
+        assertEquals(2, sl.getLuku());
     }
     
     @Test
     public void isku1PalauttaaTrue() {
-        sl.kasvataLukua();
+     
         assertTrue(sl.tarkistaTahti(sl.getLuku()));
         
     }

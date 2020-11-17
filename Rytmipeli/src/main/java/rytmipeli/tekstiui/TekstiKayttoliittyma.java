@@ -1,11 +1,11 @@
 package rytmipeli.tekstiui;
 
 import java.util.Scanner;
-import sovelluslogiikka.SovellusLogiikka;
+import rytmipeli.sovelluslogiikka.SovellusLogiikka;
 
 public class TekstiKayttoliittyma {
 
-    sovelluslogiikka.SovellusLogiikka sl;
+    rytmipeli.sovelluslogiikka.SovellusLogiikka sl;
     Scanner lukija;
     private String komento;
     private int seuraava;

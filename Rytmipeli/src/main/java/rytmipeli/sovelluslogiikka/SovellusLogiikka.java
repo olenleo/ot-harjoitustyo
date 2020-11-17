@@ -1,25 +1,23 @@
-package sovelluslogiikka;
+package rytmipeli.sovelluslogiikka;
 
 /**
- *
- * Tämä luokka vastaanottaa tekstiui:lta kokonaisluvun ja palauttaa sille
- * isomman numeron tai break
+ *  Tässä luokassa toteutetaan pelin tarkistukset
+ * 
+ * 
  */
 public class SovellusLogiikka {
 
     private int luku;
     private int a;
     private int laatta;
-    private String charLaatta;
+    private String charLaatta; // muuttujana jotta luku olisi vaihdettavissa
 
     public SovellusLogiikka() {
         this.luku = 1;
         this.a = 4;
         this.laatta = 7; // TODO toiminnallisuus polyrytmiikan muuttamiseen
         this.charLaatta = "7";
-        for (int i = 0; i < 21; i++) {
-            System.out.println(i + ": " + tarkistaTahti(i));
-        }
+        
     }
 
     public void kasvataLukua() {

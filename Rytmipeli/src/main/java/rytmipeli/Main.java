@@ -2,7 +2,7 @@
  */
 package rytmipeli;
 
-import sovelluslogiikka.SovellusLogiikka;
+import rytmipeli.sovelluslogiikka.SovellusLogiikka;
 import rytmipeli.tekstiui.TekstiKayttoliittyma;
 
 public class Main {
