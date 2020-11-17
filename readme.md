@@ -1,23 +1,38 @@
-# OHJELMISTEKNIIKKA 2020
+# RYTMIPELI
+
+Rytmipeli perustuu nelitahtisen rytmin seuraamiseen yhdessä seitsentahtisen rytmin kanssa. Lisähaastetta tuo että jokainen numero joka sisältää merkin '7' lasketaan myös. Tämä ei ole (vielä) reaaliaikainen toteutus; lisätietoa vaatimusmäärittelystä alla.
 
 Tämä repositorio liittyy Helsingin yliopiston kurssiin *Ohjelmistotekniikka 2020*.
 
+# HUOMIO JAVAN VERSIOISTA:
+Tämän pitäisi toimia Java 11:lla myös laitoksen laitteilla [Testattu 17.11].
 
-Harjoitustyön vaatimusmäärittely on saatavilla: [vaatimusmaarittely.md.](https://github.com/olenleo/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
+# Dokumentaatio
+- Vaatimusmäärittely: [vaatimusmaarittely.md.](https://github.com/olenleo/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
+- Työaikakirjanpito: [tyoaikakirjanpito.md](https://github.com/olenleo/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md) 
 
-Harjoitustyön työaikakirjanpito on saatavilla: [tyoaikakirjanpito.md](https://github.com/olenleo/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md) 
+# Komentorivitoiminnot
+
+Käynnistys:
+~~~
+    $ mvn compile exec:java -Dexec.mainClass=rytmipeli.Main    
+~~~
+Komennot tällä hetkellä:
+- z - *uusi tahti alkaa*
+- x - *ei erikoistapauksia*
+- c - *laatta, eli seitsemällä jaollinen luku tai luku joka sisältää merkin 7*
+- v - *Uusi tahti **ja** laatta, esim luku 17*
+
+Testaus: 
+~~~
+$ mvn test
+~~~
+Testikattavuusraportti:
+~~~
+$ mvn test jacoco:report
+~~~
 
 
-* Ensimmäiset viikkolaskarit lisätty 26.10
-	* Komentoriviharjoittelua
-		* Tree.txt-tiedostossa kansion nimi on ohjelmistotekniikka 2019 ohjeitten mukaan.
-	* Versionhallintaa
-	* Markdown-dokumentti
-	* Huomioita:
-		* Jotain meni pieleen tiedostojen nimeämisessä push- ja pull-hässäkässäni. 
-1. Viikko 1: 
-	1. [gitlog.txt](https://github.com/olenleo/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
-	1. [komentorivi.txt](https://github.com/olenleo/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
 
 Käyttäjä: [Olenleo](https://github.com/olenleo)
 
