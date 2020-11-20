@@ -1,0 +1,8 @@
+.red { -fx-background-color: linear-gradient(#FF8830, #D55A00),radial-gradient(center 25% -40%, radius 200%, #FF8080  25%, #FF0000 50%);
+    -fx-background-radius: 2, 20;   
+    -fx-background-insets: 25, 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.9),5,0.0,0,1);
+    -fx-text-fill: #395306;
+    -fx-font-size: 2em;
+}
+
