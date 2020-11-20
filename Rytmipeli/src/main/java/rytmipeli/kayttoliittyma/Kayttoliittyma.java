@@ -9,6 +9,8 @@ import java.io.File;
 import javafx.animation.FadeTransition;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -44,24 +46,24 @@ public class Kayttoliittyma extends Application {
 
         Insets buttonInset = new Insets(10, 10, 10, 10);
 
-        Button tahtiButton = new Button("[1/4]");
+        Nappi tahtiButton = new Nappi("[1/4]");
         tahtiButton.getStyleClass().add("red");
         tahtiButton.setMinSize(160, 160);
 
         tahtiButton.setPadding(buttonInset);
 
-        Button nextButton = new Button("SKIP");
+        Button nextButton = new Nappi("SKIP");
         nextButton.setMinSize(160, 160);
         nextButton.getStyleClass().add("orange");
 
         nextButton.setPadding(buttonInset);
 
-        Button laattaButton = new Button("7");
+        Button laattaButton = new Nappi("7");
         laattaButton.setMinSize(160, 160);
         laattaButton.getStyleClass().add("yellow");
         laattaButton.setPadding(buttonInset);
 
-        Button molemmatButton = new Button("*");
+        Button molemmatButton = new Nappi("*");
         molemmatButton.setMinSize(160, 160);
         molemmatButton.getStyleClass().add("green");
         molemmatButton.setPadding(buttonInset);
@@ -75,9 +77,7 @@ public class Kayttoliittyma extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-    
-    
-    
+
     public static void main(String[] args) {
         launch(args);
     }
