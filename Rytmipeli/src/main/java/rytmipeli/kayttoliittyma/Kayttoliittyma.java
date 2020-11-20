@@ -38,43 +38,9 @@ public class Kayttoliittyma extends Application {
         gc.setFill(Color.LIGHTGREY);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         Scene scene = new Scene(new Group());
-        File f = new File("buttonCSS.css");
+        File f = new File("buttonCSS.css"); // muokattu lähteestä http://fxexperience.com/2011/12/styling-fx-buttons-with-css/
         scene.getStylesheets().clear();
         scene.getStylesheets().add("file:///" + f.getAbsolutePath().replace("\\", "/"));
-        
-
-        String orangeCSS = "-fx-background-color: linear-gradient(#FF8830, #D55A00),"
-                + "radial-gradient(center 25% -40%, "
-                + "radius 200%, "
-                + "#FFC080 25%, " // yläosa
-                + "#FF8000 50%); " // alaosa
-                + "-fx-background-radius: 2, 20;    "
-                + "-fx-background-insets: 25, 10;"
-                + "-fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.9),5,0.0,0,1);"
-                + "-fx-text-fill: #395306;"
-                + "-fx-font-size: 2em;";
-
-        String yellowCSS = "-fx-background-color: linear-gradient(#b8ee36, #80c800),"
-                + "radial-gradient(center 25% -40%, "
-                + "radius 200%, "
-                + "#FFFF80 25%,"
-                + "#FFFF00 50%); "
-                + "-fx-background-radius: 2, 20;"
-                + "-fx-background-insets: 25, 10;"
-                + "-fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.4),5,0.0,0,1);"
-                + "-fx-text-fill: #395306;"
-                + "-fx-font-size: 2em;";
-
-        String greenCSS = "-fx-background-color: linear-gradient(#b8ee36, #80c800),"
-                + "radial-gradient(center 25% -40%, "
-                + "radius 200%, "
-                + "#C0FF80 25%,"
-                + "#80FF00 50%); "
-                + "-fx-background-radius: 2, 20;"
-                + "-fx-background-insets: 25, 10;"
-                + "-fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.4),5,0.0,0,1);"
-                + "-fx-text-fill: #395306;"
-                + "-fx-font-size: 2em;";
 
         Insets buttonInset = new Insets(10, 10, 10, 10);
 
@@ -86,17 +52,18 @@ public class Kayttoliittyma extends Application {
 
         Button nextButton = new Button("SKIP");
         nextButton.setMinSize(160, 160);
-        nextButton.setStyle(orangeCSS);
+        nextButton.getStyleClass().add("orange");
+
         nextButton.setPadding(buttonInset);
 
         Button laattaButton = new Button("7");
         laattaButton.setMinSize(160, 160);
-        laattaButton.setStyle(yellowCSS);
+        laattaButton.getStyleClass().add("yellow");
         laattaButton.setPadding(buttonInset);
 
         Button molemmatButton = new Button("*");
         molemmatButton.setMinSize(160, 160);
-        molemmatButton.setStyle(greenCSS);
+        molemmatButton.getStyleClass().add("green");
         molemmatButton.setPadding(buttonInset);
 
         HBox buttons = new HBox(tahtiButton, nextButton, laattaButton, molemmatButton);
