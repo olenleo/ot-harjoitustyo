@@ -13,7 +13,6 @@ public class TekstiKayttoliittyma {
     public TekstiKayttoliittyma() {
         sl = new SovellusLogiikka();
         lukija = new Scanner(System.in);  
-      
     }
     
     public String getKomento() {
@@ -35,13 +34,9 @@ public class TekstiKayttoliittyma {
             else {
                 System.out.println("Virhe! Yritä uudestaan!");
             }
-            
             if (komento.equals("EXIT")) {
                 break;
             }
-            
-                
-            
         }
     }
 

@@ -1,25 +1,25 @@
 package rytmipeli.sovelluslogiikka;
 
 /**
- *  Tässä luokassa toteutetaan pelin tarkistukset
- * 
- * 
+ * Tässä luokassa toteutetaan pelin tarkistukset
+ *
+ *
  */
 public class SovellusLogiikka {
 
     private int luku;
-    private int a;
+    private int tahti;
     private int laatta;
     private String charLaatta; // muuttujana jotta luku olisi vaihdettavissa
 
     public SovellusLogiikka() {
         this.luku = 1;
-        this.a = 4;
+        this.tahti = 4;  // TODO toiminnallisuus polyrytmiikan muuttamiseen
         this.laatta = 7; // TODO toiminnallisuus polyrytmiikan muuttamiseen
         this.charLaatta = "7";
-        
+
     }
-    
+
     public void asetaLuku(int n) { // testausta varten
         this.luku = n;
     }
@@ -33,7 +33,7 @@ public class SovellusLogiikka {
     }
 
     public boolean tarkistaTahti(int n) {
-        return ((n - 1) % 4 == 0); // iskut 1, 5, 9
+        return ((n - 1) % tahti == 0); // iskut 1, 5, 9
     }
 
     public boolean tarkistaMod7(int n) {
@@ -46,14 +46,10 @@ public class SovellusLogiikka {
 
     public String tarkistaLaatta(int n) {
         if ((tarkistaMerkkiJono(n) || tarkistaMod7(n)) && tarkistaTahti(n)) {
-       return "MOLEMMAT";
-            
-            
+            return "MOLEMMAT";
         } else if (tarkistaMerkkiJono(n) || tarkistaMod7(n)) {
-            
             return "LAATTA"; // jos vain Laatta
         } else if (tarkistaTahti(n)) {
-            
             return "TAHTI"; // jos vain Tahti
         }
         return "SEURAAVA"; // ei mikään erikoistapaus, jatketaan.

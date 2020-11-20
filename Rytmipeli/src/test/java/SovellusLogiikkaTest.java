@@ -89,4 +89,6 @@ public class SovellusLogiikkaTest {
         
     }
 
+    
+    // todo: Testi joka vastaanottaa "oikean merkkijonon" pitkällä aikavälillä
 }
