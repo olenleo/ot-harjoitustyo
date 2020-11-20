@@ -72,25 +72,12 @@ public class Kayttoliittyma extends Application {
         ((Group) scene.getRoot()).getChildren().add(canvas);
         ((Group) scene.getRoot()).getChildren().add(buttons);
 
-//       
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
-    private void buttonClicked(Button button) {
-
-        button.setOnAction((event) -> {
-            button.getStyleClass().removeAll();
-            FadeTransition ft = new FadeTransition(Duration.millis(3000), button.getStyleableNode());
-            ft.setFromValue(1.0);
-            ft.setToValue(0.1);
-            ft.setCycleCount(Timeline.INDEFINITE);
-            ft.setAutoReverse(true);
-            ft.play();
-        });
-
-    }
-
+    
+    
+    
     public static void main(String[] args) {
         launch(args);
     }
