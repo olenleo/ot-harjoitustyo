@@ -17,19 +17,21 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import rytmipeli.sovelluslogiikka.SovellusLogiikka;
 
 /**
  *
  * @author Leo Niemi
  */
 public class Kayttoliittyma extends Application {
-
+    SovellusLogiikka sl = new SovellusLogiikka();
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Setup: Taustalle harmaahko canvas
@@ -52,31 +54,35 @@ public class Kayttoliittyma extends Application {
 
         Insets buttonInset = new Insets(10, 10, 10, 10);
         
-        Nappi tahtiButton = new Nappi("[1/4]");
+        Nappi tahtiButton = new Nappi("[1/4]", "TAHTI");
         tahtiButton.getStyleClass().add("red");
         tahtiButton.setMinSize(160, 160);
         tahtiButton.setPadding(buttonInset);
 
-        Button nextButton = new Nappi("SKIP");
+        Button nextButton = new Nappi("SKIP", "SEURAAVA");
         nextButton.setMinSize(160, 160);
         nextButton.getStyleClass().add("orange");
         nextButton.setPadding(buttonInset);
 
-        Button laattaButton = new Nappi("7");
+        Button laattaButton = new Nappi("7", "LAATTA");
         laattaButton.setMinSize(160, 160);
         laattaButton.getStyleClass().add("yellow");
         laattaButton.setPadding(buttonInset);
 
-        Button molemmatButton = new Nappi("*");
+        Button molemmatButton = new Nappi("*", "MOLEMMAT");
         molemmatButton.setMinSize(160, 160);
         molemmatButton.getStyleClass().add("green");
         molemmatButton.setPadding(buttonInset);
 
-        HBox buttons = new HBox(tahtiButton, nextButton, laattaButton, molemmatButton);
-
-        buttons.setPadding(new Insets(10, 10, 10, 10));
+        TextField score = new TextField("Score: " + Integer.toString(sl.getLuku()));
+        VBox info = new VBox(score);
+        HBox userInterface = new HBox(tahtiButton, nextButton, laattaButton, molemmatButton, info);
+        
+        
+        
+        userInterface.setPadding(new Insets(10, 10, 10, 10));
         ((Group) scene.getRoot()).getChildren().add(canvas);
-        ((Group) scene.getRoot()).getChildren().add(buttons);
+        ((Group) scene.getRoot()).getChildren().add(userInterface);
 
         primaryStage.setScene(scene);
         primaryStage.show();
