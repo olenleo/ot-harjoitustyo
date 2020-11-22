@@ -12,10 +12,10 @@ import javafx.util.Duration;
 
 /**
  *
- * @author 35850
+ * @author Leo Niemi
  */
 public class Nappi extends Button {
-
+    
     public Nappi(String text) {
         this.setText(text);
         this.setOnAction((ActionEvent e) -> {

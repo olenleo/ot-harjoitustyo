@@ -32,30 +32,34 @@ public class Kayttoliittyma extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        // Setup: Taustalle harmaahko canvas
         Canvas canvas = new Canvas();
         canvas.setHeight(180);
         canvas.setWidth(800);
         GraphicsContext gc = canvas.getGraphicsContext2D();
-
         gc.setFill(Color.LIGHTGREY);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        
+        // Luodaan scene-olio, lisätään .css-tiedosto
         Scene scene = new Scene(new Group());
-        File f = new File("buttonCSS.css"); // muokattu lähteestä http://fxexperience.com/2011/12/styling-fx-buttons-with-css/
+        
+         // stylesheet muokattu lähteestä http://fxexperience.com/2011/12/styling-fx-buttons-with-css/,
+         // ja lisätty mukaan tiedostomuodossa jotta käyttäjä voisi modailla helposti.
+         // Tai tämä ainakin tavoitteena, tulen jossain vaiheessa kyselemään .jar-tiedostoista yms pajassa :)
+        File f = new File("buttonCSS.css");
         scene.getStylesheets().clear();
         scene.getStylesheets().add("file:///" + f.getAbsolutePath().replace("\\", "/"));
 
         Insets buttonInset = new Insets(10, 10, 10, 10);
-
+        
         Nappi tahtiButton = new Nappi("[1/4]");
         tahtiButton.getStyleClass().add("red");
         tahtiButton.setMinSize(160, 160);
-
         tahtiButton.setPadding(buttonInset);
 
         Button nextButton = new Nappi("SKIP");
         nextButton.setMinSize(160, 160);
         nextButton.getStyleClass().add("orange");
-
         nextButton.setPadding(buttonInset);
 
         Button laattaButton = new Nappi("7");
