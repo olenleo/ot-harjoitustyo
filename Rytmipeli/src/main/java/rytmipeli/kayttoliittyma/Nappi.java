@@ -30,6 +30,7 @@ public class Nappi extends Button {
             if (annettu.equals(vaadittu)) {
                 sl.kasvataLukua();
                 scorefield.setText("Score: " + sl.getLuku());
+                state.setText("Hyvin pyyhkii!");
                 FadeTransition ft = new FadeTransition(Duration.millis(50), this);
                 ft.setFromValue(1.0);
                 ft.setToValue(0.8);
