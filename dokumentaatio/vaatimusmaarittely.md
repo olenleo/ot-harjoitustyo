@@ -23,7 +23,7 @@ Ensimmäisen version tavoite: Komentorivipohjainen pelilogiikka joka tallentaa p
 
 
 ## Valmiin sovelluksen ominaisuudet:
-- Graafinen käyttöliittymä (JavaFX)
+- Graafinen käyttöliittymä (JavaFX) - TEHTY (alustavasti)
 - Top-10 pisteet ja pelaajien nimet palvelimella
 - Alkumenu jossa voi tarkastella high scorea, aloittaa uuden pelin tai sulkea sovelluksen.
 - Muutama ääniefekti
