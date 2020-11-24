@@ -10,6 +10,7 @@ Tämän pitäisi toimia Java 11:lla myös laitoksen laitteilla [Testattu 17.11].
 # Dokumentaatio
 - Vaatimusmäärittely: [vaatimusmaarittely.md.](https://github.com/olenleo/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 - Työaikakirjanpito: [tyoaikakirjanpito.md](https://github.com/olenleo/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md) 
+- Arkkitektuuri: [arkkitektuuri.md](https://github.com/olenleo/ot-harjoitustyo/blob/master/dokumentaatio/arkkitektuuri.md)
 
 # Komentorivitoiminnot
 
