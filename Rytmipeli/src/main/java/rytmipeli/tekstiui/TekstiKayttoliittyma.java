@@ -1,5 +1,9 @@
 package rytmipeli.tekstiui;
 
+/*
+    Varsinainen käyttöliittymä rytmipeli.kayttoliittyma-pakkauksessa!
+    Säilytän tämän mukana jos sille käyttöä myöhemmin ilmenee. 
+*/
 import java.util.Scanner;
 import rytmipeli.sovelluslogiikka.SovellusLogiikka;
 
