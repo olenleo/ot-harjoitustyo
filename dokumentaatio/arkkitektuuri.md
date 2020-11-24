@@ -1,10 +1,17 @@
-![Kaavio](https://github.com/olenleo/ot-harjoitustyo/blob/master/dokumentaatio/rytmipelikaavio.jpg)
+![Kaavio](https://github.com/olenleo/ot-harjoitustyo/blob/master/dokumentaatio/rytmipelikaavio2.jpg)
 
 
 High score-toiminnallisuus vielä lisäämättä sovellukseen.
 Jäi vähän epäselväksi haetaanko tässä lopullista vai tämän hetkistä arkkitektuuria.
 
 *Kysymys:* Onko *Käyttöliittymä -> Nappi*-merkintä oikein, kun käyttöliittymä luo napit muttei muuten vaikuta niiden toimintaan?
+
+
+
+
+
+
+
 
 # Alla koodi yuml.me:tä varten.
 
