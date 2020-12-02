@@ -49,11 +49,14 @@ public class Kayttoliittyma extends Application {
          ja lisätty mukaan tiedostomuodossa jotta käyttäjä voisi modailla helposti.
          Tai tämä ainakin tavoitteena, tulen jossain vaiheessa kyselemään .jar-tiedostoista yms pajassa :)
          */
-        Scene scene = new Scene(new Group());
+        Scene sceneGame = new Scene(new Group());
+//        Scene sceneMenu = new Scene(new Group());
+        
+        
 
-        File f = new File("buttonCSS.css");
-        scene.getStylesheets().clear();
-        scene.getStylesheets().add("file:///" + f.getAbsolutePath().replace("\\", "/"));
+        File f = new File("src/main/resources/buttonCSS.css");
+        sceneGame.getStylesheets().clear();
+        sceneGame.getStylesheets().add("file:///" + f.getAbsolutePath().replace("\\", "/"));
 
         Insets buttonInset = new Insets(10, 10, 10, 10);
 
@@ -84,10 +87,10 @@ public class Kayttoliittyma extends Application {
         HBox userInterface = new HBox(tahtiButton, nextButton, laattaButton, molemmatButton, info);
 
         userInterface.setPadding(new Insets(10, 10, 10, 10));
-        ((Group) scene.getRoot()).getChildren().add(canvas);
-        ((Group) scene.getRoot()).getChildren().add(userInterface);
+        ((Group) sceneGame.getRoot()).getChildren().add(canvas);
+        ((Group) sceneGame.getRoot()).getChildren().add(userInterface);
         
-        primaryStage.setScene(scene);
+        primaryStage.setScene(sceneGame);
         primaryStage.show();
     }
 
