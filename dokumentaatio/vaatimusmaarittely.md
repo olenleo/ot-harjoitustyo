@@ -23,9 +23,9 @@ Ensimmäisen version tavoite: Komentorivipohjainen pelilogiikka joka tallentaa p
 
 
 ## Valmiin sovelluksen ominaisuudet:
-- Graafinen käyttöliittymä (JavaFX) - TEHTY (alustavasti)
-- Top-10 pisteet ja pelaajien nimet palvelimella
-- Alkumenu jossa voi tarkastella high scorea, aloittaa uuden pelin tai sulkea sovelluksen.
+- Graafinen käyttöliittymä (JavaFX) - **TEHTY** (Viimeistelyä tarvitaan vielä)
+- Top-10 pisteet ja pelaajien nimet palvelimella **ALOITETTU** (Lisätty viimeisin tulos sovelluksen muistiin)
+- Alkumenu jossa voi tarkastella high scorea, aloittaa uuden pelin tai sulkea sovelluksen. (TEHTY osittain - ks edellinen, jätän pois sulkemisnapin)
 - Muutama ääniefekti
 
 
@@ -33,7 +33,7 @@ Ensimmäisen version tavoite: Komentorivipohjainen pelilogiikka joka tallentaa p
 - Reaaliaikainen toteutus
 - Vaikeustason implementointi
   - Pitkä, keskiverto, lyhyt aikaikkuna painallukselle
-  - Lisäelämät
+  - Lisäelämät (Asetettu 3 elämää)
 - Eri rytmit
   - **A**:n arvo muutettavissa mielivaltaiseen tahtiin: 
     - 3/4: **A** 2 3 **A** 5 6 **C** 8 9 **A** 11 12 **A** **B** 15
