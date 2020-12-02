@@ -21,6 +21,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import rytmipeli.sovelluslogiikka.SovellusLogiikka;
 
+import java.net.URL;
+
 /**
  *
  * @author Leo Niemi
@@ -41,7 +43,7 @@ public class Kayttoliittyma extends Application {
     public static Stage getStage() {
         return guiStage;
     }
-   
+
     public void setMid(String text) {
         this.mid.setText(text);
     }
@@ -62,12 +64,12 @@ public class Kayttoliittyma extends Application {
         VBox info = new VBox(scoreField, state);
         sceneGame = new Scene(new Group());
         sceneMenu = new Scene(new Group());
-
-        File f = new File("src/main/resources/buttonCSS.css");
-        sceneGame.getStylesheets().clear();
-        sceneGame.getStylesheets().add("file:///" + f.getAbsolutePath().replace("\\", "/"));
-        sceneMenu.getStylesheets().clear();
-        sceneMenu.getStylesheets().add("file:///" + f.getAbsolutePath().replace("\\", "/"));
+// URL cssURL = getClass().getResource("/org/jamesd/examples/css/style.css");
+// scene.getStylesheets().add(cssURL.toExternalForm());
+        sceneMenu.getStylesheets().add(getClass().getResource("/buttonCSS.css").toExternalForm());
+        // sceneGame.getStylesheets().add(cssURL.toExternalForm());
+        sceneGame.getStylesheets().add(getClass().getResource("/buttonCSS.css").toExternalForm());
+        //   sceneMenu.getStylesheets().add(cssURL.toExternalForm());
 
         Insets buttonInset = new Insets(10, 10, 10, 10);
 
@@ -114,7 +116,7 @@ public class Kayttoliittyma extends Application {
         if (laattaButton.getVirhe()) {
             primaryStage.setScene(sceneMenu);
         }
-        molemmatButton = new Nappi("*", "MOLEMMAT", sl, scoreField, state,this);
+        molemmatButton = new Nappi("*", "MOLEMMAT", sl, scoreField, state, this);
         molemmatButton.setMinSize(160, 160);
         molemmatButton.getStyleClass().add("green");
         molemmatButton.setPadding(buttonInset);
