@@ -129,10 +129,9 @@ public class SovellusLogiikkaTest {
         sl.asetaLuku(27);
         assertEquals("LAATTA", sl.tarkistaLaatta(sl.getLuku()));
     }
-    
+
     @Test
-    public void tarkistaLaattaMetodiPalauttaaLaattaKun_n_Mod_7()
-    {
+    public void tarkistaLaattaMetodiPalauttaaLaattaKun_n_Mod_7() {
         sl.asetaLuku(14);
         assertEquals("LAATTA", sl.tarkistaLaatta(sl.getLuku()));
     }
@@ -149,5 +148,22 @@ public class SovellusLogiikkaTest {
         assertEquals("MOLEMMAT", sl.tarkistaLaatta(sl.getLuku()));
     }
 
+    @Test
+    public void alustaPeliMetodiToimii() {
+        sl.asetaLuku(2);
+        sl.alustaPeli();
+        assertEquals(1, sl.getLuku());
+    }
+    
+    @Test
+    public void getElamatToimii() {
+        assertEquals(3, sl.getElamat());
+    }
+    
+    @Test
+    public void vahennaElamaToimii() {
+        sl.vahennaElama();
+        assertEquals(2, sl.getElamat());
+    }
     // todo: Testi joka vastaanottaa "oikean merkkijonon" pitkällä aikavälillä
 }

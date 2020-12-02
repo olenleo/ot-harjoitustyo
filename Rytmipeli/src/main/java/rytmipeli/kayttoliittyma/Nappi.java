@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
 import rytmipeli.sovelluslogiikka.SovellusLogiikka;
+import rytmipeli.kayttoliittyma.Kayttoliittyma;
 
 /**
  *
@@ -20,12 +21,16 @@ public class Nappi extends Button {
 
     private String type;
     private SovellusLogiikka sl;
-    
+
+    private boolean virhe = false;
+
     public Nappi(String text) {
         this.setText(text);
+
     }
 
-    public Nappi(String text, String type, SovellusLogiikka sl, Label scorefield, Label state) {
+    public Nappi(String text, String type, SovellusLogiikka sl, Label scorefield, Label state, Kayttoliittyma ui) {
+
         this.type = type;
         this.setText(text);
         this.setOnAction((ActionEvent e) -> {
@@ -42,11 +47,28 @@ public class Nappi extends Button {
                 ft.setAutoReverse(true);
                 ft.play();
             } else {
-                state.setText("Annettu: " +  annettu + "\nOdotettu: " + vaadittu);
-                System.out.println("Virhe! Tulevaisuudessa tästä häviää pelin!");
+                if (sl.getElamat() > 0) {
+                    sl.vahennaElama();
+                    state.setText("Elämiä jäljellä: " + sl.getElamat());
+                } else {
+                    ui.getMid().setText("Edellinen yritys:" + sl.getLuku() + " !\nPystytkö parempaan?");
+                    sl.alustaPeli();
+                    Kayttoliittyma.getStage().setScene(Kayttoliittyma.sceneMenu);
+                }
             }
-
         });
+    }
+
+    Nappi(String string, String tahti, SovellusLogiikka sl, Label scoreField, Label state) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean getVirhe() {
+        if (this.virhe) {
+            this.virhe = false;
+            return true;
+        }
+        return false;
     }
 
 }

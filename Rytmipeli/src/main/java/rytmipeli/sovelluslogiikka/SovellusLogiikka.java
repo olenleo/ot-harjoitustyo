@@ -11,13 +11,27 @@ public class SovellusLogiikka {
     private int tahti;
     private int laatta;
     private String charLaatta; // muuttujana jotta luku olisi vaihdettavissa
+    private int elamat;
+    private boolean gameOverState = false;
 
     public SovellusLogiikka() {
         this.luku = 1;
         this.tahti = 4;  // TODO toiminnallisuus polyrytmiikan muuttamiseen
         this.laatta = 7; // TODO toiminnallisuus polyrytmiikan muuttamiseen
         this.charLaatta = "7";
-
+        alustaPeli();
+    }
+    
+    public void alustaPeli() {
+        this.elamat = 3;
+        this.luku = 1;
+    }
+        
+    public int getElamat() {
+        return this.elamat;
+    }
+    public void vahennaElama() {
+        this.elamat--;
     }
 
     public void asetaLuku(int n) { // testausta varten
