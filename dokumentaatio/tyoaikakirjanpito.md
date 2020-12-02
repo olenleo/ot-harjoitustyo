@@ -7,9 +7,9 @@
 | 17.11 | 3    | Testejä, bugikorjauksia: sovelluslogiikan esiaste toimii nyt. Readme.md:n päivitys. Tein myös viime viikon loppupuolella ~1h töitä, lisätty tähän koska en hoksannut silloin kirjata muistiin :)   |
 | 20.11 | 2    | Graafisen UI:n kehittelyä, css-formatoinnin opiskelua, paljon ongelmia .css-tiedoston lukemisessa javaFX:n kautta|
 | 24.11 | 3    | Checkstyle, arkkitektuuri.md yms. Myös sovelluslogiikan ja GUI:n yhdistäminen.   |
+| 02.12 | 5     | Lähinnä .css-tiedoston käsittelyn opiskelua; jar-pakkaus oli ongelmallista. Myös hyvin alkeellinen highscore-järjestelmä, valikko.   |
 |       |      |    |
 |       |      |    |
 |       |      |    |
 |       |      |    |
-|       |      |    |
-| yht   | 11.5  |    | 
+| yht   | 16.5  |    | 
