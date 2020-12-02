@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
 import rytmipeli.sovelluslogiikka.SovellusLogiikka;
-import rytmipeli.kayttoliittyma.Kayttoliittyma;
+
 
 /**
  *
@@ -28,9 +28,12 @@ public class Nappi extends Button {
         this.setText(text);
 
     }
-
+/*
+    Nappi.java muuttaa menu-käyttöliittymän labelia. 
+    Hieman kömpelöltä ratkaisulta, mutta koska kyseessä on melko yksinkertainen ohjelma,
+    pitäydyn tässä.   
+    */
     public Nappi(String text, String type, SovellusLogiikka sl, Label scorefield, Label state, Kayttoliittyma ui) {
-
         this.type = type;
         this.setText(text);
         this.setOnAction((ActionEvent e) -> {
@@ -51,7 +54,7 @@ public class Nappi extends Button {
                     sl.vahennaElama();
                     state.setText("Elämiä jäljellä: " + sl.getElamat());
                 } else {
-                    ui.getMid().setText("Edellinen yritys:" + sl.getLuku() + " !\nPystytkö parempaan?");
+                    ui.getMid().setText("Edellinen yritys: " + sl.getLuku() + "!\nPystytkö parempaan?");
                     sl.alustaPeli();
                     Kayttoliittyma.getStage().setScene(Kayttoliittyma.sceneMenu);
                 }
@@ -59,16 +62,5 @@ public class Nappi extends Button {
         });
     }
 
-    Nappi(String string, String tahti, SovellusLogiikka sl, Label scoreField, Label state) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public boolean getVirhe() {
-        if (this.virhe) {
-            this.virhe = false;
-            return true;
-        }
-        return false;
-    }
 
 }
