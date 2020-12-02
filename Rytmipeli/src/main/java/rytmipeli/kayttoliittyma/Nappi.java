@@ -20,6 +20,10 @@ public class Nappi extends Button {
 
     private String type;
     private SovellusLogiikka sl;
+    
+    public Nappi(String text) {
+        this.setText(text);
+    }
 
     public Nappi(String text, String type, SovellusLogiikka sl, Label scorefield, Label state) {
         this.type = type;
