@@ -1,4 +1,4 @@
-/*
+/**
 Tämä luokka lataa ääniefektit
  */
 package rytmipeli.aaniefektit;
@@ -20,7 +20,9 @@ public class Aanikirjasto {
     private ArrayList<String> bass;
     private ArrayList<String> fx;
     private Random r;
-
+/**
+ * Kicks, claps, pads, bass ja fx-ArrayListit sisältävät /resources-mapissa olevien ääniitiedostojen nimiä formaatissa "tiedostonimi.wav"
+ */
     public Aanikirjasto() {
         r = new Random();
         kicks = new ArrayList<>();
@@ -46,7 +48,11 @@ public class Aanikirjasto {
         sounds.put("MOLEMMAT", pads);
         sounds.put("VIRHE", fx);
     }
-
+/**
+ * Palauttaa sattumanvaraisen äänen 
+ * @param type Oletusarvoisesti kick, clap, pad, bass tai fx
+ * @return tiedostonimi.wav
+ */
     public String getSound(String type) {
         ArrayList<String> list = sounds.get(type);
         try {

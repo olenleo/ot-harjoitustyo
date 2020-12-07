@@ -34,6 +34,7 @@ public class Kayttoliittyma extends Application {
     private Canvas canvas;
     private Stage primaryStage;
 
+    
     public static Stage getStage() {
         return guiStage;
     }
@@ -44,26 +45,26 @@ public class Kayttoliittyma extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // MUUTTUJAT
+        // YLEISHYÖDYLLISIÄ MUUTTUJIA
         sl = new SovellusLogiikka();
         score = sl.getLuku();
         guiStage = primaryStage;
-        BackgroundFill taustavari = new BackgroundFill(Color.LIGHTGREY, CornerRadii.EMPTY, Insets.EMPTY);
+        Insets inset = new Insets(10, 10, 10, 10);
 
-        // create Background 
+        // TAUSTAVÄRI
+        BackgroundFill taustavari = new BackgroundFill(Color.LIGHTGREY, CornerRadii.EMPTY, Insets.EMPTY);
         Background background = new Background(taustavari);
 
-        // set background 
+        // IKKUNAN KOKO
         canvas = new Canvas();
         canvas.setHeight(180);
         canvas.setWidth(800);
 
+        //VALIKKO- JA PELINÄKYMÄT
         sceneGame = new Scene(new Group());
         sceneMenu = new Scene(new Group());
         sceneMenu.getStylesheets().add(getClass().getResource("/buttonCSS.css").toExternalForm());
         sceneGame.getStylesheets().add(getClass().getResource("/buttonCSS.css").toExternalForm());
-
-        Insets inset = new Insets(10, 10, 10, 10);
 
         // LUODAAN ELEMENTIT: sceneMenu
         newGame = new Nappi("Uusi Peli");
@@ -85,7 +86,10 @@ public class Kayttoliittyma extends Application {
         highScore.setMinSize(160, 160);
         highScore.setPadding(inset);
         highScore.setOnAction(e -> tekstikenttaMenu.setText("Ennätykseni: 62\nPystytkö parempaan?"));
+        // Yhdistetään yhdeksi elementiksi
         menuInterface = new HBox(newGame, tekstikenttaMenu, highScore);
+        menuInterface.setPadding(inset);
+        menuInterface.setBackground(background);
 
         // LUODAAN ELEMENTIT: sceneGame
         scoreField = new Label("Score: " + score);
@@ -111,16 +115,13 @@ public class Kayttoliittyma extends Application {
         molemmatButton.getStyleClass().add("green");
         molemmatButton.setPadding(inset);
 
+        // INFO tulostaa pisteet ja mahdollisia viestejä pelaajalle.
         info = new VBox(scoreField, state);
         info.setMinSize(160, 160);
 
         gameInterface = new HBox(tahtiButton, nextButton, laattaButton, molemmatButton, info);
-
         gameInterface.setPadding(inset);
-        menuInterface.setPadding(inset);
-
         gameInterface.setBackground(background);
-        menuInterface.setBackground(background);
 
         ((Group) sceneMenu.getRoot()).getChildren().add(menuInterface);
         ((Group) sceneGame.getRoot()).getChildren().add(gameInterface);
