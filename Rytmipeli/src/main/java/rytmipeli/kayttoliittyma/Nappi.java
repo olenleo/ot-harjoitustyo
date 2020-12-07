@@ -7,8 +7,6 @@ package rytmipeli.kayttoliittyma;
 
 import java.io.BufferedInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -55,6 +53,7 @@ public class Nappi extends Button {
             } else {
                 if (sl.getElamat() > 0) {
                     sl.vahennaElama();
+                    playSound(aanikirjasto.getSound("VIRHE"));
                     state.setText("Elämiä jäljellä: " + sl.getElamat());
                 } else {
                     ui.getMid().setText("Edellinen yritys: " + sl.getLuku() + "!\nPystytkö parempaan?");
@@ -64,8 +63,6 @@ public class Nappi extends Button {
             }
         });
     }
-    
-  
 
     public static synchronized void playSound(final String url) {
         new Thread(new Runnable() {
@@ -78,11 +75,13 @@ public class Nappi extends Button {
                     InputStream bufferedIn = new BufferedInputStream(audioSrc);
                     AudioInputStream audioStream = AudioSystem.getAudioInputStream(bufferedIn);
                     clip.open(audioStream);
+                    bufferedIn.close();
                     clip.start();
                 } catch (Exception e) {
                     System.err.println(e.getMessage());
                 }
             }
         }).start();
+
     }
 }

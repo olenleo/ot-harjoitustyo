@@ -18,6 +18,7 @@ public class Aanikirjasto {
     private ArrayList<String> claps;
     private ArrayList<String> pads;
     private ArrayList<String> bass;
+    private ArrayList<String> fx;
     private Random r;
 
     public Aanikirjasto() {
@@ -26,6 +27,7 @@ public class Aanikirjasto {
         claps = new ArrayList<>();
         pads = new ArrayList<>();
         bass = new ArrayList<>();
+        fx = new ArrayList<>();
 
         claps.add("rytmipeli_clap.wav");
         kicks.add("rytmipeli_909kick.wav");
@@ -33,14 +35,16 @@ public class Aanikirjasto {
         pads.add("rytmipeli_padDm2.wav");
         pads.add("rytmipeli_padEm2.wav");
         pads.add("rytmipeli_padGm.wav");
-        bass.add("rytmipeli_bassA.wav");
-        bass.add("rytmipeli_bassE.wav");
-        bass.add("rytmipeli_bassG.wav");
-
+        bass.add("rytmipeli_BassA.wav");
+        bass.add("rytmipeli_BassE.wav");
+        bass.add("rytmipeli_BassG.wav");
+        fx.add("rytmipeli_err1.wav");
+        fx.add("rytmipeli_err2.wav");
         sounds.put("TAHTI", claps);
         sounds.put("SEURAAVA", kicks);
         sounds.put("LAATTA", bass);
         sounds.put("MOLEMMAT", pads);
+        sounds.put("VIRHE", fx);
     }
 
     public String getSound(String type) {
