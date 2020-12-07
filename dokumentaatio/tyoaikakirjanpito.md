@@ -8,7 +8,7 @@
 | 20.11 | 2    | Graafisen UI:n kehittelyä, css-formatoinnin opiskelua, paljon ongelmia .css-tiedoston lukemisessa javaFX:n kautta|
 | 24.11 | 3    | Checkstyle, arkkitektuuri.md yms. Myös sovelluslogiikan ja GUI:n yhdistäminen.   |
 | 02.12 | 5     | Lähinnä .css-tiedoston käsittelyn opiskelua; jar-pakkaus oli ongelmallista. Myös hyvin alkeellinen highscore-järjestelmä, valikko.   |
-|  07.12| 5    | Ääniefektit luotu ja lisätty, GUI-koodin päivitys    |
+|  07.12| 6    | Ääniefektit luotu ja lisätty, GUI-koodin päivitys, aloitin javadocin tutkimisen    |
 |       |      |    |
 |       |      |    |
 |       |      |    |
