@@ -5,6 +5,8 @@
  */
 package rytmipeli.kayttoliittyma;
 
+import java.io.BufferedInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.animation.FadeTransition;
@@ -62,6 +64,8 @@ public class Nappi extends Button {
             }
         });
     }
+    
+  
 
     public static synchronized void playSound(final String url) {
         new Thread(new Runnable() {
@@ -70,9 +74,10 @@ public class Nappi extends Button {
             public void run() {
                 try {
                     Clip clip = AudioSystem.getClip();
-                    AudioInputStream inputStream = AudioSystem.getAudioInputStream(
-                            Kayttoliittyma.class.getResourceAsStream("/" + url));
-                    clip.open(inputStream);
+                    InputStream audioSrc = getClass().getResourceAsStream("/" + url);
+                    InputStream bufferedIn = new BufferedInputStream(audioSrc);
+                    AudioInputStream audioStream = AudioSystem.getAudioInputStream(bufferedIn);
+                    clip.open(audioStream);
                     clip.start();
                 } catch (Exception e) {
                     System.err.println(e.getMessage());
