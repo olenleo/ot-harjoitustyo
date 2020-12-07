@@ -34,7 +34,7 @@ public class Aanikirjasto {
         pads.add("rytmipeli_padAm2.wav");
         pads.add("rytmipeli_padDm2.wav");
         pads.add("rytmipeli_padEm2.wav");
-        pads.add("rytmipeli_padGm.wav");
+        pads.add("rytmipeli_padGm2.wav");
         bass.add("rytmipeli_BassA.wav");
         bass.add("rytmipeli_BassE.wav");
         bass.add("rytmipeli_BassG.wav");

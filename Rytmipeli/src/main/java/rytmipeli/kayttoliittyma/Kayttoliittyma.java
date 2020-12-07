@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rytmipeli.kayttoliittyma;
 
 import javafx.application.Application;
@@ -13,13 +8,13 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import rytmipeli.sovelluslogiikka.SovellusLogiikka;
 
 /**
@@ -28,7 +23,7 @@ import rytmipeli.sovelluslogiikka.SovellusLogiikka;
  */
 public class Kayttoliittyma extends Application {
 
-    private SovellusLogiikka sl = new SovellusLogiikka();
+    private SovellusLogiikka sl;
     private int score;
     private Label scoreField, state, tekstikenttaMenu;
     private HBox gameInterface, menuInterface;
@@ -49,35 +44,38 @@ public class Kayttoliittyma extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        guiStage = primaryStage;
+        // MUUTTUJAT
+        sl = new SovellusLogiikka();
         score = sl.getLuku();
-        scoreField = new Label("Score: " + score);
-        state = new Label("Onnea matkaan!");
-        tekstikenttaMenu = new Label();
+        guiStage = primaryStage;
+        BackgroundFill taustavari = new BackgroundFill(Color.LIGHTGREY, CornerRadii.EMPTY, Insets.EMPTY);
+
+        // create Background 
+        Background background = new Background(taustavari);
+
+        // set background 
         canvas = new Canvas();
         canvas.setHeight(180);
         canvas.setWidth(800);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.setFill(Color.LIGHTGREY);
-        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        info = new VBox(scoreField, state);
+
         sceneGame = new Scene(new Group());
         sceneMenu = new Scene(new Group());
         sceneMenu.getStylesheets().add(getClass().getResource("/buttonCSS.css").toExternalForm());
         sceneGame.getStylesheets().add(getClass().getResource("/buttonCSS.css").toExternalForm());
 
-        Insets buttonInset = new Insets(10, 10, 10, 10);
+        Insets inset = new Insets(10, 10, 10, 10);
 
+        // LUODAAN ELEMENTIT: sceneMenu
         newGame = new Nappi("Uusi Peli");
         newGame.getStyleClass().add("red");
         newGame.setMinSize(160, 160);
-        newGame.setPadding(buttonInset);
+        newGame.setPadding(inset);
         newGame.setOnAction(e -> {
             sl.alustaPeli();
             guiStage.setScene(sceneGame);
             primaryStage.show();
         });
-
+        tekstikenttaMenu = new Label();
         tekstikenttaMenu.setMinSize(320, 160);
         tekstikenttaMenu.setAlignment(Pos.CENTER);
         tekstikenttaMenu.setText("Onnea matkaan!!");
@@ -85,38 +83,50 @@ public class Kayttoliittyma extends Application {
         highScore = new Nappi("High Score");
         highScore.getStyleClass().add("green");
         highScore.setMinSize(160, 160);
-        highScore.setPadding(buttonInset);
+        highScore.setPadding(inset);
         highScore.setOnAction(e -> tekstikenttaMenu.setText("Ennätykseni: 62\nPystytkö parempaan?"));
+        menuInterface = new HBox(newGame, tekstikenttaMenu, highScore);
 
-        menuInterface = new HBox(newGame, tekstikenttaMenu, highScore, info);
+        // LUODAAN ELEMENTIT: sceneGame
+        scoreField = new Label("Score: " + score);
+        state = new Label("Onnea matkaan!");
 
         tahtiButton = new Nappi("[1/4]", "TAHTI", sl, scoreField, state, this);
         tahtiButton.getStyleClass().add("red");
         tahtiButton.setMinSize(160, 160);
-        tahtiButton.setPadding(buttonInset);
+        tahtiButton.setPadding(inset);
 
         nextButton = new Nappi("SKIP", "SEURAAVA", sl, scoreField, state, this);
         nextButton.setMinSize(160, 160);
         nextButton.getStyleClass().add("orange");
-        nextButton.setPadding(buttonInset);
+        nextButton.setPadding(inset);
 
         laattaButton = new Nappi("7", "LAATTA", sl, scoreField, state, this);
         laattaButton.setMinSize(160, 160);
         laattaButton.getStyleClass().add("yellow");
-        laattaButton.setPadding(buttonInset);
+        laattaButton.setPadding(inset);
 
         molemmatButton = new Nappi("*", "MOLEMMAT", sl, scoreField, state, this);
         molemmatButton.setMinSize(160, 160);
         molemmatButton.getStyleClass().add("green");
-        molemmatButton.setPadding(buttonInset);
+        molemmatButton.setPadding(inset);
+
+        info = new VBox(scoreField, state);
+        info.setMinSize(160, 160);
 
         gameInterface = new HBox(tahtiButton, nextButton, laattaButton, molemmatButton, info);
-        gameInterface.setPadding(new Insets(10, 10, 10, 10));
-        ((Group) sceneMenu.getRoot()).getChildren().add(canvas);
+
+        gameInterface.setPadding(inset);
+        menuInterface.setPadding(inset);
+
+        gameInterface.setBackground(background);
+        menuInterface.setBackground(background);
+
         ((Group) sceneMenu.getRoot()).getChildren().add(menuInterface);
         ((Group) sceneGame.getRoot()).getChildren().add(gameInterface);
-        primaryStage.setTitle("Rytmipeli");
-        primaryStage.setScene(sceneMenu);
+
+        guiStage.setTitle("Rytmipeli");
+        guiStage.setScene(sceneMenu);
         primaryStage.show();
     }
 
@@ -128,5 +138,4 @@ public class Kayttoliittyma extends Application {
         return this.tekstikenttaMenu;
     }
 
-    
 }
