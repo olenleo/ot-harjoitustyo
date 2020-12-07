@@ -19,13 +19,6 @@ Käynnistys:
 ~~~
     $ mvn compile exec:java -Dexec.mainClass=rytmipeli.Main    
 ~~~
-Komennot tällä hetkellä:
-- z - *uusi tahti alkaa*
-- x - *ei erikoistapauksia*
-- c - *laatta, eli seitsemällä jaollinen luku tai luku joka sisältää merkin 7*
-- v - *Uusi tahti **ja** laatta, esim luku 17*
-- q - *Lopeta peli*
-
 Testaus: 
 ~~~
 $ mvn test
