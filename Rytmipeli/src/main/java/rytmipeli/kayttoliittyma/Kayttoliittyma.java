@@ -5,7 +5,6 @@
  */
 package rytmipeli.kayttoliittyma;
 
-
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,6 +17,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import rytmipeli.sovelluslogiikka.SovellusLogiikka;
 
 /**
@@ -92,22 +94,22 @@ public class Kayttoliittyma extends Application {
         tahtiButton.getStyleClass().add("red");
         tahtiButton.setMinSize(160, 160);
         tahtiButton.setPadding(buttonInset);
-       
+
         nextButton = new Nappi("SKIP", "SEURAAVA", sl, scoreField, state, this);
         nextButton.setMinSize(160, 160);
         nextButton.getStyleClass().add("orange");
         nextButton.setPadding(buttonInset);
-     
+
         laattaButton = new Nappi("7", "LAATTA", sl, scoreField, state, this);
         laattaButton.setMinSize(160, 160);
         laattaButton.getStyleClass().add("yellow");
         laattaButton.setPadding(buttonInset);
-     
+
         molemmatButton = new Nappi("*", "MOLEMMAT", sl, scoreField, state, this);
         molemmatButton.setMinSize(160, 160);
         molemmatButton.getStyleClass().add("green");
         molemmatButton.setPadding(buttonInset);
-      
+
         gameInterface = new HBox(tahtiButton, nextButton, laattaButton, molemmatButton, info);
         gameInterface.setPadding(new Insets(10, 10, 10, 10));
         ((Group) sceneMenu.getRoot()).getChildren().add(canvas);
@@ -126,4 +128,5 @@ public class Kayttoliittyma extends Application {
         return this.tekstikenttaMenu;
     }
 
+    
 }
