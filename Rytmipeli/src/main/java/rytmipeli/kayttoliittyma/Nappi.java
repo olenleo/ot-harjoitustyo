@@ -22,6 +22,10 @@ import rytmipeli.sovelluslogiikka.SovellusLogiikka;
  *
  * @author Leo Niemi
  */
+
+// Tämä luokka on hieman epäselvä.
+// Tämä käsittelee napin buttoneventin. Toisaalta, tämä toistaa myös äänet.
+// Toisin sanoen: Miten single responsibility principle ja tämä menevät yksiin?
 public class Nappi extends Button {
 
     private String type;
@@ -32,6 +36,12 @@ public class Nappi extends Button {
      * Asettaa napin labelin
      *
      * @param text Haluttu teksti
+     */
+    
+    /**
+     * Alkumenun napit eivät vaadi yhtä laajaa toiminnallisuutta kuin itse pelin.
+     * 
+     * @param text Asettaa napin labelin
      */
     public Nappi(String text) {
         this.setText(text);
@@ -64,7 +74,7 @@ public class Nappi extends Button {
                 ft.setAutoReverse(true);
                 ft.play();
             } else {
-                if (sl.getElamat() > 0) {
+                if (sl.getElamat() > 1) {
                     sl.vahennaElama();
                     playSound(aanikirjasto.getSound("VIRHE"));
                     state.setText("Elämiä jäljellä: " + sl.getElamat());

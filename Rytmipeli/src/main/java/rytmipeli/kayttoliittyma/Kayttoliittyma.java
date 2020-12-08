@@ -65,6 +65,7 @@ public class Kayttoliittyma extends Application {
         newGame.setPadding(inset);
         newGame.setOnAction(e -> {
             sl.alustaPeli();
+            alustaLabelit();
             guiStage.setScene(sceneGame);
             primaryStage.show();
         });
@@ -82,11 +83,12 @@ public class Kayttoliittyma extends Application {
         menuInterface = new HBox(newGame, tekstikenttaMenu, highScore);
         menuInterface.setPadding(inset);
         menuInterface.setBackground(background);
-
-        // LUODAAN ELEMENTIT: sceneGame
+        
         scoreField = new Label("Score: " + score);
         state = new Label("Onnea matkaan!");
 
+
+        // LUODAAN ELEMENTIT: sceneGame
         tahtiButton = new Nappi("[1/4]", "TAHTI", sl, scoreField, state, this);
         tahtiButton.getStyleClass().add("red");
         tahtiButton.setMinSize(160, 160);
@@ -138,5 +140,13 @@ public class Kayttoliittyma extends Application {
 
     public Label getMid() {
         return this.tekstikenttaMenu;
+    }
+
+    /**
+     * Asettaa scorefield- ja state-labelit alkuarvoihin
+     */
+    public void alustaLabelit() {
+        scoreField.setText("Score: " + score);
+        state.setText("Onnea matkaan!");
     }
 }
