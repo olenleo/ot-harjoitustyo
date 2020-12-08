@@ -16,6 +16,7 @@ Sovellus toimii Java 11:lla myös laitoksen laitteilla [Testattu 17.11].
 - Arkkitektuuri: [arkkitektuuri.md](https://github.com/olenleo/ot-harjoitustyo/blob/master/dokumentaatio/arkkitektuuri.md)
 - Käyttöohje: [kayttoohje.md](https://github.com/olenleo/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
 # Komentorivitoiminnot
+
 Käynnistys:
 ~~~
 $ mvn compile exec:java -Dexec.mainClass=rytmipeli.Main    
@@ -28,7 +29,18 @@ Testikattavuusraportti:
 ~~~
 $ mvn test jacoco:report
 ~~~
-
+Suoritettavan jarin generointi:
+~~~
+$ mvn package
+~~~
+Checkstyletarkastus: 
+~~~
+$ mvn checkstyle:checkstyle
+~~~
+JavaDocin generointi:
+~~~
+$ mvn javadoc:javadoc
+~~~
 
 
 Käyttäjä: [Olenleo](https://github.com/olenleo)
