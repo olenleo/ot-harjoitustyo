@@ -9,7 +9,7 @@
 | 24.11 | 3    | Checkstyle, arkkitektuuri.md yms. Myös sovelluslogiikan ja GUI:n yhdistäminen.   |
 | 02.12 | 5     | Lähinnä .css-tiedoston käsittelyn opiskelua; jar-pakkaus oli ongelmallista. Myös hyvin alkeellinen highscore-järjestelmä, valikko.   |
 |  07.12| 6    | Ääniefektit luotu ja lisätty, GUI-koodin päivitys, aloitin javadocin tutkimisen    |
+| 8.12  | 5     | Dokumentaatiota, testausta, javadoc-lisäyksiä, bugikorjauksia   |
 |       |      |    |
 |       |      |    |
-|       |      |    |
-| yht   | 22.5  |    | 
+| yht   | 27.5  |    | 
