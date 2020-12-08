@@ -14,7 +14,7 @@ Sovellus toimii Java 11:lla myös laitoksen laitteilla [Testattu 17.11].
 - Vaatimusmäärittely: [vaatimusmaarittely.md.](https://github.com/olenleo/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 - Työaikakirjanpito: [tyoaikakirjanpito.md](https://github.com/olenleo/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md) 
 - Arkkitektuuri: [arkkitektuuri.md](https://github.com/olenleo/ot-harjoitustyo/blob/master/dokumentaatio/arkkitektuuri.md)
-
+- Käyttöohje: [kayttoohje.md](https://github.com/olenleo/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
 # Komentorivitoiminnot
 Käynnistys:
 ~~~
