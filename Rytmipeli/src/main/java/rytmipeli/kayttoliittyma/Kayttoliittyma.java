@@ -6,7 +6,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -34,15 +33,6 @@ public class Kayttoliittyma extends Application {
     private Canvas canvas;
     private Stage primaryStage;
 
-    
-    public static Stage getStage() {
-        return guiStage;
-    }
-
-    public void setMid(String text) {
-        this.tekstikenttaMenu.setText(text);
-    }
-
     @Override
     public void start(Stage primaryStage) throws Exception {
         // YLEISHYÖDYLLISIÄ MUUTTUJIA
@@ -63,6 +53,8 @@ public class Kayttoliittyma extends Application {
         //VALIKKO- JA PELINÄKYMÄT
         sceneGame = new Scene(new Group());
         sceneMenu = new Scene(new Group());
+
+        //LISÄTÄÄN STYLESHEET
         sceneMenu.getStylesheets().add(getClass().getResource("/buttonCSS.css").toExternalForm());
         sceneGame.getStylesheets().add(getClass().getResource("/buttonCSS.css").toExternalForm());
 
@@ -86,7 +78,7 @@ public class Kayttoliittyma extends Application {
         highScore.setMinSize(160, 160);
         highScore.setPadding(inset);
         highScore.setOnAction(e -> tekstikenttaMenu.setText("Ennätykseni: 62\nPystytkö parempaan?"));
-        // Yhdistetään yhdeksi elementiksi
+        // YHDISTETÄÄN
         menuInterface = new HBox(newGame, tekstikenttaMenu, highScore);
         menuInterface.setPadding(inset);
         menuInterface.setBackground(background);
@@ -119,6 +111,7 @@ public class Kayttoliittyma extends Application {
         info = new VBox(scoreField, state);
         info.setMinSize(160, 160);
 
+        // YHDISTETÄÄN:
         gameInterface = new HBox(tahtiButton, nextButton, laattaButton, molemmatButton, info);
         gameInterface.setPadding(inset);
         gameInterface.setBackground(background);
@@ -135,8 +128,15 @@ public class Kayttoliittyma extends Application {
         launch(args);
     }
 
+    public static Stage getStage() {
+        return guiStage;
+    }
+
+    public void setMid(String text) {
+        this.tekstikenttaMenu.setText(text);
+    }
+
     public Label getMid() {
         return this.tekstikenttaMenu;
     }
-
 }

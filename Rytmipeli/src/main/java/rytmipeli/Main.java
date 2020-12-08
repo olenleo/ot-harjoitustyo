@@ -1,5 +1,5 @@
-/*
-
+/**
+   Tämä luokka käynnistää käyttöliittymän. 
  */
 package rytmipeli;
 

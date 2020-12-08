@@ -1,7 +1,7 @@
 /**
  * Luokka ohjaa käyttöliittymän Button-olioita.
- * 
- * 
+ *
+ *
  */
 package rytmipeli.kayttoliittyma;
 
@@ -27,23 +27,25 @@ public class Nappi extends Button {
     private String type;
     private SovellusLogiikka sl;
     private Aanikirjasto aanikirjasto = new Aanikirjasto();
-/**
- * Asettaa napin labelin
- * @param text Haluttu teksti
- */
+
+    /**
+     * Asettaa napin labelin
+     *
+     * @param text Haluttu teksti
+     */
     public Nappi(String text) {
         this.setText(text);
-
     }
-/**
- * 
- * @param text Haluttu teksti
- * @param type Napin funktio@See rytmipeli.sovelluslogiikka 
- * @param sl Kytkentä sovelluslogiikkaan
- * @param scorefield Pistekentän arvon muutosta varten
- * @param state Viestien kirjoittaminen pelaajalle
- * @param ui Käyttöliittymän hallinta
- */
+
+    /**
+     *
+     * @param text Haluttu teksti
+     * @param type Napin funktio@See rytmipeli.sovelluslogiikka
+     * @param sl Kytkentä sovelluslogiikkaan
+     * @param scorefield Pistekentän arvon muutosta varten
+     * @param state Viestien kirjoittaminen pelaajalle
+     * @param ui Käyttöliittymän hallinta
+     */
     public Nappi(String text, String type, SovellusLogiikka sl, Label scorefield, Label state, Kayttoliittyma ui) {
         this.type = type;
         this.setText(text);
@@ -74,14 +76,14 @@ public class Nappi extends Button {
             }
         });
     }
-/**
- * Metodi toistaa .wav-muotoisen äänitiedoston InputStreamina.
- * @param url Halutun .wav-tiedoston nimi /resources-kansiossa
- */
+
+    /**
+     * Metodi toistaa .wav-muotoisen äänitiedoston InputStreamina.
+     *
+     * @param url Halutun .wav-tiedoston nimi /resources-kansiossa
+     */
     public static synchronized void playSound(final String url) {
         new Thread(new Runnable() {
-            // The wrapper thread is unnecessary, unless it blocks on the
-            // Clip finishing; see comments.
             public void run() {
                 try {
                     Clip clip = AudioSystem.getClip();
@@ -92,7 +94,7 @@ public class Nappi extends Button {
                     bufferedIn.close();
                     clip.start();
                 } catch (Exception e) {
-                    System.err.println(e.getMessage());
+                    System.out.println("Virhe playSound-metodissa: " + e.getMessage());
                 }
             }
         }).start();
