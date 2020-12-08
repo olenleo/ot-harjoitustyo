@@ -1,5 +1,5 @@
 /**
-   Tämä luokka käynnistää käyttöliittymän. 
+ * Tämä luokka käynnistää käyttöliittymän.
  */
 package rytmipeli;
 
@@ -9,7 +9,7 @@ public class Main {
 
     public static void main(String args[]) {
 
-       Kayttoliittyma.main(args);
+        Kayttoliittyma.main(args);
 
     }
 
