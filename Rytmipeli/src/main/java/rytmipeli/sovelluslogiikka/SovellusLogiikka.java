@@ -19,17 +19,19 @@ public class SovellusLogiikka {
         this.tahti = 4;  // TODO toiminnallisuus polyrytmiikan muuttamiseen
         this.laatta = 7; // TODO toiminnallisuus polyrytmiikan muuttamiseen
         this.charLaatta = "7";
-        alustaPeli();
+        this.elamat = 3;
+        this.luku = 1;
     }
-    
+
     public void alustaPeli() {
         this.elamat = 3;
         this.luku = 1;
     }
-        
+
     public int getElamat() {
         return this.elamat;
     }
+
     public void vahennaElama() {
         this.elamat--;
     }
