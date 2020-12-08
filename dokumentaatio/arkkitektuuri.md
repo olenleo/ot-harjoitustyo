@@ -22,7 +22,7 @@ Käyttöliittymä sisältää kaksi Scene-oliota:
     - Käyttöliittymän label-oliot saavat tiedot pistetilanteesta ja elämistä sovelluslogiikalta
     - Nappi-olion eventhandler vertailee k. napin tyyppiä ja sovelluslogiikan tarkistaLaatta()-metodia => sovelluslogiikka kasvattaa pisteitä tai vähentää elämiä.
   - Nappi-olioiden eventHandlerit ohjaavat ääniä
-    - Äänikirjasto arpoo ja palauttaa sopivan ääniefektin eventhandlerille. 
+    - Eventhandler toistaa äänikirjaston arpoman äänen
     
   
 # Äänikirjasto
