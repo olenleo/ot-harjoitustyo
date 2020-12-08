@@ -64,7 +64,7 @@ public class Aanikirjasto {
         } catch (Exception e) {
             System.out.println("Virhe äänikirjastossa: " + e.getMessage());
         }
-        return "";
+        return "Virhe";
     }
 
 }

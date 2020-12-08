@@ -18,7 +18,7 @@ public class SovellusLogiikka {
         this.luku = 1;
         this.tahti = 4;  // TODO toiminnallisuus polyrytmiikan muuttamiseen
         this.laatta = 7; // TODO toiminnallisuus polyrytmiikan muuttamiseen
-        this.charLaatta = "7";
+        this.charLaatta = Integer.toString(this.laatta);
         this.elamat = 3;
         this.luku = 1;
     }
@@ -36,6 +36,10 @@ public class SovellusLogiikka {
         this.elamat--;
     }
 
+    /**
+     * Testausta varten
+     * @param n Aseta haluttu luku.
+     */
     public void asetaLuku(int n) { // testausta varten
         this.luku = n;
     }
@@ -47,19 +51,35 @@ public class SovellusLogiikka {
     public int getLuku() {
         return this.luku;
     }
-
+/**
+ * Metodi tarkistaa tahdin
+ * @param n Tarkistettava kokonaisluku
+ * @return TRUE jos kyseessä on ns. ykköstahti 4/4-tahtilajissa (1,5,9, ... , n)
+ */
     public boolean tarkistaTahti(int n) {
         return ((n - 1) % tahti == 0); // iskut 1, 5, 9
     }
-
+/**
+ * Metodi tarkistaa toisen tahdin 
+ * @param n Tarkistettava kokonaisluku
+ * @return TRUE jos kyseessä on ns. ykköstahti 7/4-tahtilajissa (1,7,14, ... , n)
+ */
     public boolean tarkistaMod7(int n) {
         return (n % 7 == 0);
     }
-
+/**
+ * @see tarkistaLaatta
+ * @param n
+ * @return TRUE jos n sisältää merkin '7'
+ */
     public boolean tarkistaMerkkiJono(int n) {
         return (Integer.toString(n).contains(charLaatta));
     }
-
+/**
+ * Vastaanottaa kokonaisluvun, palauttaa ohjeet k. luvun käsittelylle pelisääntöjen mukaan
+ * @param n kokonaisluku
+ * @return Merkkijono jota vertaillaan käyttäjän syötteeseen.
+ */
     public String tarkistaLaatta(int n) {
         if ((tarkistaMerkkiJono(n) || tarkistaMod7(n)) && tarkistaTahti(n)) {
             return "MOLEMMAT";
