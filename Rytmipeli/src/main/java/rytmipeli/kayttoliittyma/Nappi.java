@@ -50,7 +50,7 @@ public class Nappi extends Button {
     /**
      *
      * @param text Haluttu teksti
-     * @param type Napin funktio@See rytmipeli.sovelluslogiikka
+     * @param type Napin funktio @See rytmipeli.sovelluslogiikka
      * @param sl Kytkentä sovelluslogiikkaan
      * @param scorefield Pistekentän arvon muutosta varten
      * @param state Viestien kirjoittaminen pelaajalle

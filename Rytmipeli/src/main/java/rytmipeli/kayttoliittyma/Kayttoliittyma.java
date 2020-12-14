@@ -15,7 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import rytmipeli.sovelluslogiikka.SovellusLogiikka;
-
+import rytmipeli.pisteet.PisteToiminnalllisuus;
 /**
  *
  * @author Leo Niemi
@@ -40,7 +40,11 @@ public class Kayttoliittyma extends Application {
         score = sl.getLuku();
         guiStage = primaryStage;
         Insets inset = new Insets(10, 10, 10, 10);
-
+        
+        
+        //TEST: Luodaan tietokanta
+        PisteToiminnalllisuus pt = new PisteToiminnalllisuus();
+        pt.luoTietokanta();
         // TAUSTAVÄRI
         BackgroundFill taustavari = new BackgroundFill(Color.LIGHTGREY, CornerRadii.EMPTY, Insets.EMPTY);
         Background background = new Background(taustavari);
