@@ -40,7 +40,7 @@ public class HighScoreManager {
     private String absolutePath;
 
     public HighScoreManager() {
-        String CSVFile = getClass().getResource("/pojot.txt").getFile();
+        String CSVFile = getClass().getResource("/pojot.txt").getPath();
         absolutePath = CSVFile;
         System.out.println(absolutePath);
 
@@ -96,7 +96,7 @@ public class HighScoreManager {
 
 //        String CSVFile = getClass().getResource("/pojot.txt").getPath();
         BufferedWriter bw;
-        String lisattava = "\n" + nimi + "," + pisteet + "\n";
+        String lisattava = nimi + "," + pisteet + "\n";
         System.out.println("LISÄTTÄVÄ STRING: " + lisattava + " OSOITTEESEEN " + getClass().getResource("/pojot.txt").toExternalForm()); // Testausta varten
         try {
             bw = new BufferedWriter(new FileWriter(absolutePath, true));
