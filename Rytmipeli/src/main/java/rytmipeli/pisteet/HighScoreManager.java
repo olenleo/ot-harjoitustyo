@@ -7,6 +7,7 @@ package rytmipeli.pisteet;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -16,6 +17,10 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import java.lang.Object;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Paths;
 
 /**
  * Tämä luokka hallinnoi Käyttöliittymän tableview-oliota. Muokattu :
@@ -29,8 +34,15 @@ public class HighScoreManager {
     private ObservableList<Piste> data;
     private int pieninHighScore = 0;
     private TableColumn nimiColumn;
+    private File file;
+    private URL res;
+
+    private String absolutePath;
 
     public HighScoreManager() {
+        String CSVFile = getClass().getResource("/pojot.txt").getFile();
+        absolutePath = CSVFile;
+        System.out.println(absolutePath);
 
         tableview = new TableView();
         tableview.setPrefSize(480, 160);
@@ -38,13 +50,13 @@ public class HighScoreManager {
         TableColumn<Piste, String> pisteColumn = new TableColumn<>("pisteet");
         nimiColumn.setCellValueFactory(new PropertyValueFactory<>("nimi"));
         pisteColumn.setCellValueFactory(new PropertyValueFactory<>("pisteet"));
-        
+
         tableview.getColumns().add(nimiColumn);
         tableview.getColumns().add(pisteColumn);
-        
+
         data = FXCollections.observableArrayList();
         tableview.setItems(data);
-        
+
         lueCSV();
         // Järjestys pistemäärän mukaan:
         pisteColumn.setSortType(TableColumn.SortType.DESCENDING);
@@ -56,14 +68,14 @@ public class HighScoreManager {
      * Lukee resources-kansiossa sijaitsevan pojot.txt (CSV-tiedosto)
      */
     public final void lueCSV() {
-        String CsvFile = getClass().getResource("/pojot.txt").getFile();
-        String FieldDelimiter = ",";
+
+        String split = ",";
         BufferedReader br;
         try {
-            br = new BufferedReader(new FileReader(CsvFile));
+            br = new BufferedReader(new FileReader(absolutePath));
             String line;
             while ((line = br.readLine()) != null) {
-                String[] fields = line.split(FieldDelimiter);
+                String[] fields = line.split(split);
                 Piste piste = new Piste(Integer.valueOf(fields[1]), fields[0]);
                 data.add(piste);
             }
@@ -73,18 +85,21 @@ public class HighScoreManager {
             System.out.println("IO-expection: " + e.getMessage());
         }
     }
-/**
- * Lisää resources-kansion pojot.txt-tiedostoon uuden rivin CSV-muodossa
- * @param nimi Pelaajan nimi
- * @param pisteet Pelaajan pisteet
- */
+
+    /**
+     * Lisää resources-kansion pojot.txt-tiedostoon uuden rivin CSV-muodossa
+     *
+     * @param nimi Pelaajan nimi
+     * @param pisteet Pelaajan pisteet
+     */
     public final void writeCSV(String nimi, int pisteet) {
-        String CSVFile = getClass().getResource("/pojot.txt").getFile();
+
+//        String CSVFile = getClass().getResource("/pojot.txt").getPath();
         BufferedWriter bw;
-        String lisattava = nimi + "," + pisteet + "\n";
-        System.out.println("LISÄTTÄVÄ STRING: " + lisattava + " OSOITTEESEEN " + CSVFile); // Testausta varten
+        String lisattava = "\n" + nimi + "," + pisteet + "\n";
+        System.out.println("LISÄTTÄVÄ STRING: " + lisattava + " OSOITTEESEEN " + getClass().getResource("/pojot.txt").toExternalForm()); // Testausta varten
         try {
-            bw = new BufferedWriter(new FileWriter(CSVFile, true));
+            bw = new BufferedWriter(new FileWriter(absolutePath, true));
             bw.append(lisattava);
             System.out.println("Kirjoitettu.");
             bw.close();
