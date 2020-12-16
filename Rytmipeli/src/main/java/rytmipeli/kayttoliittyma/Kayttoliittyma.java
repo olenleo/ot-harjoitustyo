@@ -24,6 +24,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import rytmipeli.pisteet.HighScoreManager;
 import rytmipeli.pisteet.Piste;
 import rytmipeli.sovelluslogiikka.SovellusLogiikka;
 
@@ -36,17 +37,18 @@ public class Kayttoliittyma extends Application {
     private SovellusLogiikka sl;
     private int score;
     private Label scoreField, state, tekstikenttaMenu;
-    private HBox gameInterface, menuInterface;
+    private HBox gameInterface, menuInterface, scoreInterface;
     private VBox info;
     private Nappi tahtiButton, nextButton, laattaButton, molemmatButton, newGame, highScore;
-    protected static Scene sceneGame, sceneMenu;
+    protected static Scene sceneGame, sceneMenu, sceneScore;
     private static Stage guiStage;
     private Canvas canvas;
     private Stage primaryStage;
     private ObservableList<Piste> list;
     private TableView tableview;
     private ObservableList<Piste> data;
-    private int pieninHighScore=0;
+    private int pieninHighScore = 0;
+    private HighScoreManager highscoremanager;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -55,32 +57,15 @@ public class Kayttoliittyma extends Application {
         score = sl.getLuku();
         guiStage = primaryStage;
         Insets inset = new Insets(10, 10, 10, 10);
+        highscoremanager = new HighScoreManager();
 
-        //TEST: Luodaan tietokanta
-//        PisteToiminnallisuus pt = new PisteToiminnallisuus();
-//        pt.addScore("Leo", 62);
-//        System.out.println(pt.getHighscoreString());
         // TAUSTAVÄRI
         BackgroundFill taustavari = new BackgroundFill(Color.LIGHTGREY, CornerRadii.EMPTY, Insets.EMPTY);
         Background background = new Background(taustavari);
 
-        //HIGHSCORE (Eriytetään erilliseen metodiin myöhemmin)
-        //        https://stackoverflow.com/questions/34889111/how-to-sort-a-tableview-programmatically
-        tableview = new TableView();
-        tableview.setPrefSize(320, 160);
-        TableColumn<Piste, String> nimiColumn = new TableColumn<>("nimi");
-        TableColumn<Piste, String> pisteColumn = new TableColumn<>("pisteet");
-        nimiColumn.setCellValueFactory(new PropertyValueFactory<>("nimi"));
-        pisteColumn.setCellValueFactory(new PropertyValueFactory<>("pisteet"));
-        tableview.getColumns().add(nimiColumn);
-        tableview.getColumns().add(pisteColumn);
-        data = FXCollections.observableArrayList();
-        tableview.setItems(data);
-        lueCSV();
-        nimiColumn.setSortType(TableColumn.SortType.DESCENDING);
-        tableview.getSortOrder().addAll(nimiColumn);
-        pieninHighScore = data.get(0).getPisteet();
-        System.out.println("Pienin listalla: " + pieninHighScore);
+        // TABLEVIEW pistetilastolle
+        tableview = highscoremanager.getTableView();
+
         // IKKUNAN KOKO
         canvas = new Canvas();
         canvas.setHeight(180);
@@ -89,10 +74,12 @@ public class Kayttoliittyma extends Application {
         //VALIKKO- JA PELINÄKYMÄT
         sceneGame = new Scene(new Group());
         sceneMenu = new Scene(new Group());
+        sceneScore = new Scene(new Group());
 
         //LISÄTÄÄN STYLESHEET
         sceneMenu.getStylesheets().add(getClass().getResource("/buttonCSS.css").toExternalForm());
         sceneGame.getStylesheets().add(getClass().getResource("/buttonCSS.css").toExternalForm());
+        sceneScore.getStylesheets().add(getClass().getResource("/buttonCSS.css").toExternalForm());
 
         // LUODAAN ELEMENTIT: sceneMenu
         newGame = new Nappi("Uusi Peli");
@@ -114,9 +101,12 @@ public class Kayttoliittyma extends Application {
         highScore.getStyleClass().add("green");
         highScore.setMinSize(160, 160);
         highScore.setPadding(inset);
-        highScore.setOnAction(e -> tableview.sort());
+        highScore.setOnAction(e -> {
+            guiStage.setScene(sceneScore);
+            primaryStage.show();
+        });
         // YHDISTETÄÄN
-        menuInterface = new HBox(newGame, tableview, highScore);
+        menuInterface = new HBox(newGame, tekstikenttaMenu, highScore);
         menuInterface.setPadding(inset);
         menuInterface.setBackground(background);
 
@@ -152,9 +142,15 @@ public class Kayttoliittyma extends Application {
         gameInterface = new HBox(tahtiButton, nextButton, laattaButton, molemmatButton, info);
         gameInterface.setPadding(inset);
         gameInterface.setBackground(background);
+        
+        // LUODAAN ELEMENTIT: sceneHighscore
+        scoreInterface = new HBox(tableview);
+        scoreInterface.setPadding(inset);
+        scoreInterface.setBackground(background);
 
         ((Group) sceneMenu.getRoot()).getChildren().add(menuInterface);
         ((Group) sceneGame.getRoot()).getChildren().add(gameInterface);
+        ((Group) sceneScore.getRoot()).getChildren().add(scoreInterface);
 
         guiStage.setTitle("Rytmipeli");
         guiStage.setScene(sceneMenu);
@@ -185,25 +181,4 @@ public class Kayttoliittyma extends Application {
         state.setText("Onnea matkaan!");
     }
 
-   
-    
-
-    private void lueCSV() {
-        String CsvFile = getClass().getResource("/pojot.txt").getFile();
-        String FieldDelimiter = ",";
-        BufferedReader br;
-        try {
-            br = new BufferedReader(new FileReader(CsvFile));
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] fields = line.split(FieldDelimiter);
-                Piste piste = new Piste(Integer.valueOf(fields[1]), fields[0]);
-                data.add(piste);
-            }
-        } catch (FileNotFoundException ex) {
-            System.out.println("FileNotFound: " + ex.getMessage());
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
 }
