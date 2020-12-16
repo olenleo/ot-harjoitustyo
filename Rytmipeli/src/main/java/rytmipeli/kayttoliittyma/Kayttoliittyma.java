@@ -142,9 +142,19 @@ public class Kayttoliittyma extends Application {
         gameInterface = new HBox(tahtiButton, nextButton, laattaButton, molemmatButton, info);
         gameInterface.setPadding(inset);
         gameInterface.setBackground(background);
-        
+
         // LUODAAN ELEMENTIT: sceneHighscore
-        scoreInterface = new HBox(tableview);
+        Nappi newGame2 = new Nappi("Uusi Peli");
+        newGame2.getStyleClass().add("red");
+        newGame2.setMinSize(160, 160);
+        newGame2.setPadding(inset);
+        newGame2.setOnAction(e -> {
+            sl.alustaPeli();
+            alustaLabelit();
+            guiStage.setScene(sceneGame);
+            primaryStage.show();
+        });
+        scoreInterface = new HBox(newGame2, tableview);
         scoreInterface.setPadding(inset);
         scoreInterface.setBackground(background);
 
