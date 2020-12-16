@@ -17,6 +17,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import rytmipeli.aaniefektit.Aanikirjasto;
 import rytmipeli.sovelluslogiikka.SovellusLogiikka;
+import rytmipeli.pisteet.HighScoreManager;
 
 /**
  *
@@ -31,8 +32,9 @@ public class Nappi extends Button {
     private String type;
     private SovellusLogiikka sl;
     private Aanikirjasto aanikirjasto = new Aanikirjasto();
-
-    /**
+    private HighScoreManager highscoremanager;
+    
+    /** 
      * Asettaa napin labelin
      *
      * @param text Haluttu teksti
@@ -55,8 +57,9 @@ public class Nappi extends Button {
      * @param scorefield Pistekentän arvon muutosta varten
      * @param state Viestien kirjoittaminen pelaajalle
      * @param ui Käyttöliittymän hallinta
+     * @param highscoremanager
      */
-    public Nappi(String text, String type, SovellusLogiikka sl, Label scorefield, Label state, Kayttoliittyma ui) {
+    public Nappi(String text, String type, SovellusLogiikka sl, Label scorefield, Label state, Kayttoliittyma ui, HighScoreManager highscoremanager) {
         this.type = type;
         this.setText(text);
         this.setOnAction((ActionEvent e) -> {
@@ -79,12 +82,15 @@ public class Nappi extends Button {
                     playSound(aanikirjasto.getSound("VIRHE"));
                     state.setText("Elämiä jäljellä: " + sl.getElamat());
                 } else {
-                    ui.getMid().setText("Edellinen yritys: " + sl.getLuku() + "!\nPystytkö parempaan?");
+                    ui.getMidText().setText("Edellinen yritys: " + sl.getLuku() + "!\nPystytkö parempaan?");
+                    highscoremanager.writeCSV("Putte", sl.getLuku());
+                    highscoremanager.getTableView().refresh();
                     sl.alustaPeli();
                     Kayttoliittyma.getStage().setScene(Kayttoliittyma.sceneMenu);
                 }
             }
         });
+        this.highscoremanager = highscoremanager;
     }
 
     /**

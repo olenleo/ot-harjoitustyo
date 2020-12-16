@@ -1,22 +1,13 @@
 package rytmipeli.kayttoliittyma;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -25,7 +16,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import rytmipeli.pisteet.HighScoreManager;
-import rytmipeli.pisteet.Piste;
 import rytmipeli.sovelluslogiikka.SovellusLogiikka;
 
 /**
@@ -43,10 +33,7 @@ public class Kayttoliittyma extends Application {
     protected static Scene sceneGame, sceneMenu, sceneScore;
     private static Stage guiStage;
     private Canvas canvas;
-    private Stage primaryStage;
-    private ObservableList<Piste> list;
     private TableView tableview;
-    private ObservableList<Piste> data;
     private int pieninHighScore = 0;
     private HighScoreManager highscoremanager;
 
@@ -103,6 +90,7 @@ public class Kayttoliittyma extends Application {
         highScore.setPadding(inset);
         highScore.setOnAction(e -> {
             guiStage.setScene(sceneScore);
+            highscoremanager.update();
             primaryStage.show();
         });
         // YHDISTETÄÄN
@@ -114,22 +102,22 @@ public class Kayttoliittyma extends Application {
         state = new Label("Onnea matkaan!");
 
         // LUODAAN ELEMENTIT: sceneGame
-        tahtiButton = new Nappi("[1/4]", "TAHTI", sl, scoreField, state, this);
+        tahtiButton = new Nappi("[1/4]", "TAHTI", sl, scoreField, state, this, highscoremanager);
         tahtiButton.getStyleClass().add("red");
         tahtiButton.setMinSize(160, 160);
         tahtiButton.setPadding(inset);
 
-        nextButton = new Nappi("SKIP", "SEURAAVA", sl, scoreField, state, this);
+        nextButton = new Nappi("SKIP", "SEURAAVA", sl, scoreField, state, this, highscoremanager);
         nextButton.setMinSize(160, 160);
         nextButton.getStyleClass().add("orange");
         nextButton.setPadding(inset);
 
-        laattaButton = new Nappi("7", "LAATTA", sl, scoreField, state, this);
+        laattaButton = new Nappi("7", "LAATTA", sl, scoreField, state, this, highscoremanager);
         laattaButton.setMinSize(160, 160);
         laattaButton.getStyleClass().add("yellow");
         laattaButton.setPadding(inset);
 
-        molemmatButton = new Nappi("*", "MOLEMMAT", sl, scoreField, state, this);
+        molemmatButton = new Nappi("*", "MOLEMMAT", sl, scoreField, state, this, highscoremanager);
         molemmatButton.setMinSize(160, 160);
         molemmatButton.getStyleClass().add("green");
         molemmatButton.setPadding(inset);
@@ -175,11 +163,11 @@ public class Kayttoliittyma extends Application {
         return guiStage;
     }
 
-    public void setMid(String text) {
+    public void setMidText(String text) {
         this.tekstikenttaMenu.setText(text);
     }
 
-    public Label getMid() {
+    public Label getMidText() {
         return this.tekstikenttaMenu;
     }
 

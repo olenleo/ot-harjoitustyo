@@ -1,4 +1,1 @@
-Leo,62
-Huono Pelaaja,3
-Kalle,55
-Vielä huonompi,2
+Ennätykseni:,62
