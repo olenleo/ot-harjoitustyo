@@ -5,16 +5,16 @@
  */
 package rytmipeli.pisteet;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
@@ -39,12 +39,12 @@ public class HighScoreManager {
     private File file;
     private URL res;
 
-    private String absolutePath;
+    private InputStream absolutePath;
 
     public HighScoreManager() {
-        String CSVFile = getClass().getResource("/pojot.txt").getPath();
-        absolutePath = CSVFile;
-        System.out.println(absolutePath);
+        InputStream absolutePath = this.getClass().getClassLoader().getResourceAsStream("pojot.txt");
+
+        System.out.println("Polku: " + absolutePath);
 
         tableview = new TableView();
         tableview.setPrefSize(480, 160);
@@ -72,9 +72,8 @@ public class HighScoreManager {
     public final void lueCSV() {
         List<Piste> lista = new ArrayList<>();
         try {
-            file = new File(absolutePath);
-            InputStream inputstream = new FileInputStream(file);
-            BufferedReader br = new BufferedReader(new InputStreamReader(inputstream));
+            InputStreamReader isr = new InputStreamReader(getClass().getResourceAsStream("/pojot.txt"));
+            BufferedReader br = new BufferedReader(isr);
             String line = "";
             String[] tempArr;
             while ((line = br.readLine()) != null) {
@@ -95,19 +94,22 @@ public class HighScoreManager {
      * @param pisteet Pelaajan pisteet
      */
     public final void writeCSV(String nimi, int pisteet) {
-
 //        String CSVFile = getClass().getResource("/pojot.txt").getPath();
         BufferedWriter bw;
         String lisattava = nimi + "," + pisteet + "\n";
-        System.out.println("LISÄTTÄVÄ STRING: " + lisattava + " OSOITTEESEEN " + getClass().getResource("/pojot.txt").toExternalForm()); // Testausta varten
         try {
-            bw = new BufferedWriter(new FileWriter(absolutePath, true));
-            bw.append(lisattava);
+            // Creates an OutputStream
+            FileOutputStream fileoutputstream = new FileOutputStream(this.getClass().getClassLoader().setResourceAsStream("pojot.txt"));
+
+            OutputStreamWriter osw = new OutputStreamWriter(fileoutputstream);
+            bw = new BufferedWriter(new FileWriter(new File("/pojot.txt"), true));
+            osw.append(lisattava);
             System.out.println("Kirjoitettu.");
             bw.close();
         } catch (Exception e) {
             System.out.println("Write error: " + e.getMessage());
         }
+        update();
     }
 
     public TableView getTableView() {

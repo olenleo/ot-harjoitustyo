@@ -16,6 +16,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import rytmipeli.aaniefektit.Aanikirjasto;
+import static rytmipeli.kayttoliittyma.Nappi.playSound;
 import rytmipeli.pisteet.HighScoreManager;
 import rytmipeli.sovelluslogiikka.SovellusLogiikka;
 
@@ -37,6 +39,7 @@ public class Kayttoliittyma extends Application {
     private TableView tableview;
     private int pieninHighScore = 0;
     private HighScoreManager highscoremanager;
+    private Aanikirjasto aanikirjasto;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -134,17 +137,17 @@ public class Kayttoliittyma extends Application {
         gameInterface.setBackground(background);
 
         // LUODAAN ELEMENTIT: sceneHighscore
-        Nappi newGame2 = new Nappi("Uusi Peli");
-        newGame2.getStyleClass().add("red");
-        newGame2.setMinSize(160, 160);
-        newGame2.setPadding(inset);
-        newGame2.setOnAction(e -> {
+        Nappi highScoreNewGame = new Nappi("Uusi Peli");
+        highScoreNewGame.getStyleClass().add("red");
+        highScoreNewGame.setMinSize(160, 160);
+        highScoreNewGame.setPadding(inset);
+        highScoreNewGame.setOnAction(e -> {
             sl.alustaPeli();
             alustaLabelit();
             guiStage.setScene(sceneGame);
             primaryStage.show();
         });
-        scoreInterface = new HBox(newGame2, tableview);
+        scoreInterface = new HBox(highScoreNewGame, tableview);
         scoreInterface.setPadding(inset);
         scoreInterface.setBackground(background);
 
@@ -162,17 +165,21 @@ public class Kayttoliittyma extends Application {
             guiStage.setScene(sceneGame);
             primaryStage.show();
         });
-        //HIGHSCORE OK
+        //HIGHSCOREn syöttävä OK-nappi
         Nappi gameOverSyotaScore = new Nappi("OK");
         gameOverSyotaScore.getStyleClass().add("green");
         gameOverSyotaScore.setMinSize(160, 160);
         gameOverSyotaScore.setPadding(inset);
         gameOverSyotaScore.setOnAction(e -> {
-            highscoremanager.writeCSV(nimiField.getText(), sl.getLuku());
-            sl.alustaPeli();
-            highscoremanager.update();
-            guiStage.setScene(sceneScore);
-            primaryStage.show();
+            if (nimiField.getText().contains(",")) {
+                syotaNimi.setText("Valitettavasti ',' ei ole sallittu merkki");
+            } else {
+                highscoremanager.writeCSV(nimiField.getText(), sl.getLuku());
+                sl.alustaPeli();
+                highscoremanager.update();
+                guiStage.setScene(sceneScore);
+                primaryStage.show();
+            }
         });
 
         VBox gameOver = new VBox(syotaNimi, nimiField);
