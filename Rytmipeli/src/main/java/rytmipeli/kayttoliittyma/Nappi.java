@@ -82,11 +82,7 @@ public class Nappi extends Button {
                     playSound(aanikirjasto.getSound("VIRHE"));
                     state.setText("Elämiä jäljellä: " + sl.getElamat());
                 } else {
-                    ui.getMidText().setText("Edellinen yritys: " + sl.getLuku() + "!\nPystytkö parempaan?");
-                    highscoremanager.writeCSV("Putte", sl.getLuku());
-                    highscoremanager.getTableView().refresh();
-                    sl.alustaPeli();
-                    Kayttoliittyma.getStage().setScene(Kayttoliittyma.sceneMenu);
+                    Kayttoliittyma.getStage().setScene(Kayttoliittyma.sceneGameOver);
                 }
             }
         });

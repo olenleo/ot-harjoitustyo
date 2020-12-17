@@ -8,19 +8,21 @@ package rytmipeli.pisteet;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import java.lang.Object;
-import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Tämä luokka hallinnoi Käyttöliittymän tableview-oliota. Muokattu :
@@ -68,21 +70,21 @@ public class HighScoreManager {
      * Lukee resources-kansiossa sijaitsevan pojot.txt (CSV-tiedosto)
      */
     public final void lueCSV() {
-
-        String split = ",";
-        BufferedReader br;
+        List<Piste> lista = new ArrayList<>();
         try {
-            br = new BufferedReader(new FileReader(absolutePath));
-            String line;
+            file = new File(absolutePath);
+            InputStream inputstream = new FileInputStream(file);
+            BufferedReader br = new BufferedReader(new InputStreamReader(inputstream));
+            String line = "";
+            String[] tempArr;
             while ((line = br.readLine()) != null) {
-                String[] fields = line.split(split);
-                Piste piste = new Piste(Integer.valueOf(fields[1]), fields[0]);
+                tempArr = line.split(",");
+                Piste piste = new Piste(tempArr[0], Integer.valueOf(tempArr[1]));
                 data.add(piste);
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("FileNotFound: " + e.getMessage());
-        } catch (IOException e) {
-            System.out.println("IO-expection: " + e.getMessage());
+            br.close();
+        } catch (Exception e) {
+            System.out.println("Virhe CSV-tiedoston lukuvaiheessa: " + e.getMessage());
         }
     }
 

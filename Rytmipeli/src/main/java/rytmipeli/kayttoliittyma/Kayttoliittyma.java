@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -27,10 +28,10 @@ public class Kayttoliittyma extends Application {
     private SovellusLogiikka sl;
     private int score;
     private Label scoreField, state, tekstikenttaMenu;
-    private HBox gameInterface, menuInterface, scoreInterface;
+    private HBox gameInterface, menuInterface, scoreInterface, gameOverInterface;
     private VBox info;
     private Nappi tahtiButton, nextButton, laattaButton, molemmatButton, newGame, highScore;
-    protected static Scene sceneGame, sceneMenu, sceneScore;
+    protected static Scene sceneGame, sceneMenu, sceneScore, sceneGameOver;
     private static Stage guiStage;
     private Canvas canvas;
     private TableView tableview;
@@ -62,11 +63,12 @@ public class Kayttoliittyma extends Application {
         sceneGame = new Scene(new Group());
         sceneMenu = new Scene(new Group());
         sceneScore = new Scene(new Group());
-
+        sceneGameOver = new Scene(new Group());
         //LISÄTÄÄN STYLESHEET
         sceneMenu.getStylesheets().add(getClass().getResource("/buttonCSS.css").toExternalForm());
         sceneGame.getStylesheets().add(getClass().getResource("/buttonCSS.css").toExternalForm());
         sceneScore.getStylesheets().add(getClass().getResource("/buttonCSS.css").toExternalForm());
+        sceneGameOver.getStylesheets().add(getClass().getResource("/buttonCSS.css").toExternalForm());
 
         // LUODAAN ELEMENTIT: sceneMenu
         newGame = new Nappi("Uusi Peli");
@@ -89,8 +91,8 @@ public class Kayttoliittyma extends Application {
         highScore.setMinSize(160, 160);
         highScore.setPadding(inset);
         highScore.setOnAction(e -> {
-            guiStage.setScene(sceneScore);
             highscoremanager.update();
+            guiStage.setScene(sceneScore);
             primaryStage.show();
         });
         // YHDISTETÄÄN
@@ -146,9 +148,43 @@ public class Kayttoliittyma extends Application {
         scoreInterface.setPadding(inset);
         scoreInterface.setBackground(background);
 
+        // LUODAAN ELEMENTIT: gameOver
+        Label syotaNimi = new Label("Syötä nimi:");
+        TextField nimiField = new TextField();
+        //UUSI PELI
+        Nappi gameOverNew = new Nappi("Uusi Peli");
+        gameOverNew.getStyleClass().add("red");
+        gameOverNew.setMinSize(160, 160);
+        gameOverNew.setPadding(inset);
+        gameOverNew.setOnAction(e -> {
+            sl.alustaPeli();
+            alustaLabelit();
+            guiStage.setScene(sceneGame);
+            primaryStage.show();
+        });
+        //HIGHSCORE OK
+        Nappi gameOverSyotaScore = new Nappi("OK");
+        gameOverSyotaScore.getStyleClass().add("green");
+        gameOverSyotaScore.setMinSize(160, 160);
+        gameOverSyotaScore.setPadding(inset);
+        gameOverSyotaScore.setOnAction(e -> {
+            highscoremanager.writeCSV(nimiField.getText(), sl.getLuku());
+            sl.alustaPeli();
+            highscoremanager.update();
+            guiStage.setScene(sceneScore);
+            primaryStage.show();
+        });
+
+        VBox gameOver = new VBox(syotaNimi, nimiField);
+
+        gameOverInterface = new HBox(gameOverNew, gameOver, gameOverSyotaScore);
+        gameOverInterface.setPadding(inset);
+        gameOverInterface.setBackground(background);
+
         ((Group) sceneMenu.getRoot()).getChildren().add(menuInterface);
         ((Group) sceneGame.getRoot()).getChildren().add(gameInterface);
         ((Group) sceneScore.getRoot()).getChildren().add(scoreInterface);
+        ((Group) sceneGameOver.getRoot()).getChildren().add(gameOverInterface);
 
         guiStage.setTitle("Rytmipeli");
         guiStage.setScene(sceneMenu);
