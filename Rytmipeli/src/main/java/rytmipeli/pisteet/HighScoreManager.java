@@ -21,6 +21,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.net.URL;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,17 +96,16 @@ public class HighScoreManager {
      */
     public final void writeCSV(String nimi, int pisteet) {
 //        String CSVFile = getClass().getResource("/pojot.txt").getPath();
-        BufferedWriter bw;
         String lisattava = nimi + "," + pisteet + "\n";
+        String filename = this.getClass().getResource("/pojot.txt").getPath();
+        file = new File(filename);
+        System.out.println("FILENAME: " + filename);
         try {
-            // Creates an OutputStream
-            FileOutputStream fileoutputstream = new FileOutputStream(this.getClass().getClassLoader().setResourceAsStream("pojot.txt"));
-
+            FileOutputStream fileoutputstream = new FileOutputStream(filename, true);
             OutputStreamWriter osw = new OutputStreamWriter(fileoutputstream);
-            bw = new BufferedWriter(new FileWriter(new File("/pojot.txt"), true));
-            osw.append(lisattava);
+            osw.write(lisattava);
             System.out.println("Kirjoitettu.");
-            bw.close();
+            osw.close();
         } catch (Exception e) {
             System.out.println("Write error: " + e.getMessage());
         }
