@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  * Tämä luokka hallinnoi Käyttöliittymän tableview-oliota. Muokattu :
- * https://stackoverflow.com/questions/34889111/how-to-sort-a-tableview-programmatically
+ * https://stackoverflow.com/questions/34889111/how-to-sort-a-tableview-programmatically.
  *
  * @author Leo Niemi
  */
@@ -32,7 +32,10 @@ public class HighScoreManager {
     private File file;
     private FileOutputStream fileOutputStream;
 
-
+/**
+ * Luokka hallinnoi highscore-listan kirjoitus- ja luku  toimintoja.
+ * 
+ */
     public HighScoreManager() {
         InputStream absolutePath = this.getClass().getClassLoader().getResourceAsStream("pojot.txt");
 
@@ -54,11 +57,10 @@ public class HighScoreManager {
         // Järjestys pistemäärän mukaan:
         pisteColumn.setSortType(TableColumn.SortType.DESCENDING);
         tableview.getSortOrder().addAll(pisteColumn);
-
     }
 
     /**
-     * Lukee juurikansiossa sijaitsevan pisteet.txt-tiedoston (CSV-tiedosto)
+     * Lukee juurikansiossa sijaitsevan pisteet.txt-tiedoston (CSV-tiedosto).
      */
     public final void lueCSV() {
         List<Piste> lista = new ArrayList<>();
@@ -94,7 +96,7 @@ public class HighScoreManager {
     }
 
     /**
-     * Lisää resources-kansion pojot.txt-tiedostoon uuden rivin CSV-muodossa
+     * Lisää resources-kansion pojot.txt-tiedostoon uuden rivin CSV-muodossa.
      *
      * @param nimi Pelaajan nimi
      * @param pisteet Pelaajan pisteet
@@ -122,14 +124,22 @@ public class HighScoreManager {
     public int getPieninHighscore() {
         return -1;
     }
-
+/**
+ * Metodi päivittää csv-tiedoston.
+ * 
+ */
     public final void update() {
         data.removeAll(data);
         lueCSV();
         nimiColumn.setSortType(TableColumn.SortType.DESCENDING);
         tableview.getSortOrder().addAll(nimiColumn);
     }
-
+/**
+ * 
+ * TODO: Poista tämä.
+ * @param tiedostonimi
+ * @return 
+ */
     private InputStream getFileFromResouce(String tiedostonimi) {
         ClassLoader classloader = getClass().getClassLoader();
         InputStream inputstream = classloader.getResourceAsStream(tiedostonimi);

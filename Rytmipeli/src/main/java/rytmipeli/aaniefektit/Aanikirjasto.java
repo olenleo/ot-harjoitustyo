@@ -8,8 +8,8 @@ import java.util.HashMap;
 import java.util.Random;
 
 /**
- *
- * @author olenleo
+ * Luokka hallinnoi resources-kansion äänitiedostoja. String-muotoiset viitteet tallennetaan hajautustauluun jonka avulla voidaan arpoa sopivia ääniefektejä.   
+ * @author Leo Niemi
  */
 public class Aanikirjasto {
 
@@ -22,8 +22,7 @@ public class Aanikirjasto {
     private Random r;
 
     /**
-     * Kicks, claps, pads, bass ja fx-ArrayListit sisältävät /resources-mapissa
-     * olevien ääniitiedostojen nimiä formaatissa "tiedostonimi.wav"
+     * Kicks, claps, pads, bass ja fx-ArrayListit sisältävät /resources-mapissa olevien ääniitiedostojen nimiä formaatissa "tiedostonimi.wav".
      */
     public Aanikirjasto() {
         r = new Random();
@@ -52,7 +51,7 @@ public class Aanikirjasto {
     }
 
     /**
-     * Palauttaa sattumanvaraisen äänen äänikirjastosta
+     * Palauttaa sattumanvaraisen äänen äänikirjastosta.
      *
      * @param type Oletusarvoisesti kick, clap, pad, bass tai fx
      * @return tiedostonimi.wav

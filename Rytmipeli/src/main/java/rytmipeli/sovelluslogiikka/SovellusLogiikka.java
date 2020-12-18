@@ -1,7 +1,7 @@
 package rytmipeli.sovelluslogiikka;
 
 /**
- * Tässä luokassa toteutetaan pelin tarkistukset
+ * Tässä luokassa toteutetaan pelilogiikan tarkistukset.
  *
  *
  */
@@ -9,20 +9,24 @@ public class SovellusLogiikka {
 
     private int luku;
     private int tahti;
-    private int laatta;
-    private String charLaatta; // muuttujana jotta luku olisi vaihdettavissa
+    private int polyRytmiMuuttuja;
+    private String charPolyRytmi; // muuttujana jotta luku olisi vaihdettavissa
     private int elamat;
-    private boolean gameOverState = false;
 
+    /**
+     * Konstruktori alustaa tarvittavat muuttujat.
+     */
     public SovellusLogiikka() {
         this.luku = 1;
-        this.tahti = 4;  // TODO toiminnallisuus polyrytmiikan muuttamiseen
-        this.laatta = 7; // TODO toiminnallisuus polyrytmiikan muuttamiseen
-        this.charLaatta = Integer.toString(this.laatta);
+        this.tahti = 4;  // Mahdollisuus toiminnallisuus polyrytmiikan muuttamiseen
+        this.polyRytmiMuuttuja = 7; // Mahdollisuus toiminnallisuus polyrytmiikan muuttamiseen
+        this.charPolyRytmi = Integer.toString(this.polyRytmiMuuttuja); // 
         this.elamat = 3;
         this.luku = 1;
     }
-
+/**
+ * Uuden pelin käynnistys. Alustaa elämät ja pisteet alkuarvoihin.
+ */
     public void alustaPeli() {
         this.elamat = 3;
         this.luku = 1;
@@ -31,19 +35,24 @@ public class SovellusLogiikka {
     public int getElamat() {
         return this.elamat;
     }
-
+/**
+ * Vähentää elämän.
+ */
     public void vahennaElama() {
         this.elamat--;
     }
 
     /**
-     * Testausta varten
+     * Yksikkötestausta varten.
+     *
      * @param n Aseta haluttu luku.
      */
     public void asetaLuku(int n) { // testausta varten
         this.luku = n;
     }
-
+/**
+ * Kasvattaa vuorossa olevaa kokonaislukua.
+ */
     public void kasvataLukua() {
         this.luku++;
     }
@@ -51,35 +60,45 @@ public class SovellusLogiikka {
     public int getLuku() {
         return this.luku;
     }
-/**
- * Metodi tarkistaa tahdin
- * @param n Tarkistettava kokonaisluku
- * @return TRUE jos kyseessä on ns. ykköstahti 4/4-tahtilajissa (1,5,9, ... , n)
- */
+
+    /**
+     * Metodi tarkistaa ensimmäisen tahtilajn ykkösiskun.
+     *
+     * @param n Tarkistettava kokonaisluku
+     * @return TRUE jos kyseessä on ns. ykköstahti 4/4-tahtilajissa (1,5,9, ...
+     * , n)
+     */
     public boolean tarkistaTahti(int n) {
         return ((n - 1) % tahti == 0); // iskut 1, 5, 9
     }
-/**
- * Metodi tarkistaa toisen tahdin 
- * @param n Tarkistettava kokonaisluku
- * @return TRUE jos kyseessä on ns. ykköstahti 7/4-tahtilajissa (1,7,14, ... , n)
- */
+
+    /**
+     * Metodi tarkistaa toisen tahtilajin ykkösiskun.
+     *
+     * @param n Tarkistettava kokonaisluku
+     * @return TRUE jos kyseessä on ns. ykköstahti 7/4-tahtilajissa (1,7,14, ...
+     * , n)
+     */
     public boolean tarkistaMod7(int n) {
         return (n % 7 == 0);
     }
-/**
- * @see tarkistaLaatta
- * @param n
- * @return TRUE jos n sisältää merkin '7'
- */
+
+    /**
+     * Metodi tarkistaa jos luku sisältää etsityn merkin.
+     * @see tarkistaLaatta
+     * @param n
+     * @return TRUE jos n sisältää merkin '7'
+     */
     public boolean tarkistaMerkkiJono(int n) {
-        return (Integer.toString(n).contains(charLaatta));
+        return (Integer.toString(n).contains(charPolyRytmi));
     }
-/**
- * Vastaanottaa kokonaisluvun, palauttaa ohjeet k. luvun käsittelylle pelisääntöjen mukaan
- * @param n kokonaisluku
- * @return Merkkijono jota vertaillaan käyttäjän syötteeseen.
- */
+
+    /**
+     * Vastaanottaa kokonaisluvun, palauttaa ohjeet k. luvun käsittelylle pelisääntöjen mukaan.
+     *
+     * @param n Tarkistettava kokonaisluku.
+     * @return Merkkijono jota vertaillaan käyttäjän syötteeseen.
+     */
     public String tarkistaLaatta(int n) {
         if ((tarkistaMerkkiJono(n) || tarkistaMod7(n)) && tarkistaTahti(n)) {
             return "MOLEMMAT";
