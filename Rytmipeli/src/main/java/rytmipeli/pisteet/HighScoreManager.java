@@ -5,23 +5,16 @@
  */
 package rytmipeli.pisteet;
 
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
+import java.io.FileReader;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import java.net.URL;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,17 +28,13 @@ public class HighScoreManager {
 
     private TableView tableview;
     private ObservableList<Piste> data;
-    private int pieninHighScore = 0;
     private TableColumn nimiColumn;
     private File file;
-    private URL res;
+    private FileOutputStream fileOutputStream;
 
-    private InputStream absolutePath;
 
     public HighScoreManager() {
         InputStream absolutePath = this.getClass().getClassLoader().getResourceAsStream("pojot.txt");
-
-        System.out.println("Polku: " + absolutePath);
 
         tableview = new TableView();
         tableview.setPrefSize(480, 160);
@@ -59,8 +48,9 @@ public class HighScoreManager {
 
         data = FXCollections.observableArrayList();
         tableview.setItems(data);
-
-        lueCSV();
+        alustaCSV();
+        update();
+        
         // Järjestys pistemäärän mukaan:
         pisteColumn.setSortType(TableColumn.SortType.DESCENDING);
         tableview.getSortOrder().addAll(pisteColumn);
@@ -68,13 +58,14 @@ public class HighScoreManager {
     }
 
     /**
-     * Lukee resources-kansiossa sijaitsevan pojot.txt (CSV-tiedosto)
+     * Lukee juurikansiossa sijaitsevan pisteet.txt-tiedoston (CSV-tiedosto)
      */
     public final void lueCSV() {
         List<Piste> lista = new ArrayList<>();
+        String relativePath = "./pisteet.txt";
         try {
-            InputStreamReader isr = new InputStreamReader(getClass().getResourceAsStream("/pojot.txt"));
-            BufferedReader br = new BufferedReader(isr);
+            FileReader fr = new FileReader(relativePath);
+            BufferedReader br = new BufferedReader(fr);
             String line = "";
             String[] tempArr;
             while ((line = br.readLine()) != null) {
@@ -89,23 +80,35 @@ public class HighScoreManager {
     }
 
     /**
+     * Luo paikallisen highscore-tiedoston juurikansioon. Naiivi ratkaisu mutta
+     * aikaraja tulee vastaan.
+     */
+    public final void alustaCSV() {
+        try {
+            fileOutputStream = new FileOutputStream("./pisteet.txt", true);
+            writeCSV("Ennatykseni:", 62);
+        } catch (Exception e) {
+            System.out.println("Virhe alustaCSV_metodissa: " + e.getMessage());
+        }
+
+    }
+
+    /**
      * Lisää resources-kansion pojot.txt-tiedostoon uuden rivin CSV-muodossa
      *
      * @param nimi Pelaajan nimi
      * @param pisteet Pelaajan pisteet
      */
     public final void writeCSV(String nimi, int pisteet) {
-//        String CSVFile = getClass().getResource("/pojot.txt").getPath();
+
         String lisattava = nimi + "," + pisteet + "\n";
-        String filename = this.getClass().getResource("/pojot.txt").getPath();
-        file = new File(filename);
-        System.out.println("FILENAME: " + filename);
+
         try {
-            FileOutputStream fileoutputstream = new FileOutputStream(filename, true);
-            OutputStreamWriter osw = new OutputStreamWriter(fileoutputstream);
-            osw.write(lisattava);
-            System.out.println("Kirjoitettu.");
-            osw.close();
+            fileOutputStream = new FileOutputStream("./pisteet.txt", true);
+            fileOutputStream.write(lisattava.getBytes());
+            System.out.println("Kirjoitettu: " + lisattava);
+            fileOutputStream.flush();
+            fileOutputStream.close();
         } catch (Exception e) {
             System.out.println("Write error: " + e.getMessage());
         }
@@ -120,11 +123,20 @@ public class HighScoreManager {
         return -1;
     }
 
-    public void update() {
+    public final void update() {
         data.removeAll(data);
         lueCSV();
         nimiColumn.setSortType(TableColumn.SortType.DESCENDING);
         tableview.getSortOrder().addAll(nimiColumn);
+    }
 
+    private InputStream getFileFromResouce(String tiedostonimi) {
+        ClassLoader classloader = getClass().getClassLoader();
+        InputStream inputstream = classloader.getResourceAsStream(tiedostonimi);
+        if (inputstream == null) {
+            throw new IllegalArgumentException("Tiedostoa " + tiedostonimi + " ei löytynyt");
+        } else {
+            return inputstream;
+        }
     }
 }
