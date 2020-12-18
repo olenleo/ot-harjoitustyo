@@ -10,9 +10,10 @@
 | 02.12 | 5     | Lähinnä .css-tiedoston käsittelyn opiskelua; jar-pakkaus oli ongelmallista. Myös hyvin alkeellinen highscore-järjestelmä, valikko.   |
 |  07.12| 6    | Ääniefektit luotu ja lisätty, GUI-koodin päivitys, aloitin javadocin tutkimisen    |
 | 8.12  | 5     | Dokumentaatiota, testausta, javadoc-lisäyksiä, bugikorjauksia   |
-|  11.12     |  4    |  SQL-dokumentaation tutkimista   |
-|  14.12     |   2   |  SQL-tietokannasta vaihto .CSV-tiedostotallennukseen  |
-|   15.12    |   6   |  Käyttöliittymäparannuksia, (lisää scenejä), .jar-pakkauksen kanssa taistelua  |
+|  11.12     |  4    | SQL-dokumentaation tutkimista   |
+|  14.12     |   2   | SQL-tietokannasta vaihto .CSV-tiedostotallennukseen  |
+|   15.12    |   6   | Käyttöliittymäparannuksia, (lisää scenejä), .jar-pakkauksen kanssa taistelua  |
 |   16.12    |   6   | Kuten yllä.    |
-|   17.12    |   6   |    |
+|   17.12    |   8   | Kuten yllä, kunnes tein uuden toteutuksen pistetiedostolle.  |
+|   18.12    |   5   | Bugeja pistetiedostossa, checkstyle- ja javadoc-korjauksia.  |
 | yht   | 51.5  |    | 
