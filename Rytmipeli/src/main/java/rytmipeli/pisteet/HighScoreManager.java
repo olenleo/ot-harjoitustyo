@@ -29,7 +29,6 @@ public class HighScoreManager {
     private TableView tableview;
     private ObservableList<Piste> data;
     private TableColumn nimiColumn;
-    private File file;
     private FileOutputStream fileOutputStream;
 
 /**
@@ -37,7 +36,6 @@ public class HighScoreManager {
  * 
  */
     public HighScoreManager() {
-        InputStream absolutePath = this.getClass().getClassLoader().getResourceAsStream("pojot.txt");
 
         tableview = new TableView();
         tableview.setPrefSize(480, 160);
@@ -63,7 +61,6 @@ public class HighScoreManager {
      * Lukee juurikansiossa sijaitsevan pisteet.txt-tiedoston (CSV-tiedosto).
      */
     public final void lueCSV() {
-        List<Piste> lista = new ArrayList<>();
         String relativePath = "./pisteet.txt";
         try {
             FileReader fr = new FileReader(relativePath);
@@ -149,4 +146,9 @@ public class HighScoreManager {
             return inputstream;
         }
     }
+
+    public ObservableList<Piste> getData() {
+        return data;
+    }
+    
 }
