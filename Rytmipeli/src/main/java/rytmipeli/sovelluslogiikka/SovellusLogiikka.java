@@ -90,7 +90,7 @@ public class SovellusLogiikka {
      * Metodi tarkistaa jos luku sisältää etsityn merkin.
      *
      * @see tarkistaLaatta
-     * @param n
+     * @param n Tarkistettava kokonaisluku
      * @return TRUE jos n sisältää merkin '7'
      */
     public boolean tarkistaMerkkiJono(int n) {

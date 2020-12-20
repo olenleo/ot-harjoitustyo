@@ -92,6 +92,10 @@ public class HighScoreManager {
         return data;
     }
 
+    /**
+     * Metodi tyhjentää ObservableList datan ja alustaa sen uudelleen. Näin saadaan uusimmat muutokset mukaan tableview:hin.
+     * 
+     */
     public void tyhjennaLista() {
         data.clear();
         lueCSV();
