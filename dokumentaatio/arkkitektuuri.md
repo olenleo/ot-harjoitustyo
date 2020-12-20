@@ -1,12 +1,14 @@
-Ohjelman rakenne:
-
 # Rakenne
 Pakkaukset:
 - rytmipeli.kayttoliittyma sisältää JavaFX-pohjaisen käyttöliittymän sekä pelin painikkeet luovan luokan Nappi.java.
 - rytmipeli.sovelluslogiikka ajaa pelin sovelluslogiikkaa.
 - rytmipeli.aanikirjasto sisältää viittaukset pelin .wav-tiedostoihin. Tässä luokassa pystyy manipuloimaan mitä ääniefektejä haluaa kytkeä minkä painikkeen alle.
 - rytmipeli.pisteet hallinnoi highscore-listaa.
+
+
 ![Kaavio](https://github.com/olenleo/ot-harjoitustyo/blob/master/dokumentaatio/Luokkakaavio.jpg)
+
+
 
 ## rytmipeli.kayttoliittyma
 Käyttöliittymä sisältää kolme Scene-oliota:
