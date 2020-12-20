@@ -18,7 +18,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import rytmipeli.aaniefektit.Aanikirjasto;
 import rytmipeli.pisteet.HighScoreManager;
-import rytmipeli.pisteet.HighScoreTableView;
 import rytmipeli.sovelluslogiikka.SovellusLogiikka;
 
 /**
@@ -39,6 +38,7 @@ public class Kayttoliittyma extends Application {
     private TableView tableview;
     private HighScoreManager highscoremanager;
     private HighScoreTableView hsTableView;
+    private final String tiedosto = "pistot.txt";
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -47,14 +47,14 @@ public class Kayttoliittyma extends Application {
         score = sl.getLuku();
         guiStage = primaryStage;
         Insets inset = new Insets(10, 10, 10, 10);
-        highscoremanager = new HighScoreManager("pisteet.txt");
+        highscoremanager = new HighScoreManager(tiedosto);
 
         // TAUSTAVÄRI
         BackgroundFill taustavari = new BackgroundFill(Color.LIGHTGREY, CornerRadii.EMPTY, Insets.EMPTY);
         Background background = new Background(taustavari);
 
         // TABLEVIEW pistetilastolle
-        hsTableView = new HighScoreTableView("pisteet.txt", highscoremanager);
+        hsTableView = new HighScoreTableView(tiedosto, highscoremanager);
         tableview = new TableView();
         tableview = hsTableView.getTableView();
 

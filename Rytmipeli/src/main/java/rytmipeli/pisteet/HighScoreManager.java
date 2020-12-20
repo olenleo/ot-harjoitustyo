@@ -6,9 +6,11 @@
 package rytmipeli.pisteet;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -27,6 +29,7 @@ public class HighScoreManager {
     private ObservableList<Piste> data;
     private FileOutputStream fileOutputStream;
     private String tiedostopolku;
+
     /**
      * Luokka hallinnoi highscore-listan kirjoitus- ja luku toimintoja.
      *
@@ -34,11 +37,15 @@ public class HighScoreManager {
     public HighScoreManager(String tiedostopolku) {
         this.tiedostopolku = tiedostopolku;
         data = FXCollections.observableArrayList();
-        try {
-            fileOutputStream = new FileOutputStream("./" + this.tiedostopolku, true);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(HighScoreManager.class.getName()).log(Level.SEVERE, null, ex);
+        File file = new File(tiedostopolku);
+        if (file.exists()) {
+            try {
+                fileOutputStream = new FileOutputStream("./" + this.tiedostopolku, true);
+            } catch (FileNotFoundException e) {
+                System.out.println("VIRHE: Olematon tiedosto " + e.getMessage());
+            }
         }
+
         lueCSV();
     }
 
@@ -46,7 +53,7 @@ public class HighScoreManager {
      * Lukee juurikansiossa sijaitsevan pisteet.txt-tiedoston (CSV-tiedosto).
      */
     public final void lueCSV() {
-        
+
         try {
             FileReader fr = new FileReader(tiedostopolku);
             BufferedReader br = new BufferedReader(fr);
@@ -62,8 +69,10 @@ public class HighScoreManager {
             }
             br.close();
 
-        } catch (Exception e) {
-            System.out.println("Virhe CSV-tiedoston lukuvaiheessa: " + e.getMessage());
+        } catch (FileNotFoundException e) {
+            System.out.println("Virhe [FileNotFound] CSV-tiedoston lukuvaiheessa: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Virhe [IOException] CSV-tiedoston lukuvaiheessa: " + e.getMessage());
         }
     }
 
@@ -84,7 +93,7 @@ public class HighScoreManager {
         } catch (Exception e) {
             System.out.println("Write error: " + e.getMessage());
         }
-        
+
     }
 
     public TableView getTableView() {
