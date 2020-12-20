@@ -12,7 +12,7 @@ Rytmipelissä korostetaan neli- ja seitsenjakoista tahtia. Pelaajan tulee merkit
 Pelimekaniikka toimii neljällä näppäimellä.  **A** merkitsee alkavaa 4/4-tahtia, **B** alkavaa 7/4-tahtia *tai* merkkiä 7 luvussa (n % 7 == 0 || numero.toString.contains("7")), **C** täyttää *molemmat* ehdot (esimerkiksi '17') ja **D** yksinkertaisesti seuraavaa iskua. Näppäimet ovat klikattavissa hiirellä.
 
 Ensimmäiset 20 lukua olisivat:
-**A**2 3 4 **A** 6 **B** 8 **A** 10 11 12 **A** **B** 15 16 **C** 18 19 20
+**A** 2 3 4 **A** 6 **B** 8 **A** 10 11 12 **A** **B** 15 16 **C** 18 19 20
 
 Jos pelaaja painaa väärin, hän menettää elämän. Muussa tapauksessa pistemäärää kasvatetaan. High score-listaa säilytetään  tiedostossa käyttäjän koneella. Pelin päättyessä pelaaja syöttää nimensä jolloin tulos lisätään highscore-listalle.
 
