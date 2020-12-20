@@ -25,6 +25,8 @@ Käyttöliittymä sisältää kolme Scene-oliota:
   - Näkymä esittää highscore-listan järjestetyssä TableView-muodossa
   - Mahdollisuus aloittaa uusi peli
   
+  Kaikkien Nappi-olioiden graafista ulkoasua hallinnoidaan buttonCSS.css-tiedostolla.
+  
   Käyttöliittymä-pakkauksessa myös luokat näppäimille (Nappi.java) sekä TableView:iä hallinnoiva HighScoreTableView-luokka.
   
 ## rytmipeli.aanikirjasto
