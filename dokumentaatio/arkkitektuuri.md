@@ -6,7 +6,7 @@ Pakkaukset:
 - rytmipeli.sovelluslogiikka ajaa pelin sovelluslogiikkaa.
 - rytmipeli.aanikirjasto sisältää viittaukset pelin .wav-tiedostoihin. Tässä luokassa pystyy manipuloimaan mitä ääniefektejä haluaa kytkeä minkä painikkeen alle.
 - rytmipeli.pisteet hallinnoi highscore-listaa.
-![Kaavio](https://github.com/olenleo/ot-harjoitustyo/blob/master/dokumentaatio/rytmipelikaavio.jpg)
+![Kaavio](https://github.com/olenleo/ot-harjoitustyo/blob/master/dokumentaatio/Luokkakaavio.jpg)
 
 ## rytmipeli.kayttoliittyma
 Käyttöliittymä sisältää kolme Scene-oliota:
@@ -55,20 +55,12 @@ Nimessä ei hyväksytä pilkkua ','.
 
 # Sekvenssikaavio toiminnallisuudesta
 ![Sekvenssikaavio](https://github.com/olenleo/ot-harjoitustyo/blob/master/dokumentaatio/lataus.png)
-# Alla koodi yuml.me:tä varten.
-Siivoan pois lopullisessa palautuksessa.
-[Main] -> 1[Käyttöliittymä]
-[Käyttöliittymä] 1->* [Nappi]
-[Käyttöliittymä] -> 1[Sovelluslogiikka] 1<->* [Nappi]
-[Sovelluslogiikka]* <-> 1[Highscorelista | - palvelimella; - tiedostossa] -> [Käyttöliittymä]
-[Nappi]*<-1[Äänikirjasto]
+
+# Rakenteen heikkoudet
+Tiedostotallennus on ratkaistu hyvin naiivilla tavalla [1]. Suunnittelin palvelimella sijaitsevaa sql-tietokantaa mutta aika loppui kesken.
+Äänitiedoston toisto tulisi ulkoistaa erilliseen, ehkäpä äänikirjaston alaiseen luokkaan.
 
 
-# Alla websequencediagrams:
-Käyttöliittymä->Sovelluslogiikka: Nappi() eventhandler
-Sovelluslogiikka  -> Käyttöliittymä: Oikea painallus, kasvataLukua()
-Sovelluslogiikka -> HighScoreManager: Kun 3x väärä painallus, sl.getLuku()
-HighScoreManager  -> HighScoreManager : Päivitetään .CSV
-HighScoreManager -> HighScoreTableView: Viedään Piste<> TableView:hin
-HighScoreTableView -> Käyttöliittymä: Päivitetään HighScore-tableView
 
+
+[1] Tämä johtuu siitä, että käytin luvattoman paljon aikaa ratkaisuun .jar-tiedoston sisäisten tiedostojen muokkaamiseen ennen kuin annoin periksi ja ulkoistin tallennuksen.
