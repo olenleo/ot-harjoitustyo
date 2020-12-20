@@ -1,4 +1,3 @@
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,17 +10,14 @@ import org.junit.jupiter.api.BeforeEach;
 import rytmipeli.pisteet.HighScoreManager;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.SimpleIntegerProperty;
-import org.junit.Assert;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 import org.junit.Rule;
-import org.junit.jupiter.api.Assertions;
-import org.junit.rules.ExpectedException;
+import org.junit.rules.TemporaryFolder;
 import rytmipeli.pisteet.Piste;
 
 /**
@@ -29,31 +25,20 @@ import rytmipeli.pisteet.Piste;
  *
  * @author Leo Niemi
  */
+
 public class HighScoreTest {
 
-    private static HighScoreManager hsm;
     private FileReader fr;
     private BufferedReader br;
     private static FileOutputStream fos;
-    private static File mockFile;
 
-    public HighScoreTest() {
-        try {
-            mockFile = new File("mock.txt");
-            hsm = new HighScoreManager("mock.txt");
-            fr = new FileReader(mockFile.getPath());
-            br = new BufferedReader(fr);
-            fos = new FileOutputStream(mockFile);
-            hsm.writeCSV("TESTI", 1);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(HighScoreTest.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(HighScoreTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
     @Rule
-    public ExpectedException thrown = ExpectedException.none();
+    public TemporaryFolder tempFolder = new TemporaryFolder();
+
+    public HighScoreTest() throws IOException {
+
+    }
 
     @BeforeAll
     public static void setUpClass() {
@@ -62,7 +47,6 @@ public class HighScoreTest {
 
     @AfterAll
     public static void tearDownClass() {
-        mockFile.delete();
     }
 
     @BeforeEach
@@ -74,10 +58,15 @@ public class HighScoreTest {
     }
 
     @Test
-    public void HighScoreManagerKonstruktoriToimii() {
+    public void HighScoreManagerKonstruktoriToimii() throws IOException {
+        File createdFile = tempFolder.newFile("myfile.txt");
+        HighScoreManager hsm = new HighScoreManager(createdFile.getCanonicalPath());
+        fr = new FileReader(createdFile.getAbsolutePath());
+        br = new BufferedReader(fr);
+        fos = new FileOutputStream(createdFile);
+        fos.write("TESTI,1".getBytes());
         String line = "";
         String[] tempArr;
-
         try {
             while ((line = br.readLine()) != null) {
                 tempArr = line.split(",");
@@ -94,7 +83,11 @@ public class HighScoreTest {
     }
 
     @Test
-    public void WriteCSVMetodiToimii() {
+    public void WriteCSVMetodiToimii() throws IOException {
+        File createdFile = tempFolder.newFile("myfile.txt");
+        HighScoreManager hsm = new HighScoreManager(createdFile.getCanonicalPath());
+        fr = new FileReader(createdFile.getAbsolutePath());
+        br = new BufferedReader(fr);
         hsm.writeCSV("Kaarlo", 22);
         String line = "";
         String[] tempArr;
@@ -107,11 +100,12 @@ public class HighScoreTest {
                 tulokset.add(p);
             }
             br.close();
-        } catch (IOException ex) {
-            Logger.getLogger(HighScoreTest.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException | NumberFormatException ex) {
+            System.out.println(ex.getMessage());
         }
-        assertTrue(tulokset.size() == 2);
-        assertTrue(tulokset.get(1).getNimi().equals("Kaarlo") && tulokset.get(1).getPisteetFactory() == 22);
+        assertTrue(tulokset.size() == 1);
+        assertTrue(tulokset.get(0).getNimi().equals("Kaarlo") && tulokset.get(0).getPisteetFactory() == 22);
+
     }
 
     @Test
@@ -124,5 +118,5 @@ public class HighScoreTest {
             assertTrue(e.getMessage().contains(s));
         }
     }
-    
+
 }
