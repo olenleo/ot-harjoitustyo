@@ -1,8 +1,12 @@
 # Käynnistys
-Lataa tiedosto [Rytmipeli.0.2.jar](https://github.com/olenleo/ot-harjoitustyo/releases/download/v.0.2-beta/Rytmipeli.0.2.jar)
+Lataa viimeisin [release](https://github.com/olenleo/ot-harjoitustyo/releases/download/Loppupalautus/Rytmipeli-0.8.1.jar)
 ja käynnistä se komennolla 
 ~~~
-$ java -jar Rytmipeli.0.2.jar
+$ java -jar Rytmipeli.0.8.1.jar
+~~~
+tai vaihtoehtoisesti kopioi repositorio ja luo uusi .jar-tiedosto komennolla 
+~~~
+$ mvn package
 ~~~
 
 Peli käynnistyy menu-näkymään jossa voi aloittaa uuden pelin tai tarkastella highscore-listaa.
@@ -18,4 +22,4 @@ Peliä ohjataan klikkaamalla neljää painiketta, järjestyksessä vasemmalta oi
 - Uusi tahti [7/4] TAI isku sisältää luvun 7 - iskut 7,14
 - Uusi tahti [4/4] ja joko uusi tahti [7/4] tai isku sisältää luvun 7 - isku 21...
 
-Virhepainalluksesta menettää elämän. Onnea matkaan!
+Virhepainalluksesta menettää elämän. Miten pitkälle pääset?
