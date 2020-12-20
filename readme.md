@@ -33,13 +33,11 @@ Testikattavuusraportti:
 ~~~
 $ mvn test jacoco:report
 ~~~
-Suoritettavan jarin generointi ja suoritus:
+Suoritettavan jarin generointi
 ~~~
 $ mvn package
-$ cd target
-$ java -jar Rytmipeli-0.8.jar
 ~~~
-Checkstyletarkastus: 
+Checkstyle-tarkastus: 
 ~~~
 $ mvn checkstyle:checkstyle
 ~~~
