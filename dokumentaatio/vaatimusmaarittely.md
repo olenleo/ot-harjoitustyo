@@ -38,6 +38,13 @@ Pelin käyttöliittymä, logiikka ja pisteiden säilytysjärjestelmä edustavat 
 - Pistetilaston tallentaminen palvelimelle
 - Uusien ääniefektien lisääminen
     
+    
+# BUGEJA
+- Ensimmäisellä käynnistyskerralla ohjelma tulostaa virheviestin konsoliin, sillä pisteet sisältävää tiedostoa ei ole olemassa. Tämä ei haittaa ohjelman suoritusta, ja heti ensimmäisen pelikerran jälkeen ongelma korjaantuu. Bugin korjaus on triviaalia - voin joko sisällyttää kyseisen tiedoston esim .zip-pakkauksessa tai luoda kyseisen tiedoston aikaisemmassa vaiheessa. En kuitenkaan näin viime tingassa ennen palautusta käy muuttamaan tätä asiaa. 
+- Edelliseen liittyen, /resources-kansiossa roikkuu mukana pojot.txt-tiedosto jonka sisällön pohjalta oli tarkoitus luoda vastaava pisteet.txt sovelluksen juurikansioon.
+
+
+# Pitkän tähtäimen kehityssuuntia
 Tämän projektin ulkopuolelle melko varmasti ulottuva idea olisi MIDI-liitännäisyys jolloin sovelluksen käyttöliittymää voisi helposti laajentaa vaikkapa sähkörumpuihin.
 
 Esimerkiksi [jMusic](https://explodingart.com/jmusic/)-kirjaston tai [Supercollider](https://supercollider.github.io/)-syntetisaattorin avulla voisi myös tehdä proseduraalisesti generöityä musiikkia. Tämäkin on liian laaja haaste tähän tehtävään.
