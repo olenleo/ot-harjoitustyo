@@ -207,14 +207,6 @@ public class Kayttoliittyma extends Application {
         return guiStage;
     }
 
-    public void setMidText(String text) {
-        this.tekstikenttaMenu.setText(text);
-    }
-
-    public Label getMidText() {
-        return this.tekstikenttaMenu;
-    }
-
     /**
      * Asettaa scorefield- ja state-labelit alkuarvoihin
      */

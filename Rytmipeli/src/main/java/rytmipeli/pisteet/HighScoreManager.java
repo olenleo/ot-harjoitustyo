@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *
  */
 package rytmipeli.pisteet;
 
@@ -9,7 +7,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader; 
+import java.io.FileReader;
 import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,6 +28,7 @@ public class HighScoreManager {
 
     /**
      * Luokka hallinnoi highscore-listan kirjoitus- ja luku toimintoja.
+     *
      * @param tiedostopolku .csv-tiedoston nimi ilman päätteitä.
      */
     public HighScoreManager(String tiedostopolku) {
@@ -51,7 +50,6 @@ public class HighScoreManager {
             String[] tempArr;
 
             while ((line = br.readLine()) != null) {
-                System.out.println(line);
                 tempArr = line.split(",");
                 SimpleIntegerProperty temp = new SimpleIntegerProperty((Integer.valueOf(tempArr[1])));
                 Piste piste = new Piste(tempArr[0], temp);
@@ -93,7 +91,7 @@ public class HighScoreManager {
     public ObservableList<Piste> getData() {
         return data;
     }
-    
+
     public void tyhjennaLista() {
         data.clear();
         lueCSV();

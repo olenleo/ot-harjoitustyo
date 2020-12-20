@@ -9,8 +9,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 public class Piste implements Comparable<Piste> {
 
-    private String nimi;
-    private SimpleIntegerProperty pisteet;
+    private final String nimi;
+    private final SimpleIntegerProperty pisteet;
 
     /**
      * Konstruktori piste-oliolle.

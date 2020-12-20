@@ -10,7 +10,7 @@ public class SovellusLogiikka {
     private int luku;
     private int tahti;
     private int polyRytmiMuuttuja;
-    private String charPolyRytmi; // muuttujana jotta luku olisi vaihdettavissa
+    private String charPolyRytmi;
     private int elamat;
 
     /**
@@ -18,15 +18,16 @@ public class SovellusLogiikka {
      */
     public SovellusLogiikka() {
         this.luku = 1;
-        this.tahti = 4;  // Mahdollisuus toiminnallisuus polyrytmiikan muuttamiseen
-        this.polyRytmiMuuttuja = 7; // Mahdollisuus toiminnallisuus polyrytmiikan muuttamiseen
-        this.charPolyRytmi = Integer.toString(this.polyRytmiMuuttuja); // 
+        this.tahti = 4;
+        this.polyRytmiMuuttuja = 7;
+        this.charPolyRytmi = Integer.toString(this.polyRytmiMuuttuja);
         this.elamat = 3;
         this.luku = 1;
     }
-/**
- * Uuden pelin käynnistys. Alustaa elämät ja pisteet alkuarvoihin.
- */
+
+    /**
+     * Uuden pelin käynnistys. Alustaa elämät ja pisteet alkuarvoihin.
+     */
     public void alustaPeli() {
         this.elamat = 3;
         this.luku = 1;
@@ -35,9 +36,10 @@ public class SovellusLogiikka {
     public int getElamat() {
         return this.elamat;
     }
-/**
- * Vähentää elämän.
- */
+
+    /**
+     * Vähentää elämän.
+     */
     public void vahennaElama() {
         this.elamat--;
     }
@@ -50,9 +52,10 @@ public class SovellusLogiikka {
     public void asetaLuku(int n) { // testausta varten
         this.luku = n;
     }
-/**
- * Kasvattaa vuorossa olevaa kokonaislukua.
- */
+
+    /**
+     * Kasvattaa vuorossa olevaa kokonaislukua.
+     */
     public void kasvataLukua() {
         this.luku++;
     }
@@ -85,6 +88,7 @@ public class SovellusLogiikka {
 
     /**
      * Metodi tarkistaa jos luku sisältää etsityn merkin.
+     *
      * @see tarkistaLaatta
      * @param n
      * @return TRUE jos n sisältää merkin '7'
@@ -94,7 +98,8 @@ public class SovellusLogiikka {
     }
 
     /**
-     * Vastaanottaa kokonaisluvun, palauttaa ohjeet k. luvun käsittelylle pelisääntöjen mukaan.
+     * Vastaanottaa kokonaisluvun, palauttaa ohjeet k. luvun käsittelylle
+     * pelisääntöjen mukaan.
      *
      * @param n Tarkistettava kokonaisluku.
      * @return Merkkijono jota vertaillaan käyttäjän syötteeseen.
