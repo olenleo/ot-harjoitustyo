@@ -6,10 +6,11 @@ $ mvn test jacoco:report
 ~~~
 
 # Manuaalinen testaus
-Olen testannut että ohjelma toimii sekä windows- että seuraavilla Linux-pohjaisilla käyttöjärjestelmillä:
+Olen testannut että ohjelma toimii sekä windows 10:llä että seuraavilla Linux-pohjaisilla käyttöjärjestelmillä:
 - Ubuntu 20.04
 - Laitoksen Cubbli-linux (Testattu etätyöpöydällä) 
 
+**HUOM** Viimeisin [release](https://github.com/olenleo/ot-harjoitustyo/releases/tag/Loppupalautus) toimii vain Linuxilla. Windows-käyttäjä joutuu luomaan oman .jar-tiedoston.
 
 # JUnit-yksikkötestaus 
 Ohjeitten mukaan graafista käyttöliittymää ei testata automaattisesti.
