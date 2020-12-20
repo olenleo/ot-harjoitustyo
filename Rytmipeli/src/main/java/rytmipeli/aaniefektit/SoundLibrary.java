@@ -6,12 +6,15 @@ package rytmipeli.aaniefektit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import rytmipeli.pisteet.HighScoreManager;
 
 /**
  * Luokka hallinnoi resources-kansion äänitiedostoja. String-muotoiset viitteet tallennetaan hajautustauluun jonka avulla voidaan arpoa sopivia ääniefektejä.   
  * @author Leo Niemi
  */
-public class Aanikirjasto {
+public class SoundLibrary {
 
     private HashMap<String, ArrayList<String>> sounds = new HashMap<>();
     private ArrayList<String> kicks;
@@ -24,7 +27,7 @@ public class Aanikirjasto {
     /**
      * Kicks, claps, pads, bass ja fx-ArrayListit sisältävät /resources-mapissa olevien ääniitiedostojen nimiä formaatissa "tiedostonimi.wav".
      */
-    public Aanikirjasto() {
+    public SoundLibrary() {
         r = new Random();
         kicks = new ArrayList<>();
         claps = new ArrayList<>();
@@ -60,8 +63,8 @@ public class Aanikirjasto {
         ArrayList<String> list = sounds.get(type);
         try {
             return list.get(r.nextInt(list.size()));
-        } catch (Exception e) {
-            System.out.println("Virhe äänikirjastossa: " + e.getMessage());
+        } catch (Exception ex) {
+           Logger.getLogger(SoundLibrary.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "Virhe";
     }

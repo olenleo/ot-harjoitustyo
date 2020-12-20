@@ -3,7 +3,7 @@
  *
  * @author Leo Niemi
  */
-import rytmipeli.aaniefektit.Aanikirjasto;
+import rytmipeli.aaniefektit.SoundLibrary;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.jupiter.api.AfterAll;
@@ -12,10 +12,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
 public class AaniKirjastoTest {
- Aanikirjasto ak;
+ SoundLibrary soundlibrary;
 
     public AaniKirjastoTest() {
-        ak = new Aanikirjasto();
+        soundlibrary = new SoundLibrary();
     }
 
     @BeforeAll
@@ -36,12 +36,12 @@ public class AaniKirjastoTest {
 
     @Test
     public void getSoundPalauttaaMerkkijononKunTypeOnMOLEMMAT() {
-        assertTrue(ak.getSound("MOLEMMAT").contains(".wav"));
+        assertTrue(soundlibrary.getSound("MOLEMMAT").contains(".wav"));
     }
     
     @Test
     public void getSoundPalauttaaVirheenKunTypeOnVAARIN() {
-        assertTrue(ak.getSound("foo").contains("Virhe"));
+        assertTrue(soundlibrary.getSound("foo").contains("Virhe"));
     }
     
 }

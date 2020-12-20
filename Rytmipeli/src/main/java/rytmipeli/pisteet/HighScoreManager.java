@@ -9,6 +9,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
@@ -22,29 +24,29 @@ import javafx.beans.property.SimpleIntegerProperty;
 public class HighScoreManager {
 
     private TableView tableview;
-    private ObservableList<Piste> data;
+    private ObservableList<Score> data;
     private FileOutputStream fileOutputStream;
-    private String tiedostopolku;
+    private String pathToFile;
 
     /**
      * Luokka hallinnoi highscore-listan kirjoitus- ja luku toimintoja.
      *
-     * @param tiedostopolku .csv-tiedoston nimi ilman päätteitä.
+     * @param pathToFile .csv-tiedoston nimi ilman päätteitä.
      */
-    public HighScoreManager(String tiedostopolku) {
-        this.tiedostopolku = tiedostopolku;
+    public HighScoreManager(String pathToFile) {
+        this.pathToFile = pathToFile;
         data = FXCollections.observableArrayList();
-        File file = new File(tiedostopolku);
-        lueCSV();
+        File file = new File(pathToFile);
+        readCSV();
     }
 
     /**
      * Lukee juurikansiossa sijaitsevan pisteet.txt-tiedoston (CSV-tiedosto).
      */
-    public final void lueCSV() {
+    public final void readCSV() {
 
         try {
-            FileReader fr = new FileReader(tiedostopolku);
+            FileReader fr = new FileReader(pathToFile);
             BufferedReader br = new BufferedReader(fr);
             String line = "";
             String[] tempArr;
@@ -52,43 +54,45 @@ public class HighScoreManager {
             while ((line = br.readLine()) != null) {
                 tempArr = line.split(",");
                 SimpleIntegerProperty temp = new SimpleIntegerProperty((Integer.valueOf(tempArr[1])));
-                Piste piste = new Piste(tempArr[0], temp);
-                data.add(piste);
+                Score score = new Score(tempArr[0], temp);
+                data.add(score);
             }
             br.close();
 
-        } catch (FileNotFoundException e) {
-            System.out.println("Virhe [FileNotFound] CSV-tiedoston lukuvaiheessa: " + e.getMessage());
-        } catch (IOException e) {
-            System.out.println("Virhe [IOException] CSV-tiedoston lukuvaiheessa: " + e.getMessage());
+        } catch (FileNotFoundException ex) {
+           Logger.getLogger(HighScoreManager.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(HighScoreManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     /**
-     * Lisää resources-kansion pisteet.txt-tiedostoon uuden rivin CSV-muodossa.
+     * Lisää resources-kansion playerScore.txt-tiedostoon uuden rivin CSV-muodossa.
      *
-     * @param nimi Pelaajan nimi
-     * @param pisteet Pelaajan pisteet
+     * @param playerName Pelaajan playerName
+     * @param playerScore Pelaajan playerScore
      */
-    public final void writeCSV(String nimi, int pisteet) {
+    public final void writeCSV(String playerName, int playerScore) {
 
-        String lisattava = nimi + "," + pisteet + "\n";
         try {
-            fileOutputStream = new FileOutputStream(tiedostopolku, true);
+            String lisattava = playerName + "," + playerScore + "\n";
+            fileOutputStream = new FileOutputStream(pathToFile, true);
             fileOutputStream.write(lisattava.getBytes());
             fileOutputStream.flush();
             fileOutputStream.close();
-        } catch (Exception e) {
-            System.out.println("Write error: " + e.getMessage());
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(HighScoreManager.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(HighScoreManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
     }
 
     public TableView getTableView() {
         return this.tableview;
     }
 
-    public ObservableList<Piste> getData() {
+    public ObservableList<Score> getData() {
         return data;
     }
 
@@ -96,9 +100,9 @@ public class HighScoreManager {
      * Metodi tyhjentää ObservableList datan ja alustaa sen uudelleen. Näin saadaan uusimmat muutokset mukaan tableview:hin.
      * 
      */
-    public void tyhjennaLista() {
+    public void refreshHighScore() {
         data.clear();
-        lueCSV();
+        readCSV();
     }
 
 }

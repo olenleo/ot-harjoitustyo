@@ -17,43 +17,43 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import rytmipeli.pisteet.HighScoreManager;
-import rytmipeli.sovelluslogiikka.SovellusLogiikka;
+import rytmipeli.sovelluslogiikka.ApplicationLogic;
 
 /**
  *
  * @author Leo Niemi
  */
-public class Kayttoliittyma extends Application {
+public class UserInterface extends Application {
 
-    private SovellusLogiikka sl;
+    private ApplicationLogic sl;
     private int score;
     private Label scoreField, state, tekstikenttaMenu;
     private HBox gameInterface, menuInterface, scoreInterface, gameOverInterface;
     private VBox info;
-    private Nappi tahtiButton, nextButton, laattaButton, molemmatButton, newGame, highScore;
+    private RytmipeliButton mainBeatButton, nextButton, polyrhythmBeatButton, bothButton, newGame, highScore;
     protected static Scene sceneGame, sceneMenu, sceneScore, sceneGameOver;
     private static Stage guiStage;
     private Canvas canvas;
     private TableView tableview;
     private HighScoreManager highscoremanager;
     private HighScoreTableView hsTableView;
-    private final String tiedosto = "pisteet.txt";
+    private final String file = "pisteet.txt";
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         // YLEISHYÖDYLLISIÄ MUUTTUJIA
-        sl = new SovellusLogiikka();
-        score = sl.getLuku();
+        sl = new ApplicationLogic();
+        score = sl.getCurrentBeat();
         guiStage = primaryStage;
         Insets inset = new Insets(10, 10, 10, 10);
-        highscoremanager = new HighScoreManager(tiedosto);
+        highscoremanager = new HighScoreManager(file);
 
         // TAUSTAVÄRI
-        BackgroundFill taustavari = new BackgroundFill(Color.LIGHTGREY, CornerRadii.EMPTY, Insets.EMPTY);
-        Background background = new Background(taustavari);
+        BackgroundFill bgColour = new BackgroundFill(Color.LIGHTGREY, CornerRadii.EMPTY, Insets.EMPTY);
+        Background background = new Background(bgColour);
 
         // TABLEVIEW pistetilastolle
-        hsTableView = new HighScoreTableView(tiedosto, highscoremanager);
+        hsTableView = new HighScoreTableView(file, highscoremanager);
         tableview = new TableView();
         tableview = hsTableView.getTableView();
 
@@ -74,12 +74,12 @@ public class Kayttoliittyma extends Application {
         sceneGameOver.getStylesheets().add(getClass().getResource("/buttonCSS.css").toExternalForm());
 
         // LUODAAN ELEMENTIT: sceneMenu
-        newGame = new Nappi("Uusi Peli");
+        newGame = new RytmipeliButton("Uusi Peli");
         newGame.getStyleClass().add("red");
         newGame.setMinSize(160, 160);
         newGame.setPadding(inset);
         newGame.setOnAction(e -> {
-            sl.alustaPeli();
+            sl.initializeGame();
             alustaLabelit();
             guiStage.setScene(sceneGame);
             primaryStage.show();
@@ -89,7 +89,7 @@ public class Kayttoliittyma extends Application {
         tekstikenttaMenu.setAlignment(Pos.CENTER);
         tekstikenttaMenu.setText("Onnea matkaan!!");
 
-        highScore = new Nappi("High Score");
+        highScore = new RytmipeliButton("High Score");
         highScore.getStyleClass().add("green");
         highScore.setMinSize(160, 160);
         highScore.setPadding(inset);
@@ -107,42 +107,42 @@ public class Kayttoliittyma extends Application {
         state = new Label("Onnea matkaan!");
 
         // LUODAAN ELEMENTIT: sceneGame
-        tahtiButton = new Nappi("[1/4]", "TAHTI", sl, scoreField, state, this, highscoremanager);
-        tahtiButton.getStyleClass().add("red");
-        tahtiButton.setMinSize(160, 160);
-        tahtiButton.setPadding(inset);
+        mainBeatButton = new RytmipeliButton("[1/4]", "TAHTI", sl, scoreField, state, this, highscoremanager);
+        mainBeatButton.getStyleClass().add("red");
+        mainBeatButton.setMinSize(160, 160);
+        mainBeatButton.setPadding(inset);
 
-        nextButton = new Nappi("SKIP", "SEURAAVA", sl, scoreField, state, this, highscoremanager);
+        nextButton = new RytmipeliButton("SKIP", "SEURAAVA", sl, scoreField, state, this, highscoremanager);
         nextButton.setMinSize(160, 160);
         nextButton.getStyleClass().add("orange");
         nextButton.setPadding(inset);
 
-        laattaButton = new Nappi("7", "LAATTA", sl, scoreField, state, this, highscoremanager);
-        laattaButton.setMinSize(160, 160);
-        laattaButton.getStyleClass().add("yellow");
-        laattaButton.setPadding(inset);
+        polyrhythmBeatButton = new RytmipeliButton("7", "LAATTA", sl, scoreField, state, this, highscoremanager);
+        polyrhythmBeatButton.setMinSize(160, 160);
+        polyrhythmBeatButton.getStyleClass().add("yellow");
+        polyrhythmBeatButton.setPadding(inset);
 
-        molemmatButton = new Nappi("*", "MOLEMMAT", sl, scoreField, state, this, highscoremanager);
-        molemmatButton.setMinSize(160, 160);
-        molemmatButton.getStyleClass().add("green");
-        molemmatButton.setPadding(inset);
+        bothButton = new RytmipeliButton("*", "MOLEMMAT", sl, scoreField, state, this, highscoremanager);
+        bothButton.setMinSize(160, 160);
+        bothButton.getStyleClass().add("green");
+        bothButton.setPadding(inset);
 
         // INFO tulostaa pisteet ja mahdollisia viestejä pelaajalle.
         info = new VBox(scoreField, state);
         info.setMinSize(160, 160);
 
         // YHDISTETÄÄN:
-        gameInterface = new HBox(tahtiButton, nextButton, laattaButton, molemmatButton, info);
+        gameInterface = new HBox(mainBeatButton, nextButton, polyrhythmBeatButton, bothButton, info);
         gameInterface.setPadding(inset);
         gameInterface.setBackground(background);
 
         // LUODAAN ELEMENTIT: sceneHighscore
-        Nappi highScoreNewGame = new Nappi("Uusi Peli");
+        RytmipeliButton highScoreNewGame = new RytmipeliButton("Uusi Peli");
         highScoreNewGame.getStyleClass().add("red");
         highScoreNewGame.setMinSize(160, 160);
         highScoreNewGame.setPadding(inset);
         highScoreNewGame.setOnAction(e -> {
-            sl.alustaPeli();
+            sl.initializeGame();
             alustaLabelit();
             guiStage.setScene(sceneGame);
             primaryStage.show();
@@ -155,18 +155,18 @@ public class Kayttoliittyma extends Application {
         Label syotaNimi = new Label("Syötä nimi:");
         TextField nimiField = new TextField();
         //UUSI PELI
-        Nappi gameOverNew = new Nappi("Uusi Peli");
+        RytmipeliButton gameOverNew = new RytmipeliButton("Uusi Peli");
         gameOverNew.getStyleClass().add("red");
         gameOverNew.setMinSize(160, 160);
         gameOverNew.setPadding(inset);
         gameOverNew.setOnAction(e -> {
-            sl.alustaPeli();
+            sl.initializeGame();
             alustaLabelit();
             guiStage.setScene(sceneGame);
             primaryStage.show();
         });
         //HIGHSCOREn syöttävä OK-nappi
-        Nappi gameOverSyotaScore = new Nappi("OK");
+        RytmipeliButton gameOverSyotaScore = new RytmipeliButton("OK");
         gameOverSyotaScore.getStyleClass().add("green");
         gameOverSyotaScore.setMinSize(160, 160);
         gameOverSyotaScore.setPadding(inset);
@@ -174,9 +174,9 @@ public class Kayttoliittyma extends Application {
             if (nimiField.getText().contains(",")) {
                 syotaNimi.setText("Valitettavasti ',' ei ole sallittu merkki");
             } else {
-                highscoremanager.writeCSV(nimiField.getText(), sl.getLuku());
-                highscoremanager.tyhjennaLista();
-                sl.alustaPeli();
+                highscoremanager.writeCSV(nimiField.getText(), sl.getCurrentBeat());
+                highscoremanager.refreshHighScore();
+                sl.initializeGame();
                 hsTableView.sortTableView();
                 guiStage.setScene(sceneScore);
                 primaryStage.show();

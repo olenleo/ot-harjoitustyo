@@ -1,6 +1,5 @@
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import org.junit.Test;
 import org.junit.jupiter.api.AfterAll;
@@ -10,7 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import rytmipeli.pisteet.HighScoreManager;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,7 +16,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import static org.junit.Assert.assertTrue;
 import org.junit.Rule;
 import org.junit.rules.TemporaryFolder;
-import rytmipeli.pisteet.Piste;
+import rytmipeli.pisteet.Score;
 
 /**
  * Highscore-toiminnallisuuteen liittyviä automaattisia testejä.
@@ -35,9 +33,7 @@ public class HighScoreTest {
 
     @Rule
     public TemporaryFolder tempFolder = new TemporaryFolder();
-
     public HighScoreTest() throws IOException {
-
     }
 
     @BeforeAll
@@ -91,20 +87,20 @@ public class HighScoreTest {
         hsm.writeCSV("Kaarlo", 22);
         String line = "";
         String[] tempArr;
-        ArrayList<Piste> tulokset = new ArrayList<>();
+        ArrayList<Score> results = new ArrayList<>();
         try {
             while ((line = br.readLine()) != null) {
                 tempArr = line.split(",");
                 SimpleIntegerProperty tulos = new SimpleIntegerProperty((Integer.valueOf(tempArr[1])));
-                Piste p = new Piste(tempArr[0], tulos);
-                tulokset.add(p);
+                Score p = new Score(tempArr[0], tulos);
+                results.add(p);
             }
             br.close();
         } catch (IOException | NumberFormatException ex) {
             System.out.println(ex.getMessage());
         }
-        assertTrue(tulokset.size() == 1);
-        assertTrue(tulokset.get(0).getNimi().equals("Kaarlo") && tulokset.get(0).getPisteetFactory() == 22);
+        assertTrue(results.size() == 1);
+        assertTrue(results.get(0).getName().equals("Kaarlo") && results.get(0).getPlayerScoreFactory() == 22);
 
     }
 

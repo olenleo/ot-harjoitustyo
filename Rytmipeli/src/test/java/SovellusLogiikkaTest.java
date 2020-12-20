@@ -1,7 +1,7 @@
 /*
  * 
  */
-import rytmipeli.sovelluslogiikka.SovellusLogiikka;
+import rytmipeli.sovelluslogiikka.ApplicationLogic;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -16,10 +16,10 @@ import org.junit.jupiter.api.BeforeEach;
  */
 public class SovellusLogiikkaTest {
 
-    SovellusLogiikka sl;
+    ApplicationLogic sl;
 
     public SovellusLogiikkaTest() {
-        sl = new SovellusLogiikka();
+        sl = new ApplicationLogic();
     }
 
     @BeforeAll
@@ -40,110 +40,110 @@ public class SovellusLogiikkaTest {
 
     @Test
     public void lukuAlussa1() {
-        assertEquals(1, sl.getLuku());
+        assertEquals(1, sl.getCurrentBeat());
     }
 
     @Test
     public void alussaTahtiOnTrue() {
-        assertTrue(sl.tarkistaTahti(sl.getLuku()));
+        assertTrue(sl.checkPrimaryBeat(sl.getCurrentBeat()));
     }
 
     @Test
     public void tarkistaTahtiToimii() {
-        sl.asetaLuku(4);
-        assertFalse(sl.tarkistaTahti(sl.getLuku()));
-        sl.kasvataLukua();
-        assertTrue(sl.tarkistaTahti(sl.getLuku()));
+        sl.setCurrentBeat(4);
+        assertFalse(sl.checkPrimaryBeat(sl.getCurrentBeat()));
+        sl.increaseCurrentBeat();
+        assertTrue(sl.checkPrimaryBeat(sl.getCurrentBeat()));
     }
 
     @Test
     public void merkkijonotestiToimii() {
-        assertTrue(sl.tarkistaMerkkiJono(17));
+        assertTrue(sl.checkStringForPolyrhytm(17));
     }
 
     @Test
     public void lukuKasvatusToimii() {
-        sl.kasvataLukua();
-        assertEquals(2, sl.getLuku());
+        sl.increaseCurrentBeat();
+        assertEquals(2, sl.getCurrentBeat());
     }
 
     @Test
     public void isku1PalauttaaTrue() {
-        assertTrue(sl.tarkistaTahti(sl.getLuku()));
+        assertTrue(sl.checkPrimaryBeat(sl.getCurrentBeat()));
     }
 
     @Test
     public void asetaLukuToimii() {
-        sl.asetaLuku(100);
-        assertEquals(100, sl.getLuku());
+        sl.setCurrentBeat(100);
+        assertEquals(100, sl.getCurrentBeat());
     }
 
     @Test
     public void isku17vaatiimolemmat() {
-        sl.asetaLuku(17);
-        assertEquals("MOLEMMAT", sl.tarkistaLaatta(sl.getLuku()));
+        sl.setCurrentBeat(17);
+        assertEquals("MOLEMMAT", sl.checkCurrentBeat(sl.getCurrentBeat()));
 
     }
 
     @Test
     public void tarkistamod7toimii() {
-        sl.asetaLuku(6);
-        assertFalse(sl.tarkistaMod7(sl.getLuku()));
-        sl.kasvataLukua();
-        assertTrue(sl.tarkistaMod7(sl.getLuku()));
+        sl.setCurrentBeat(6);
+        assertFalse(sl.checkMod7(sl.getCurrentBeat()));
+        sl.increaseCurrentBeat();
+        assertTrue(sl.checkMod7(sl.getCurrentBeat()));
 
     }
 
     @Test
     public void tarkistaLaattaMetodiPalauttaaTahti() {
-        assertEquals("TAHTI", sl.tarkistaLaatta(sl.getLuku()));
+        assertEquals("TAHTI", sl.checkCurrentBeat(sl.getCurrentBeat()));
     }
 
     @Test
     public void tarkistaLaattaMetodiPalauttaaSeuraava() {
-        sl.kasvataLukua();
-        assertEquals("SEURAAVA", sl.tarkistaLaatta(sl.getLuku()));
+        sl.increaseCurrentBeat();
+        assertEquals("SEURAAVA", sl.checkCurrentBeat(sl.getCurrentBeat()));
     }
 
     @Test
     public void tarkistaLaattaMetodipalauttaLaattaKunMerkkijonoSisaltaa7() {
-        sl.asetaLuku(27);
-        assertEquals("LAATTA", sl.tarkistaLaatta(sl.getLuku()));
+        sl.setCurrentBeat(27);
+        assertEquals("LAATTA", sl.checkCurrentBeat(sl.getCurrentBeat()));
     }
 
     @Test
     public void tarkistaLaattaMetodiPalauttaaLaattaKun_n_Mod_7() {
-        sl.asetaLuku(14);
-        assertEquals("LAATTA", sl.tarkistaLaatta(sl.getLuku()));
+        sl.setCurrentBeat(14);
+        assertEquals("LAATTA", sl.checkCurrentBeat(sl.getCurrentBeat()));
     }
 
     @Test
     public void tarkistaLaattaMetodiPalauttaaMolemmat_Sisaltaa7() {
-        sl.asetaLuku(17);
-        assertEquals("MOLEMMAT", sl.tarkistaLaatta(sl.getLuku()));
+        sl.setCurrentBeat(17);
+        assertEquals("MOLEMMAT", sl.checkCurrentBeat(sl.getCurrentBeat()));
     }
 
     @Test
     public void tarkistaLaattaMetodiPalauttaaMolemmatKun_n_Mod_7() {
-        sl.asetaLuku(21);
-        assertEquals("MOLEMMAT", sl.tarkistaLaatta(sl.getLuku()));
+        sl.setCurrentBeat(21);
+        assertEquals("MOLEMMAT", sl.checkCurrentBeat(sl.getCurrentBeat()));
     }
 
     @Test
     public void alustaPeliMetodiToimii() {
-        sl.asetaLuku(2);
-        sl.alustaPeli();
-        assertEquals(1, sl.getLuku());
+        sl.setCurrentBeat(2);
+        sl.initializeGame();
+        assertEquals(1, sl.getCurrentBeat());
     }
 
     @Test
     public void getElamatToimii() {
-        assertEquals(3, sl.getElamat());
+        assertEquals(3, sl.getLives());
     }
 
     @Test
     public void vahennaElamaToimii() {
-        sl.vahennaElama();
-        assertEquals(2, sl.getElamat());
+        sl.reduceLives();
+        assertEquals(2, sl.getLives());
     }
 }

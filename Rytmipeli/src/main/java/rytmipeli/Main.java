@@ -1,6 +1,6 @@
 package rytmipeli;
 
-import rytmipeli.kayttoliittyma.Kayttoliittyma;
+import rytmipeli.kayttoliittyma.UserInterface;
 
 public class Main {
 
@@ -10,7 +10,7 @@ public class Main {
      */
     public static void main(String args[]) {
 
-        Kayttoliittyma.main(args);
+        UserInterface.main(args);
 
     }
 

@@ -6,7 +6,10 @@
 package rytmipeli.kayttoliittyma;
 
 import java.io.BufferedInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -15,9 +18,11 @@ import javafx.util.Duration;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import rytmipeli.aaniefektit.Aanikirjasto;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import rytmipeli.aaniefektit.SoundLibrary;
 import rytmipeli.pisteet.HighScoreManager;
-import rytmipeli.sovelluslogiikka.SovellusLogiikka;
+import rytmipeli.sovelluslogiikka.ApplicationLogic;
 
 /**
  *
@@ -26,11 +31,11 @@ import rytmipeli.sovelluslogiikka.SovellusLogiikka;
 // Tämä luokka on hieman epäselvä.
 // Tämä käsittelee napin buttoneventin. Toisaalta, tämä toistaa myös äänet.
 // Toisin sanoen: Miten single responsibility principle ja tämä menevät yksiin?
-public class Nappi extends Button {
+public class RytmipeliButton extends Button {
 
     private String type;
-    private SovellusLogiikka sl;
-    private Aanikirjasto aanikirjasto = new Aanikirjasto();
+    private ApplicationLogic sl;
+    private SoundLibrary soundlibrary = new SoundLibrary();
 
     /**
      * Asettaa napin labelin
@@ -43,7 +48,7 @@ public class Nappi extends Button {
      *
      * @param text Asettaa napin labelin
      */
-    public Nappi(String text) {
+    public RytmipeliButton(String text) {
         this.setText(text);
     }
 
@@ -57,17 +62,17 @@ public class Nappi extends Button {
      * @param ui Käyttöliittymän hallinta
      * @param highscoremanager
      */
-    public Nappi(String text, String type, SovellusLogiikka sl, Label scorefield, Label state, Kayttoliittyma ui, HighScoreManager highscoremanager) {
+    public RytmipeliButton(String text, String type, ApplicationLogic sl, Label scorefield, Label state, UserInterface ui, HighScoreManager highscoremanager) {
         this.type = type;
         this.setText(text);
         this.setOnAction((ActionEvent e) -> {
-            String annettu = this.type;
-            String vaadittu = sl.tarkistaLaatta(sl.getLuku());
-            if (annettu.equals(vaadittu)) {
-                sl.kasvataLukua();
-                scorefield.setText("Score: " + sl.getLuku());
+            String playerInput = this.type;
+            String expected = sl.checkCurrentBeat(sl.getCurrentBeat());
+            if (playerInput.equals(expected)) {
+                sl.increaseCurrentBeat();
+                scorefield.setText("Score: " + sl.getCurrentBeat());
                 state.setText("Hyvin pyyhkii!");
-                playSound(aanikirjasto.getSound(type));
+                playSound(soundlibrary.getSound(type));
                 FadeTransition ft = new FadeTransition(Duration.millis(50), this);
                 ft.setFromValue(1.0);
                 ft.setToValue(0.8);
@@ -75,12 +80,12 @@ public class Nappi extends Button {
                 ft.setAutoReverse(true);
                 ft.play();
             } else {
-                if (sl.getElamat() > 1) {
-                    sl.vahennaElama();
-                    playSound(aanikirjasto.getSound("VIRHE"));
-                    state.setText("Elämiä jäljellä: " + sl.getElamat());
+                if (sl.getLives() > 1) {
+                    sl.reduceLives();
+                    playSound(soundlibrary.getSound("VIRHE"));
+                    state.setText("Elämiä jäljellä: " + sl.getLives());
                 } else {
-                    Kayttoliittyma.getStage().setScene(Kayttoliittyma.sceneGameOver);
+                    UserInterface.getStage().setScene(UserInterface.sceneGameOver);
                 }
             }
         });
@@ -102,8 +107,8 @@ public class Nappi extends Button {
                     clip.open(audioStream);
                     bufferedIn.close();
                     clip.start();
-                } catch (Exception e) {
-                    System.out.println("Virhe playSound-metodissa: " + e.getMessage());
+                } catch (IOException | LineUnavailableException | UnsupportedAudioFileException ex) {
+                   Logger.getLogger(RytmipeliButton.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }).start();

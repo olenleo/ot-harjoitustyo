@@ -5,7 +5,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import rytmipeli.pisteet.HighScoreManager;
-import rytmipeli.pisteet.Piste;
+import rytmipeli.pisteet.Score;
 
 /**
  * Luokka hallinnoi käyttöliittymän tableview-oliota.
@@ -15,8 +15,8 @@ import rytmipeli.pisteet.Piste;
 public class HighScoreTableView {
 
     private TableView tableview;
-    private ObservableList<Piste> data;
-    private TableColumn nimiColumn, pisteColumn;
+    private ObservableList<Score> data;
+    private TableColumn nameColumn, scoreColumn;
 
     
     
@@ -31,16 +31,16 @@ public class HighScoreTableView {
         this.data = hsm.getData();
         tableview = new TableView(data);
         tableview.setPrefSize(480, 160);
-        nimiColumn = new TableColumn<>("nimi");
-        pisteColumn = new TableColumn<>("pisteet");
-        pisteColumn.setCellValueFactory(new PropertyValueFactory<Piste, Integer>("pisteetFactory"));
-        nimiColumn.setSortable(false);
-        nimiColumn.setCellValueFactory(new PropertyValueFactory<>("nimi"));
-        pisteColumn.setSortType(TableColumn.SortType.DESCENDING);
-        tableview.getSortOrder().add(pisteColumn);
-        nimiColumn.setMinWidth(250);
-        pisteColumn.setMinWidth(230);
-        tableview.getColumns().addAll(nimiColumn, pisteColumn);
+        nameColumn = new TableColumn<>("nimi");
+        scoreColumn = new TableColumn<>("pisteet");
+        scoreColumn.setCellValueFactory(new PropertyValueFactory<Score, Integer>("playerScoreFactory"));
+        nameColumn.setSortable(false);
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        scoreColumn.setSortType(TableColumn.SortType.DESCENDING);
+        tableview.getSortOrder().add(scoreColumn);
+        nameColumn.setMinWidth(250);
+        scoreColumn.setMinWidth(230);
+        tableview.getColumns().addAll(nameColumn, scoreColumn);
         tableview.sort();
     }
 
