@@ -36,14 +36,6 @@ public class HighScoreManager {
         this.tiedostopolku = tiedostopolku;
         data = FXCollections.observableArrayList();
         File file = new File(tiedostopolku);
-        if (file.exists()) {
-            try {
-                fileOutputStream = new FileOutputStream("./" + this.tiedostopolku, true);
-            } catch (FileNotFoundException e) {
-                System.out.println("VIRHE: Olematon tiedosto " + e.getMessage());
-            }
-        }
-
         lueCSV();
     }
 
@@ -100,6 +92,11 @@ public class HighScoreManager {
 
     public ObservableList<Piste> getData() {
         return data;
+    }
+    
+    public void tyhjennaLista() {
+        data.clear();
+        lueCSV();
     }
 
 }

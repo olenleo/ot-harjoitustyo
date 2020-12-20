@@ -175,7 +175,7 @@ public class Kayttoliittyma extends Application {
                 syotaNimi.setText("Valitettavasti ',' ei ole sallittu merkki");
             } else {
                 highscoremanager.writeCSV(nimiField.getText(), sl.getLuku());
-                highscoremanager.lueCSV();
+                highscoremanager.tyhjennaLista();
                 sl.alustaPeli();
                 hsTableView.sortTableView();
                 guiStage.setScene(sceneScore);
