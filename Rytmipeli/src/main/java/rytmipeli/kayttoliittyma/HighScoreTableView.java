@@ -18,10 +18,13 @@ public class HighScoreTableView {
     private ObservableList<Piste> data;
     private TableColumn nimiColumn, pisteColumn;
 
+    
+    
     /**
      * Konstruktori tableview-olion luovalle luokalle.
      *
-     *
+     * @param tiedostopolku CSV-tiedoston nimi ilman päätettä
+     * @param hsm HighScoreManager-olio
      */
     public HighScoreTableView(String tiedostopolku, HighScoreManager hsm) {
 

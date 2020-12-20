@@ -32,7 +32,7 @@ public class HighScoreManager {
 
     /**
      * Luokka hallinnoi highscore-listan kirjoitus- ja luku toimintoja.
-     *
+     * @param tiedostopolku .csv-tiedoston nimi ilman päätteitä.
      */
     public HighScoreManager(String tiedostopolku) {
         this.tiedostopolku = tiedostopolku;

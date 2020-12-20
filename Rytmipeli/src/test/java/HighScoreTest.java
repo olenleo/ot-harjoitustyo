@@ -123,7 +123,6 @@ public class HighScoreTest {
         } catch (Exception e) {
             assertTrue(e.getMessage().contains(s));
         }
-
     }
-
+    
 }
