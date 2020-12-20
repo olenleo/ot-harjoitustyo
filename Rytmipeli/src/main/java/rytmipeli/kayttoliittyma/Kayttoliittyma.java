@@ -16,7 +16,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import rytmipeli.aaniefektit.Aanikirjasto;
 import rytmipeli.pisteet.HighScoreManager;
 import rytmipeli.sovelluslogiikka.SovellusLogiikka;
 
@@ -38,7 +37,7 @@ public class Kayttoliittyma extends Application {
     private TableView tableview;
     private HighScoreManager highscoremanager;
     private HighScoreTableView hsTableView;
-    private final String tiedosto = "pistot.txt";
+    private final String tiedosto = "pisteet.txt";
 
     @Override
     public void start(Stage primaryStage) throws Exception {

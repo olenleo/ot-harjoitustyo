@@ -16,14 +16,13 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import rytmipeli.aaniefektit.Aanikirjasto;
-import rytmipeli.sovelluslogiikka.SovellusLogiikka;
 import rytmipeli.pisteet.HighScoreManager;
+import rytmipeli.sovelluslogiikka.SovellusLogiikka;
 
 /**
  *
  * @author Leo Niemi
  */
-
 // Tämä luokka on hieman epäselvä.
 // Tämä käsittelee napin buttoneventin. Toisaalta, tämä toistaa myös äänet.
 // Toisin sanoen: Miten single responsibility principle ja tämä menevät yksiin?
@@ -32,17 +31,16 @@ public class Nappi extends Button {
     private String type;
     private SovellusLogiikka sl;
     private Aanikirjasto aanikirjasto = new Aanikirjasto();
-    private HighScoreManager highscoremanager;
-    
-    /** 
+
+    /**
      * Asettaa napin labelin
      *
      * @param text Haluttu teksti
      */
-    
     /**
-     * Alkumenun napit eivät vaadi yhtä laajaa toiminnallisuutta kuin itse pelin.
-     * 
+     * Alkumenun napit eivät vaadi yhtä laajaa toiminnallisuutta kuin itse
+     * pelin.
+     *
      * @param text Asettaa napin labelin
      */
     public Nappi(String text) {
@@ -86,7 +84,6 @@ public class Nappi extends Button {
                 }
             }
         });
-        this.highscoremanager = highscoremanager;
     }
 
     /**

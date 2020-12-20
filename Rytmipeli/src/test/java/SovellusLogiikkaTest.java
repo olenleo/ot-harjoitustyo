@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * 
  */
 import rytmipeli.sovelluslogiikka.SovellusLogiikka;
 
@@ -14,7 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 
 /**
  *
- * @author 35850
+ * @author Leo Niemi
  */
 public class SovellusLogiikkaTest {
 
@@ -40,12 +38,6 @@ public class SovellusLogiikkaTest {
     public void tearDown() {
     }
 
-//    @Test
-//    public void nimi() {
-//        esimerkkejä
-//        assertEquals(param, metodi.param());
-//        assertTrue(boolean, metodi.getBoolean());
-//    }
     @Test
     public void lukuAlussa1() {
         assertEquals(1, sl.getLuku());
@@ -62,7 +54,6 @@ public class SovellusLogiikkaTest {
         assertFalse(sl.tarkistaTahti(sl.getLuku()));
         sl.kasvataLukua();
         assertTrue(sl.tarkistaTahti(sl.getLuku()));
-
     }
 
     @Test
@@ -102,16 +93,6 @@ public class SovellusLogiikkaTest {
         assertTrue(sl.tarkistaMod7(sl.getLuku()));
 
     }
-//    public String tarkistaLaatta(int n) {
-//        if ((tarkistaMerkkiJono(n) || tarkistaMod7(n)) && tarkistaTahti(n)) {
-//            return "MOLEMMAT";
-//        } else if (tarkistaMerkkiJono(n) || tarkistaMod7(n)) {
-//            return "LAATTA"; // jos vain Laatta
-//        } else if (tarkistaTahti(n)) {
-//            return "TAHTI"; // jos vain Tahti
-//        }
-//        return "SEURAAVA"; // ei mikään erikoistapaus, jatketaan.
-//    }
 
     @Test
     public void tarkistaLaattaMetodiPalauttaaTahti() {
@@ -154,16 +135,15 @@ public class SovellusLogiikkaTest {
         sl.alustaPeli();
         assertEquals(1, sl.getLuku());
     }
-    
+
     @Test
     public void getElamatToimii() {
         assertEquals(3, sl.getElamat());
     }
-    
+
     @Test
     public void vahennaElamaToimii() {
         sl.vahennaElama();
         assertEquals(2, sl.getElamat());
     }
-    // todo: Testi joka vastaanottaa "oikean merkkijonon" pitkällä aikavälillä
 }
