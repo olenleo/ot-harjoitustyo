@@ -16,4 +16,5 @@
 |   16.12    |   6   | Kuten yllä.    |
 |   17.12    |   8   | Kuten yllä, kunnes tein uuden toteutuksen pistetiedostolle.  |
 |   18.12    |   5   | Bugeja pistetiedostossa, checkstyle- ja javadoc-korjauksia.  |
-| yht   | 51.5  |    | 
+| 20.12 | 9.5 | Checkstyle, dokumentaatiota, suuria ongelmia JUnit-testeissä, viime hetken kriittinen bugi ynnä muuta |
+| yht   | 67.5  |    | 
