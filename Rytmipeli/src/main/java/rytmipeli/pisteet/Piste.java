@@ -5,10 +5,12 @@
  */
 package rytmipeli.pisteet;
 
+import javafx.beans.property.SimpleIntegerProperty;
+
 public class Piste implements Comparable<Piste> {
 
     private String nimi;
-    private int pisteet;
+    private SimpleIntegerProperty pisteet;
 
     /**
      * Konstruktori piste-oliolle.
@@ -16,7 +18,7 @@ public class Piste implements Comparable<Piste> {
      * @param nimi Pelaajan nimi
      * @param pisteet pelaajan savuttama pistemäärä.
      */
-    public Piste(String nimi, int pisteet) {
+    public Piste(String nimi, SimpleIntegerProperty pisteet) {
         this.nimi = nimi;
         this.pisteet = pisteet;
     }
@@ -25,13 +27,13 @@ public class Piste implements Comparable<Piste> {
         return nimi;
     }
 
-    public int getPisteet() {
-        return pisteet;
+    public Integer getPisteetFactory() {
+        return pisteet.get();
     }
 
     @Override
     public int compareTo(Piste toinenPiste) {
-        return Integer.compare(this.getPisteet(), toinenPiste.getPisteet());
+        return Integer.compare(this.getPisteetFactory(), toinenPiste.getPisteetFactory());
     }
 
     @Override

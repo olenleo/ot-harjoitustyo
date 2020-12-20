@@ -17,8 +17,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import rytmipeli.aaniefektit.Aanikirjasto;
-import static rytmipeli.kayttoliittyma.Nappi.playSound;
 import rytmipeli.pisteet.HighScoreManager;
+import rytmipeli.pisteet.HighScoreTableView;
 import rytmipeli.sovelluslogiikka.SovellusLogiikka;
 
 /**
@@ -37,9 +37,8 @@ public class Kayttoliittyma extends Application {
     private static Stage guiStage;
     private Canvas canvas;
     private TableView tableview;
-    private int pieninHighScore = 0;
     private HighScoreManager highscoremanager;
-    private Aanikirjasto aanikirjasto;
+    private HighScoreTableView hsTableView;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -48,14 +47,16 @@ public class Kayttoliittyma extends Application {
         score = sl.getLuku();
         guiStage = primaryStage;
         Insets inset = new Insets(10, 10, 10, 10);
-        highscoremanager = new HighScoreManager();
+        highscoremanager = new HighScoreManager("pisteet.txt");
 
         // TAUSTAVÄRI
         BackgroundFill taustavari = new BackgroundFill(Color.LIGHTGREY, CornerRadii.EMPTY, Insets.EMPTY);
         Background background = new Background(taustavari);
 
         // TABLEVIEW pistetilastolle
-        tableview = highscoremanager.getTableView();
+        hsTableView = new HighScoreTableView("pisteet.txt", highscoremanager);
+        tableview = new TableView();
+        tableview = hsTableView.getTableView();
 
         // IKKUNAN KOKO
         canvas = new Canvas();
@@ -94,7 +95,7 @@ public class Kayttoliittyma extends Application {
         highScore.setMinSize(160, 160);
         highScore.setPadding(inset);
         highScore.setOnAction(e -> {
-            highscoremanager.update();
+//            hsTableView.sortTableView();
             guiStage.setScene(sceneScore);
             primaryStage.show();
         });
@@ -175,8 +176,9 @@ public class Kayttoliittyma extends Application {
                 syotaNimi.setText("Valitettavasti ',' ei ole sallittu merkki");
             } else {
                 highscoremanager.writeCSV(nimiField.getText(), sl.getLuku());
+                highscoremanager.lueCSV();
                 sl.alustaPeli();
-                highscoremanager.update();
+                hsTableView.sortTableView();
                 guiStage.setScene(sceneScore);
                 primaryStage.show();
             }
